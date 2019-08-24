@@ -21,16 +21,22 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.CameraActivity"></activity>
-
+        <activity android:name=".ui.CameraActivity" />
 
         <!-- 出行备忘相关界面 -->
         <activity android:name="com.memorandum.EditActivity" />
-        <activity android:name="com.memorandum.MainActivity"
-            android:windowSoftInputMode="adjustPan"/>
+        <activity
+            android:name="com.memorandum.MainActivity"
+            android:windowSoftInputMode="adjustPan" />
         <activity android:name="com.memorandum.AlarmActivity" />
 
-        <service android:name="org.eclipse.paho.android.service.MqttService"></service>
+        <activity android:name=".ui.LoginActivity"></activity>
+        <activity android:name=".ui.RegisterActivity"
+            android:theme="@style/Translucent"/>
+
+
+        <service android:name="org.eclipse.paho.android.service.MqttService" />
+
     </application>
 
 </manifest>

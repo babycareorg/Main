@@ -66,7 +66,7 @@ public class SystemFragment extends BaseFragment implements OnTabSelectListener 
 
         mFragments.add(new SystemHospitalFragment());
 
-        mFragments.add(new SystemHospitalFragment());
+        mFragments.add(new SystemMoreFragment());
 
     }
 

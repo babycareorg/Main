@@ -5,23 +5,45 @@ import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Looper;
 import android.support.annotation.RequiresApi;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.transition.Transition;
 import android.transition.TransitionInflater;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewAnimationUtils;
 import android.view.animation.AccelerateInterpolator;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.jack.carebaby.R;
+
+import org.jetbrains.annotations.NotNull;
+
+import java.io.IOException;
+
+import cn.bgbsk.babycare.global.Data;
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 
 
 public class RegisterActivity extends AppCompatActivity {
 
     private FloatingActionButton fab;
     private CardView cvAdd;
+    private EditText phone, code, password;
+    private Button getCode, register;
+
+    String url = Data.getUrl();
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
@@ -42,6 +64,43 @@ public class RegisterActivity extends AppCompatActivity {
     private void initView() {
         fab = findViewById(R.id.fab);
         cvAdd = findViewById(R.id.cv_add);
+        phone = findViewById(R.id.et_username);
+        code = findViewById(R.id.code);
+        password = findViewById(R.id.et_password);
+        getCode = findViewById(R.id.register_email_prove);
+        register = findViewById(R.id.bt_go);
+
+        getCode.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                OkHttpClient okHttpClient = new OkHttpClient();
+                final Request request;
+                if (phone.getText().length() != 11){
+                    Toast.makeText(RegisterActivity.this,"请输入正确的手机号",Toast.LENGTH_LONG).show();
+                    return;
+                }
+                request = new Request.Builder().url(url+"/user/register/getCode?phone="+phone.getText()).build();
+                Call call = okHttpClient.newCall(request);
+                call.enqueue(new Callback() {
+                    @Override
+                    public void onFailure(@NotNull Call call, @NotNull IOException e) {
+                        Log.d("RegisterERR", e.getMessage());
+                    }
+
+                    @Override
+                    public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
+                        String res = response.body().string();
+                        Log.d("RegisterERR", res);
+
+                        JSONObject jsonObject = JSON.parseObject(res);
+                        Looper.prepare();
+                        Toast.makeText(RegisterActivity.this, jsonObject.getString("msg"),Toast.LENGTH_LONG).show();
+                        Looper.loop();
+                    }
+                });
+
+            }
+        });
     }
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)

@@ -5,15 +5,36 @@ import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Looper;
 import android.support.annotation.RequiresApi;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.transition.Explode;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
+
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
+
+import org.jetbrains.annotations.NotNull;
+
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+
+import cn.bgbsk.babycare.global.Data;
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.MediaType;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
 
 import static com.jack.carebaby.R.*;
 
@@ -25,6 +46,8 @@ public class LoginActivity extends AppCompatActivity {
     private Button btGo;
     private CardView cv;
     private FloatingActionButton fab;
+
+    private String url = Data.getUrl();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +88,43 @@ public class LoginActivity extends AppCompatActivity {
                 getWindow().setEnterTransition(null);
                 ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(LoginActivity.this, fab, fab.getTransitionName());
                 startActivity(new Intent(LoginActivity.this, RegisterActivity.class), options.toBundle());
+            }
+        });
+
+        btGo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Map map = new HashMap();
+                map.put("phone", etUsername.getText());
+                map.put("password", etPassword.getText());
+                String param = JSON.toJSONString(map);
+                MediaType mediaType = MediaType.parse("application/json; charset=utf-8");
+                final RequestBody requestBody = RequestBody.create(param, mediaType);
+                OkHttpClient okHttpClient = new OkHttpClient();
+                final Request request = new Request.Builder().post(requestBody).url(url + "/user/login").build();
+
+                okHttpClient.newCall(request).enqueue(new Callback() {
+                    @Override
+                    public void onFailure(@NotNull Call call, @NotNull IOException e) {
+                        Log.d("LoginError", e.getMessage());
+                    }
+
+                    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+                    @Override
+                    public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
+                        JSONObject jsonObject = JSON.parseObject(response.body().string());
+                        int status = jsonObject.getInteger("status");
+                        Looper.prepare();
+                        Toast.makeText(LoginActivity.this, jsonObject.getString("msg"), Toast.LENGTH_LONG).show();
+                        Looper.loop();
+                        if (status == 200) {
+                            Data.setPhone(jsonObject.getString("phone"));
+                            Data.setUsername(jsonObject.getString("username"));
+
+                            //这里添加登录成功相关东西
+                        }
+                    }
+                });
             }
         });
     }

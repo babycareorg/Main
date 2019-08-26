@@ -6,8 +6,8 @@ public class Data extends Application {
 
 
     private static String url;
-    private String username;
-    private String phone;
+    private static String username;
+    private static String phone;
 
     @Override
     public void onCreate() {
@@ -22,23 +22,20 @@ public class Data extends Application {
         return url;
     }
 
-    public void setUrl(String url) {
-        this.url = url;
-    }
-
     public String getUsername() {
         return username;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
 
     public String getPhone() {
         return phone;
     }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
+    public static void setUsername(String username) {
+        Data.username = username;
+    }
+
+    public static void setPhone(String phone) {
+        Data.phone = phone;
     }
 }

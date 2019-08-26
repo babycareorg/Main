@@ -27,12 +27,16 @@ import com.jack.carebaby.R;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 import cn.bgbsk.babycare.global.Data;
 import okhttp3.Call;
 import okhttp3.Callback;
+import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
+import okhttp3.RequestBody;
 import okhttp3.Response;
 
 
@@ -101,7 +105,40 @@ public class RegisterActivity extends AppCompatActivity {
 
             }
         });
+
+
+        register.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d("REGISTER","click");
+                Map map = new HashMap();
+                map.put("phone", phone.getText());
+                map.put("code", code.getText());
+                map.put("password", password.getText());
+                String param = JSON.toJSONString(map);
+                MediaType mediaType = MediaType.parse("application/json; charset=utf-8");
+                RequestBody requestBody = RequestBody.create(param, mediaType);
+                OkHttpClient okHttpClient = new OkHttpClient();
+                final Request request = new Request.Builder().post(requestBody).url(url + "/user/register/adduser").build();
+
+                okHttpClient.newCall(request).enqueue(new Callback() {
+                    @Override
+                    public void onFailure(@NotNull Call call, @NotNull IOException e) {
+                        Log.d("RegisterError", e.getMessage());
+                    }
+
+                    @Override
+                    public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
+                        JSONObject jsonObject = JSON.parseObject(response.body().string());
+                        Looper.prepare();
+                        Toast.makeText(RegisterActivity.this, jsonObject.getString("msg"), Toast.LENGTH_LONG).show();
+                        Looper.loop();
+                    }
+                });
+            }
+        });
     }
+
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)

@@ -10,6 +10,8 @@ import android.widget.TextView;
 import com.jack.carebaby.R;
 import com.jack.carebaby.base.BaseFragment;
 
+import cn.bgbsk.babycare.global.Data;
+
 public class PersonFragment extends BaseFragment {
 
     private TextView Login;
@@ -26,6 +28,8 @@ public class PersonFragment extends BaseFragment {
         View v = inflater.inflate(R.layout.fragment_person, null);
 
         Login=v.findViewById(R.id.person_title_head_name);
+
+        Login.setText(Data.getPhone());
 
         Login.setOnClickListener(new View.OnClickListener() {
             @Override

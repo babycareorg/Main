@@ -71,7 +71,7 @@ public class RegisterActivity extends AppCompatActivity {
         phone = findViewById(R.id.et_username);
         code = findViewById(R.id.code);
         password = findViewById(R.id.et_password);
-        getCode = findViewById(R.id.register_email_prove);
+        getCode = findViewById(R.id.register_code);
         register = findViewById(R.id.bt_go);
 
         getCode.setOnClickListener(new View.OnClickListener() {

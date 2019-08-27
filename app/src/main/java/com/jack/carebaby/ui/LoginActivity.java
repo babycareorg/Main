@@ -123,10 +123,12 @@ public class LoginActivity extends AppCompatActivity {
                         if (status == 200) {
                             Data.setPhone(jsonObject.getString("phone"));
                             Data.setUsername(jsonObject.getString("username"));
+                            Data.setLoginStatus(1);
                             Log.e("USERDATA", Data.getUsername());
                             finish();
                             //这里添加登录成功相关东西
                         }
+                        
                         Looper.prepare();
                         Toast.makeText(LoginActivity.this, jsonObject.getString("msg"), Toast.LENGTH_LONG).show();
                         Looper.loop();

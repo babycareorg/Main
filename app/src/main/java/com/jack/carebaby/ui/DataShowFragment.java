@@ -262,7 +262,7 @@ public class DataShowFragment extends BaseFragment {
 
 
     private void parseJSONWithGSON(String jsonData) {
-        Log.e("JSONDATA", jsonData);
+//        Log.e("JSONDATA", jsonData);
 
         JSONObject jsonObject = JSONObject.parseObject(jsonData);
 

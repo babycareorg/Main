@@ -67,7 +67,7 @@ public class LoginActivity extends AppCompatActivity {
         btGo = findViewById(id.bt_go);
         cv = findViewById(id.cv);
         fab = findViewById(id.fab);
-        preUserName = RegisterActivity.findViewById()
+//        preUserName = RegisterActivity.findViewById()
     }
 
     private void setListener() {
@@ -119,16 +119,18 @@ public class LoginActivity extends AppCompatActivity {
                     public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                         JSONObject jsonObject = JSON.parseObject(response.body().string());
                         int status = jsonObject.getInteger("status");
-                        Looper.prepare();
-                        Toast.makeText(LoginActivity.this, jsonObject.getString("msg"), Toast.LENGTH_LONG).show();
-
-                        Looper.loop();
                         if (status == 200) {
                             Data.setPhone(jsonObject.getString("phone"));
                             Data.setUsername(jsonObject.getString("username"));
-
+                            Log.e("USERDATA",Data.getPhone());
+                            Log.e("USERDATA",Data.getUsername());
                             onBackPressed();//这里添加登录成功相关东西
                         }
+//                        Looper.prepare();
+//                        Toast.makeText(LoginActivity.this, jsonObject.getString("msg"), Toast.LENGTH_LONG).show();
+
+//                        Looper.loop();
+
                     }
                 });
             }

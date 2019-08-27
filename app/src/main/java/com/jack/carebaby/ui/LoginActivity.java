@@ -123,6 +123,7 @@ public class LoginActivity extends AppCompatActivity {
                         if (status == 200) {
                             Data.setPhone(jsonObject.getString("phone"));
                             Data.setUsername(jsonObject.getString("username"));
+                            Data.setCreated(jsonObject.getTimestamp("created"));
                             Data.setLoginStatus(1);
                             Log.e("USERDATA", Data.getUsername());
                             finish();

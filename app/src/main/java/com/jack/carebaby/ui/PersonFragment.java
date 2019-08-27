@@ -33,8 +33,8 @@ public class PersonFragment extends BaseFragment {
         Login=v.findViewById(R.id.person_title_head_name);
         EditName=v.findViewById(R.id.person_title_head_namechange);
 
-        Login.setText(Data.getPhone());
-        Log.i("aaaaaa", Data.getPhone());
+        Login.setText(Data.getUsername());
+//        Log.i("aaaaaa", Data.getPhone());
 
         EditName.setOnClickListener(new View.OnClickListener() {
             @Override

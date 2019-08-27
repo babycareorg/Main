@@ -2,6 +2,8 @@ package cn.bgbsk.babycare.global;
 
 import android.app.Application;
 
+import java.sql.Timestamp;
+
 public class Data extends Application {
 
 
@@ -9,13 +11,14 @@ public class Data extends Application {
     private static String username;
     private static String phone;
     private static int loginStatus;
+    private static Timestamp created;
 
     @Override
     public void onCreate() {
         url = "https://babycare.bgbsk.cn";
-        username = "";
+        username = "未登录";
         loginStatus = 0;
-        phone = "未连接";
+        phone = "未登录";
         super.onCreate();
     }
 
@@ -38,6 +41,14 @@ public class Data extends Application {
 
     public static int getLoginStatus() {
         return loginStatus;
+    }
+
+    public static Timestamp getCreated() {
+        return created;
+    }
+
+    public static void setCreated(Timestamp created) {
+        Data.created = created;
     }
 
     public static void setLoginStatus(int loginStatus) {

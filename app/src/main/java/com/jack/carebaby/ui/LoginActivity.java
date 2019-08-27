@@ -67,7 +67,7 @@ public class LoginActivity extends AppCompatActivity {
         btGo = findViewById(id.bt_go);
         cv = findViewById(id.cv);
         fab = findViewById(id.fab);
-        preUserName = RegisterActivity.findViewById()
+        //preUserName = RegisterActivity.findViewById();
     }
 
     private void setListener() {
@@ -122,12 +122,15 @@ public class LoginActivity extends AppCompatActivity {
                         Looper.prepare();
                         Toast.makeText(LoginActivity.this, jsonObject.getString("msg"), Toast.LENGTH_LONG).show();
 
+                        //登陆成功返回
+                        finish();
+
                         Looper.loop();
                         if (status == 200) {
                             Data.setPhone(jsonObject.getString("phone"));
                             Data.setUsername(jsonObject.getString("username"));
 
-                            onBackPressed();//这里添加登录成功相关东西
+                            //这里添加登录成功相关东西
                         }
                     }
                 });

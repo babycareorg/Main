@@ -22,7 +22,7 @@ public class Data extends Application {
         return url;
     }
 
-    public String getUsername() {
+    public static String getUsername() {
         return username;
     }
 

@@ -27,7 +27,7 @@ public class Data extends Application {
     }
 
 
-    public String getPhone() {
+    public static String getPhone() {
         return phone;
     }
 

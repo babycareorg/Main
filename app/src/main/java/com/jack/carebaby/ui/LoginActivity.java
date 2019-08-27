@@ -36,7 +36,8 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
-import static com.jack.carebaby.R.*;
+import static com.jack.carebaby.R.id;
+import static com.jack.carebaby.R.layout;
 
 
 public class LoginActivity extends AppCompatActivity {
@@ -116,12 +117,13 @@ public class LoginActivity extends AppCompatActivity {
                         int status = jsonObject.getInteger("status");
                         Looper.prepare();
                         Toast.makeText(LoginActivity.this, jsonObject.getString("msg"), Toast.LENGTH_LONG).show();
+
                         Looper.loop();
                         if (status == 200) {
                             Data.setPhone(jsonObject.getString("phone"));
                             Data.setUsername(jsonObject.getString("username"));
 
-                            //这里添加登录成功相关东西
+                            onBackPressed();//这里添加登录成功相关东西
                         }
                     }
                 });

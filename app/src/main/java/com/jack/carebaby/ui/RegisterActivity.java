@@ -44,7 +44,7 @@ public class RegisterActivity extends AppCompatActivity {
 
     private FloatingActionButton fab;
     private CardView cvAdd;
-    private EditText phone, code, password;
+    private EditText phone, code, password, username;
     private Button getCode, register;
 
     String url = Data.getUrl();
@@ -68,18 +68,21 @@ public class RegisterActivity extends AppCompatActivity {
     private void initView() {
         fab = findViewById(R.id.fab);
         cvAdd = findViewById(R.id.cv_add);
-        phone = findViewById(R.id.et_username);
+        phone = findViewById(R.id.et_phonenumber);
         code = findViewById(R.id.code);
         password = findViewById(R.id.et_password);
         getCode = findViewById(R.id.register_code);
         register = findViewById(R.id.bt_go);
+        username = findViewById(R.id.et_username);
 
         getCode.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 OkHttpClient okHttpClient = new OkHttpClient();
                 final Request request;
+                Log.e("PhoneLength", String.valueOf(phone.getText().length()));
                 if (phone.getText().length() != 11){
+//                    Toast.makeText(RegisterActivity.this,phone.getText().length(),Toast.LENGTH_LONG).show();
                     Toast.makeText(RegisterActivity.this,"请输入正确的手机号",Toast.LENGTH_LONG).show();
                     return;
                 }
@@ -115,6 +118,7 @@ public class RegisterActivity extends AppCompatActivity {
                 map.put("phone", phone.getText());
                 map.put("code", code.getText());
                 map.put("password", password.getText());
+                map.put("username", username.getText());
                 String param = JSON.toJSONString(map);
                 MediaType mediaType = MediaType.parse("application/json; charset=utf-8");
                 RequestBody requestBody = RequestBody.create(param, mediaType);

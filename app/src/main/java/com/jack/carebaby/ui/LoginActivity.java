@@ -16,6 +16,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.alibaba.fastjson.JSON;
@@ -48,6 +49,8 @@ public class LoginActivity extends AppCompatActivity {
     private CardView cv;
     private FloatingActionButton fab;
 
+    private TextView preUserName;
+
     private String url = Data.getUrl();
 
     @Override
@@ -64,6 +67,7 @@ public class LoginActivity extends AppCompatActivity {
         btGo = findViewById(id.bt_go);
         cv = findViewById(id.cv);
         fab = findViewById(id.fab);
+        preUserName = RegisterActivity.findViewById()
     }
 
     private void setListener() {

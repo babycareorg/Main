@@ -12,4 +12,6 @@
     <color name="miniblue">#addef1</color>
 
     <color name="click_bg">#b9b9b9</color>
+
+    <drawable name="transparent">#00000000</drawable>
 </resources>

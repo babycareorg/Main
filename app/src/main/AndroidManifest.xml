@@ -43,6 +43,8 @@
         <!-- 悬浮窗 -->
         <service android:name=".service.FloatWindowServer" />
 
+        <activity android:name=".ui.SettingActivity"
+            android:label="Setting"></activity>
     </application>
 
 </manifest>

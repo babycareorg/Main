@@ -13,4 +13,24 @@
     <string name="positiveButton">查看</string>
     <string name="negativeButton">忽略</string>
     <!--备忘录-->
+
+    <!--团队介绍-->
+    <string name="setting_group_title">BabyBoxs团队介绍</string>
+    <string name="setting_group_p1">BabyBoxs团队来自北京市海淀区学院路30号北京科技大学团队，团队目前成员有：胡成成，宋昆，魏俊峰等人。</string>
+    <string name="setting_group_p2">为BabyBoxs提供建议，可以发送邮件，关注官方微信公众平台，微博等联系我们，改善BabyBoxs,让BabyBoxs更适合您！</string>
+    <string name="setting_group_p3">©BabyBoxs版权所有</string>
+    <!--团队介绍-->
+
+    <!--数据界面功能说明-->
+    <string name="datashow_help_title">数据说明</string>
+    <string name="datashow_help_p1">数据单页面获取的是产品开启时获取环境内相关数据的展示的页面：具体包括婴儿状态数据，哭声指数，摇床震动，附近是否有人，温湿度，亮度等数据，具体说明如下：</string>
+
+    <string name="datashow_help_p2">在数据页面的最近一次检测时间是产品打开时最后一次检测到的数据，并非此时数据，可能会出现一些故障导致产品断电等，因此记录的是最后一次状态数据。时间精度到秒级</string>
+    <string name="datashow_help_p3">婴儿相关状态数据通过麦克风传感器，震动传感器和红外传感器获取数据。其中哭声指数是检测婴儿此时是否睡醒，该数据是通过检测婴儿环境的声音强度，主要是检测哭声，如果检测到哭声，该数值短时间内波动巨大，即指数正负都超过了60，此时婴儿环境就很吵闹，可能是其他噪音，也很可能就是婴儿在啼哭。
+    如果婴儿是放在摇床上，当婴儿睡醒开始乱动时，固定在摇床上的产品就会检测到振动，振动参数有平稳和振动。当音频波动较大并且摇床在晃动就会强烈触发婴儿清醒判断，在手机端就会振动提醒。附近有人检测，检测婴儿附近环境有无其他人靠近，保证婴儿安全</string>
+    <string name="datashow_help_p4">温度数据展示的婴儿所处的室内环境温度，包括华氏度展示，并根据温度段进行提示，湿度数据展示及对湿度进行监测，功能类似温度。光强数据监测婴儿所处环境光强，防止光强过强损伤眼睛，对光强进行量化，0~1000内数值，数值越高，光强越高。</string>
+    <string name="datashow_help_p5">同时可点击摄像头按钮或下方悬浮按钮进入监控页面查看婴儿实时视频状态确认，保证远程监控婴儿的功能，更加安全便携。同时可在设置里打开桌面悬浮，直接在桌面进入该页面快速查看婴儿状态。</string>
+    <string name="datashow_help_p6">BabyCare监测数据，伴婴儿健康成长~</string>
+    <!--数据界面功能说明-->
+
 </resources>

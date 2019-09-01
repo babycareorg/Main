@@ -10,7 +10,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.jack.carebaby.R;
-import com.jack.carebaby.ui.HomePage;
+import com.jack.carebaby.ui.CameraActivity;
 import com.yhao.floatwindow.FloatWindow;
 import com.yhao.floatwindow.MoveType;
 import com.yhao.floatwindow.PermissionListener;
@@ -123,7 +123,7 @@ public class FloatWindowServer extends Service {
             @Override
             public void onClick(View v) {
                 Toast.makeText(FloatWindowServer.this, "跳转成功", Toast.LENGTH_SHORT).show();
-                Intent intent=new Intent(FloatWindowServer.this,HomePage.class);
+                Intent intent=new Intent(FloatWindowServer.this,CameraActivity.class);
                 startActivity(intent);
             }
         });

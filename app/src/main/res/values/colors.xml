@@ -13,5 +13,6 @@
 
     <color name="click_bg">#b9b9b9</color>
 
-    <drawable name="transparent">#00000000</drawable>
+    <color name="textColor">#404040</color>
+
 </resources>

@@ -20,7 +20,6 @@ import com.flyco.tablayout.widget.MsgView;
 import com.jack.carebaby.R;
 import com.jack.carebaby.base.BasePage;
 import com.jack.carebaby.entity.TabEntity;
-import com.jack.carebaby.service.FloatWindowServer;
 import com.jack.carebaby.utils.ViewFindUtils;
 
 import java.util.ArrayList;
@@ -111,15 +110,14 @@ public class HomePage extends BasePage {
                 break;
 
             case R.id.help:
-                Intent intent2=new Intent(this,FloatWindowServer.class);
-                startService(intent2);
+
                 break;
 
-            case R.id.more:
+            case R.id.setting:
                 /*Intent intent3=new Intent(MainActivity.this,NoticeActivity.class);
                 startActivity(intent3);*/
-                Intent intent3=new Intent(this,FloatWindowServer.class);
-                stopService(intent3);
+                Intent intent3=new Intent(this,SettingActivity.class);
+                startActivity(intent3);
 
 
                 break;

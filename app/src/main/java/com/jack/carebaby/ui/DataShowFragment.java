@@ -1,28 +1,25 @@
 package com.jack.carebaby.ui;
 
 import android.app.Service;
+import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Color;
 import android.graphics.Rect;
-import android.net.Uri;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Vibrator;
-import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.text.format.Time;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.github.pavlospt.CircleView;
+import com.alibaba.fastjson.JSONObject;
 import com.jack.carebaby.R;
 import com.jack.carebaby.base.BaseFragment;
-import com.jack.carebaby.bean.Datapoints;
-import com.jack.carebaby.bean.Datastreams;
-import com.jack.carebaby.bean.JsonRootBean;
-import com.memorandum.MainActivity;
 import com.mikhaellopez.circularfillableloaders.CircularFillableLoaders;
 import com.nightonke.boommenu.BoomButtons.HamButton;
 import com.nightonke.boommenu.BoomButtons.OnBMClickListener;
@@ -39,9 +36,6 @@ import org.eclipse.paho.client.mqttv3.MqttCallbackExtended;
 import org.eclipse.paho.client.mqttv3.MqttConnectOptions;
 import org.eclipse.paho.client.mqttv3.MqttException;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
-
-
-import com.alibaba.fastjson.JSONObject;
 
 
 
@@ -68,6 +62,7 @@ public class DataShowFragment extends BaseFragment {
     private Vibrator mVibrator;
 
 
+    /*http*/
 //    private static final String DeviceID = "536315660";
 //    private static final String ApiKey = "oiHzkWOOdFKal9OI=ctjW1B3Lws=";
 //    private static final String shumditity="temperature";//onenet平台上对应设备的其中一个数据流的名字
@@ -84,6 +79,12 @@ public class DataShowFragment extends BaseFragment {
     private TextView main_light;   //检测光强
     private TextView main_light_level;   //检测光强等级
     private TextView main_vbra;   //检测光强等级
+
+
+    private TextView datashow_help;
+
+    private ImageView Camera_show;
+
 
     //动画
     private AVLoadingIndicatorView baby_status_anim;
@@ -123,6 +124,9 @@ public class DataShowFragment extends BaseFragment {
         main_light_level = v.findViewById(R.id.main_data_light_level);
         main_vbra = v.findViewById(R.id.baby_status_vibra);
 
+        datashow_help=v.findViewById(R.id.main_middle_top_help);
+        Camera_show=v.findViewById(R.id.baby_status_camera);
+
 
         circularFillableLoaders = v.findViewById(R.id.main_circle_temp);
         circularFillableLoaders_2 = v.findViewById(R.id.main_circle_humid);
@@ -150,12 +154,30 @@ public class DataShowFragment extends BaseFragment {
         }
 
 
+        //查看说明
+        datashow_help.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showDialog();
+            }
+        });
+
+        //跳转摄像头
+        Camera_show.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), CameraActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
         /** 悬浮按钮*/
 
         BoomMenuButton bmb = v.findViewById(R.id.bmb_a);
 
         HamButton.Builder builder = new HamButton.Builder()
-                .normalImageRes(R.drawable.main_xiangji)
+                .normalImageRes(R.drawable.main_jiankong)
                 .normalText("进入监控图像！")
                 .imageRect(new Rect(35, 30, Util.dp2px(50), Util.dp2px(50)))
                 .subNormalText("远程观察婴儿的实时状态～")
@@ -170,7 +192,7 @@ public class DataShowFragment extends BaseFragment {
         bmb.addBuilder(builder);
 
         HamButton.Builder builder3 = new HamButton.Builder()
-                .normalImageRes(R.drawable.main_jiankong)
+                .normalImageRes(R.drawable.main_xiangji)
                 .imageRect(new Rect(35, 30, Util.dp2px(50), Util.dp2px(50)))
                 .normalText("进入数据分析界面！")
                 .subNormalText("查看孩子的详细数据记录～")
@@ -254,12 +276,6 @@ public class DataShowFragment extends BaseFragment {
         baby_status_anim_sleep.hide();
         // or avi.smoothToHide();
     }
-
-
-
-
-
-
 
     private void parseJSONWithGSON(String jsonData) {
 //        Log.e("JSONDATA", jsonData);
@@ -388,8 +404,6 @@ public class DataShowFragment extends BaseFragment {
             valueStr_Vbra = "振动";
         else
             valueStr_Vbra = "平稳";*/
-
-
 
 
         Time t = new Time();
@@ -546,5 +560,23 @@ public class DataShowFragment extends BaseFragment {
 
     public boolean isConnected(MqttAndroidClient client) {
         return client != null && client.isConnected();
+    }
+
+
+    private void showDialog() {
+
+        final AlertDialog mAlertDialog = new AlertDialog.Builder(getContext()).show();
+        View view = LayoutInflater.from(getContext()).inflate(R.layout.fragment_datashow_help,null);
+        mAlertDialog.setContentView(view);
+
+        mAlertDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
+            @Override
+            public void onCancel(DialogInterface dialog) {
+
+                mAlertDialog.cancel();
+            }
+        });
+        Window window = mAlertDialog.getWindow();
+        window.setBackgroundDrawable(new ColorDrawable(0x00000000));
     }
 }

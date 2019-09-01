@@ -2,9 +2,8 @@ package com.jack.carebaby.ui;
 
 import android.graphics.Bitmap;
 import android.os.Build;
-import android.support.annotation.RequiresApi;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.annotation.RequiresApi;
 import android.view.View;
 import android.view.Window;
 import android.webkit.WebResourceError;
@@ -39,7 +38,7 @@ public class CameraActivity extends BasePage {
         setUrl=findViewById(R.id.camera_seturl);
         setUrl_Button=findViewById(R.id.camera_seturl_button);
 
-        camera_webview.loadUrl("http://192.168.137.26");
+        camera_webview.loadUrl("http://192.168.137.174");
 
         setUrl_Button.setOnClickListener(new View.OnClickListener() {
             @Override

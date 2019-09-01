@@ -2,11 +2,11 @@ package com.jack.carebaby.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.jack.carebaby.R;
@@ -18,6 +18,7 @@ public class PersonFragment extends BaseFragment {
 
     private TextView Login;
     private ImageView EditName;
+    private LinearLayout Setting;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -32,6 +33,7 @@ public class PersonFragment extends BaseFragment {
 
         Login=v.findViewById(R.id.person_title_head_name);
         EditName=v.findViewById(R.id.person_title_head_namechange);
+        Setting = v.findViewById(R.id.person_body_head_3);
 
         Login.setText(Data.getUsername());
 //        Log.i("aaaaaa", Data.getPhone());
@@ -40,6 +42,14 @@ public class PersonFragment extends BaseFragment {
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent(getActivity(),LoginActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        Setting.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(getActivity(),SettingActivity.class);
                 startActivity(intent);
             }
         });

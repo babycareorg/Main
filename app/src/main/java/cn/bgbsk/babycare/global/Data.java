@@ -13,16 +13,22 @@ public class Data extends Application {
     private static int loginStatus;
     private static Timestamp created;
 
+
     @Override
     public void onCreate() {
+
+        /*用户信息*/
         url = "https://babycare.bgbsk.cn";
         username = "未登录";
         loginStatus = 0;
         phone = "未登录";
         super.onCreate();
+
+
     }
 
 
+    /**用户相关函数*/
     public static String getUrl() {
         return url;
     }
@@ -58,4 +64,6 @@ public class Data extends Application {
     public static void setPhone(String phone) {
         Data.phone = phone;
     }
+
+
 }

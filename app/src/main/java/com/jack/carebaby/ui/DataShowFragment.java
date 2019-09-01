@@ -37,7 +37,7 @@ import org.eclipse.paho.client.mqttv3.MqttConnectOptions;
 import org.eclipse.paho.client.mqttv3.MqttException;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
 
-
+import cn.bgbsk.babycare.global.Data;
 
 
 public class DataShowFragment extends BaseFragment {
@@ -458,7 +458,11 @@ public class DataShowFragment extends BaseFragment {
                 switch (topic) {
                     case "data": {
                         Log.i("MQTT", message.toString());
+                        Data.setMqttStatus(true);
                         parseJSONWithGSON(message.toString());
+                    }
+                    case "kill" :{
+                        Data.setMqttStatus(false);
                     }
                 }
 
@@ -492,6 +496,7 @@ public class DataShowFragment extends BaseFragment {
 
                     // 订阅主题
                     subscribeToTopic("data");
+                    subscribeToTopic("kill");
 
                 }
 

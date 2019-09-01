@@ -12,6 +12,7 @@ public class Data extends Application {
     private static String phone;
     private static int loginStatus;
     private static Timestamp created;
+    private static boolean mqttStatus;
 
 
     @Override
@@ -22,9 +23,8 @@ public class Data extends Application {
         username = "未登录";
         loginStatus = 0;
         phone = "未登录";
+        mqttStatus = false;
         super.onCreate();
-
-
     }
 
 
@@ -65,5 +65,11 @@ public class Data extends Application {
         Data.phone = phone;
     }
 
+    public static boolean isMqttStatus() {
+        return mqttStatus;
+    }
 
+    public static void setMqttStatus(boolean mqttStatus) {
+        Data.mqttStatus = mqttStatus;
+    }
 }

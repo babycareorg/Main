@@ -1,7 +1,8 @@
 package com.jack.carebaby.ui;
-
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Build;
@@ -15,6 +16,7 @@ import android.widget.Toast;
 
 import com.jack.carebaby.R;
 import com.jack.carebaby.base.BasePage;
+import com.jack.carebaby.service.FloatCameraServer;
 import com.jack.carebaby.service.FloatWindowServer;
 import com.suke.widget.SwitchButton;
 
@@ -30,6 +32,11 @@ public class SettingActivity extends BasePage {
         if(NavUtils.getParentActivityName(SettingActivity.this)!=null){
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
+
+        //设置按钮状态保存
+        final boolean flag_floatwindow = false;
+        final boolean flag_floatcamera = false;
+        SharedPreferences preferences;
 
 
         //设置点击监听
@@ -63,19 +70,59 @@ public class SettingActivity extends BasePage {
 
         /**桌面悬浮按钮*/
         com.suke.widget.SwitchButton switchButton = findViewById(R.id.setting_floatwindow);
+        com.suke.widget.SwitchButton switchButton2 = findViewById(R.id.setting_floatcamera);
+
+        // 从SharedPreferences获取数据:
+        preferences = getSharedPreferences("user", Context.MODE_PRIVATE);
+        if (preferences != null) {
+            boolean floatwindow = preferences.getBoolean("flag_floatwindow", flag_floatwindow);
+            boolean floatcamera = preferences.getBoolean("flag_floatcamera", flag_floatcamera);
+            switchButton.setChecked(floatwindow);
+            switchButton2.setChecked(floatcamera);
+        }
+
 
         switchButton.setOnCheckedChangeListener(new SwitchButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(SwitchButton view, boolean isChecked) {
                 //TODO do your job
                 if(isChecked==true){
+
                     Intent intent=new Intent(SettingActivity.this,FloatWindowServer.class);
                     startService(intent);
                 }
                 else{
+
                     Intent intent=new Intent(SettingActivity.this,FloatWindowServer.class);
                     stopService(intent);
                 }
+
+                //将数据保存至SharedPreferences:
+                SharedPreferences preferences = getSharedPreferences("user", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = preferences.edit();
+                editor.putBoolean("flag_floatwindow", isChecked);
+                editor.commit();
+            }
+        });
+
+        switchButton2.setOnCheckedChangeListener(new SwitchButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(SwitchButton view, boolean isChecked) {
+                //TODO do your job
+                if(isChecked==true){
+
+                    Intent intent=new Intent(SettingActivity.this,FloatCameraServer.class);
+                    startService(intent);
+                }
+                else{
+                    Intent intent=new Intent(SettingActivity.this,FloatCameraServer.class);
+                    stopService(intent);
+                }
+                //将数据保存至SharedPreferences:
+                SharedPreferences preferences = getSharedPreferences("user", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = preferences.edit();
+                editor.putBoolean("flag_floatcamera", isChecked);
+                editor.commit();
             }
         });
 

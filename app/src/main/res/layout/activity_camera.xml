@@ -43,13 +43,20 @@
 
 
 
+    <include
+        android:layout_width="match_parent"
+        android:layout_height="270dp"
+        android:layout_marginTop="80dp"
+        android:paddingTop="8dp"
+        layout="@layout/fragment_camera"
+        ></include>
 
-    <WebView
+    <!--<WebView
         android:id="@+id/camera_webview"
         android:layout_marginTop="80dp"
         android:paddingTop="8dp"
         android:layout_width="match_parent"
-        android:layout_height="270dp"></WebView>
+        android:layout_height="270dp"></WebView>-->
 
     <ImageView
         android:id="@+id/camera_webview_error"

@@ -1,13 +1,12 @@
 package com.jack.carebaby.ui;
 
 import android.content.Context;
-
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -19,10 +18,9 @@ import com.flyco.tablayout.listener.OnTabSelectListener;
 import com.flyco.tablayout.utils.UnreadMsgUtils;
 import com.flyco.tablayout.widget.MsgView;
 import com.jack.carebaby.R;
-import com.jack.carebaby.entity.TabEntity;
 import com.jack.carebaby.base.BasePage;
+import com.jack.carebaby.entity.TabEntity;
 import com.jack.carebaby.utils.ViewFindUtils;
-import com.memorandum.MainActivity;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -112,13 +110,16 @@ public class HomePage extends BasePage {
                 break;
 
             case R.id.help:
-                /*Intent intent2=new Intent(MainActivity.this,com.memorandum.MainActivity.class);
-                startActivity(intent2);*/
+
                 break;
 
-            case R.id.more:
+            case R.id.setting:
                 /*Intent intent3=new Intent(MainActivity.this,NoticeActivity.class);
                 startActivity(intent3);*/
+                Intent intent3=new Intent(this,SettingActivity.class);
+                startActivity(intent3);
+
+
                 break;
         }
         return super.onOptionsItemSelected(item);

@@ -1,5 +1,6 @@
 package com.jack.carebaby.ui;
 
+import android.annotation.SuppressLint;
 import android.app.Service;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -15,6 +16,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.alibaba.fastjson.JSONObject;
@@ -25,6 +28,9 @@ import com.nightonke.boommenu.BoomButtons.HamButton;
 import com.nightonke.boommenu.BoomButtons.OnBMClickListener;
 import com.nightonke.boommenu.BoomMenuButton;
 import com.nightonke.boommenu.Util;
+import com.scwang.smartrefresh.layout.api.RefreshLayout;
+import com.scwang.smartrefresh.layout.header.BezierRadarHeader;
+import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 import com.wang.avi.AVLoadingIndicatorView;
 
 import org.eclipse.paho.android.service.MqttAndroidClient;
@@ -84,6 +90,10 @@ public class DataShowFragment extends BaseFragment {
     private TextView datashow_help;
 
     private ImageView Camera_show;
+    private ImageView Datashow_disconect_setting;
+
+    private RelativeLayout Datashow_disconnect;
+    private ScrollView Datashow_connect;
 
 
     //动画
@@ -102,6 +112,8 @@ public class DataShowFragment extends BaseFragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
     }
 
 
@@ -126,6 +138,9 @@ public class DataShowFragment extends BaseFragment {
 
         datashow_help=v.findViewById(R.id.main_middle_top_help);
         Camera_show=v.findViewById(R.id.baby_status_camera);
+        Datashow_disconnect=v.findViewById(R.id.datashow_disconnect);
+        Datashow_connect=v.findViewById(R.id.datashow_connect);
+        Datashow_disconect_setting=v.findViewById(R.id.datashow_disconnect_setting);
 
 
         circularFillableLoaders = v.findViewById(R.id.main_circle_temp);
@@ -144,6 +159,24 @@ public class DataShowFragment extends BaseFragment {
         baby_status_anim_sleep = v.findViewById(R.id.baby_status_anim_sleep);
         stopAnim();
         startAnim_sleep();
+
+        //下拉刷新
+        final RefreshLayout refreshLayout = v.findViewById(R.id.datashow_refresh);
+        refreshLayout.setOnRefreshListener(new OnRefreshListener() {
+            @Override
+            public void onRefresh(RefreshLayout refreshlayout) {
+                refreshlayout.finishRefresh(2400/*,false*/);//传入false表示刷新失败
+
+
+            }
+        });
+        /*refreshLayout.setOnLoadMoreListener(new OnLoadMoreListener() {
+            @Override
+            public void onLoadMore(RefreshLayout refreshlayout) {
+                refreshlayout.finishLoadMore(2000*//*,false*//*);//传入false表示加载失败
+            }
+        });*/
+        refreshLayout.setRefreshHeader(new BezierRadarHeader(getContext()).setEnableHorizontalDrag(true));
 
 
         for(int i=0;i<10;i++){
@@ -167,6 +200,16 @@ public class DataShowFragment extends BaseFragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), CameraActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
+        //跳转设置
+        Datashow_disconect_setting.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), SettingActivity.class);
                 startActivity(intent);
             }
         });
@@ -256,6 +299,8 @@ public class DataShowFragment extends BaseFragment {
 
         return v;
     }
+
+
 
     void startAnim() {
         baby_status_anim.show();
@@ -453,16 +498,27 @@ public class DataShowFragment extends BaseFragment {
                 Log.e(TAG, "连接中断");
             }
 
+            @SuppressLint("WrongConstant")
             @Override
             public void messageArrived(String topic, MqttMessage message) throws Exception {
                 switch (topic) {
                     case "data": {
+
+                        Datashow_disconnect.setVisibility(View.INVISIBLE);
+                        Datashow_connect.setVisibility(View.VISIBLE);
                         Log.i("MQTT", message.toString());
                         Data.setMqttStatus(true);
                         parseJSONWithGSON(message.toString());
+                        break;
+
                     }
                     case "kill" :{
+                        Datashow_disconnect.setVisibility(View.VISIBLE);
+                        Datashow_connect.setVisibility(View.INVISIBLE);
                         Data.setMqttStatus(false);
+                        break;
+
+
                     }
                 }
 

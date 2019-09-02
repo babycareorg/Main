@@ -15,4 +15,6 @@
 
     <color name="textColor">#404040</color>
 
+    <color name="gray">#8f8f8f</color>
+
 </resources>

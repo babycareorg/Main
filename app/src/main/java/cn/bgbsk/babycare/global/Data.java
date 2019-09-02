@@ -72,4 +72,9 @@ public class Data extends Application {
     public static void setMqttStatus(boolean mqttStatus) {
         Data.mqttStatus = mqttStatus;
     }
+
+    @Override
+    public void onTerminate() {
+        super.onTerminate();
+    }
 }

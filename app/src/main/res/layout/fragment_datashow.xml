@@ -2,12 +2,89 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/refreshLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingBottom="60dp">
+
+    <com.scwang.smartrefresh.layout.SmartRefreshLayout
+        android:id="@+id/datashow_refresh"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:srlPrimaryColor="@color/gray"
+        app:srlAccentColor="@android:color/white"
+        app:srlEnablePreviewInEditMode="true"
+        app:srlEnableLoadMore="false">
+    <com.scwang.smartrefresh.layout.header.ClassicsHeader
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+    <!--非连接展示-->
+    <RelativeLayout
+        android:id="@+id/datashow_disconnect"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/windowBackground"
+        android:visibility="visible">
+        <TextView
+            android:layout_marginTop="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textColor="@color/white"
+            android:textSize="28dp"
+            android:text="未连接..."
+            android:background="@color/colorPrimary"
+            android:layout_margin="10dp"
+            android:gravity="center_horizontal"
+            android:paddingTop="190dp"/>
+
+
+            <ImageView
+                android:id="@+id/datashow_disconnect_setting"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:layout_marginLeft="45dp"
+                android:layout_marginTop="35dp"
+                android:background="@mipmap/datashow_disconnect_setting"
+                android:layout_marginBottom="6dp"/>
+
+            <ImageView
+                android:id="@+id/datashow_disconnect_help"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginLeft="290dp"
+                android:layout_marginTop="35dp"
+
+                android:background="@mipmap/datashow_disconnect_help"/>
+
+
+
+        <TextView
+
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:textColor="@color/colorPrimary"
+            android:textSize="16dp"
+            android:text="请打开产品BabyBoxs"
+            android:background="@color/white"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
+            android:layout_marginTop="280dp"
+            android:gravity="center"/>
+    </RelativeLayout>
+
+    <!--连接状态展示-->
     <ScrollView
+        android:id="@+id/datashow_connect"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:visibility="invisible"
+        >
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -397,6 +474,9 @@
     </LinearLayout>
 
     </ScrollView>
+    </RelativeLayout>
+
+    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
 
     <!--悬浮按钮-->
     <com.nightonke.boommenu.BoomMenuButton

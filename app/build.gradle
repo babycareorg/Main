@@ -54,6 +54,11 @@ dependencies {
     //button
     implementation 'com.getbase:floatingactionbutton:1.10.1'
 
-   implementation 'com.github.zcweng:switch-button:0.0.3@aar'
+    //switchbutton
+    implementation 'com.github.zcweng:switch-button:0.0.3@aar'
+
+    //下拉刷新
+    implementation 'com.scwang.smartrefresh:SmartRefreshLayout:1.1.0'
+    implementation 'com.scwang.smartrefresh:SmartRefreshHeader:1.1.0'
 }
 

@@ -2,7 +2,9 @@ package com.jack.carebaby.ui;
 
 import android.annotation.SuppressLint;
 import android.app.ActivityOptions;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Looper;
@@ -49,14 +51,20 @@ public class LoginActivity extends AppCompatActivity {
     private CardView cv;
     private FloatingActionButton fab;
 
+
     private TextView preUserName;
 
     private String url = Data.getUrl();
+
+    private SharedPreferences loginSP;
+    private SharedPreferences.Editor loginEdit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(layout.activity_login);
+        loginSP = getSharedPreferences("login", Context.MODE_PRIVATE);
+        loginEdit = loginSP.edit();
         initView();
         setListener();
     }
@@ -121,11 +129,13 @@ public class LoginActivity extends AppCompatActivity {
                         int status = jsonObject.getInteger("status");
 
                         if (status == 200) {
+                            loginEdit.putString("phone", String.valueOf(etUsername.getText()));
+                            loginEdit.putString("password", String.valueOf(etPassword.getText()));
+                            loginEdit.commit();
                             Data.setPhone(jsonObject.getString("phone"));
                             Data.setUsername(jsonObject.getString("username"));
                             Data.setCreated(jsonObject.getTimestamp("created"));
                             Data.setLoginStatus(1);
-                            Log.e("USERDATA", Data.getUsername());
                             finish();
                             //这里添加登录成功相关东西
                         }

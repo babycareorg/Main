@@ -1,11 +1,11 @@
 package cn.bgbsk.babycare.global;
 
 import android.app.Application;
+import android.content.SharedPreferences;
 
 import java.sql.Timestamp;
 
 public class Data extends Application {
-
 
     private static String url;
     private static String username;
@@ -14,16 +14,19 @@ public class Data extends Application {
     private static Timestamp created;
     private static boolean mqttStatus;
 
+    private static SharedPreferences loginSP;
+    private static SharedPreferences.Editor loginEdit;
+
 
     @Override
     public void onCreate() {
-
         /*用户信息*/
         url = "https://babycare.bgbsk.cn";
         username = "未登录";
         loginStatus = 0;
         phone = "未登录";
         mqttStatus = false;
+
         super.onCreate();
     }
 
@@ -71,6 +74,22 @@ public class Data extends Application {
 
     public static void setMqttStatus(boolean mqttStatus) {
         Data.mqttStatus = mqttStatus;
+    }
+
+    public static SharedPreferences getLoginSP() {
+        return loginSP;
+    }
+
+    public static void setLoginSP(SharedPreferences loginSP) {
+        Data.loginSP = loginSP;
+    }
+
+    public static SharedPreferences.Editor getLoginEdit() {
+        return loginEdit;
+    }
+
+    public static void setLoginEdit(SharedPreferences.Editor loginEdit) {
+        Data.loginEdit = loginEdit;
     }
 
     @Override

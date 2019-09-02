@@ -170,7 +170,7 @@ public class HomePage extends BasePage {
             }
         });
 
-        mViewPager.setCurrentItem(1);
+        mViewPager.setCurrentItem(0);
     }
 
     private class MyPagerAdapter extends FragmentPagerAdapter {

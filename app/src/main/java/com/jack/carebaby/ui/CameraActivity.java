@@ -14,6 +14,7 @@ import android.webkit.WebViewClient;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.jack.carebaby.R;
 import com.jack.carebaby.base.BasePage;
@@ -24,6 +25,7 @@ public class CameraActivity extends BasePage {
     private ImageView ivError;
     private EditText setUrl;
     private Button setUrl_Button;
+    private TextView camera_state;
 
     String url;
 
@@ -37,6 +39,8 @@ public class CameraActivity extends BasePage {
         ivError=findViewById(R.id.camera_webview_error);
         setUrl=findViewById(R.id.camera_seturl);
         setUrl_Button=findViewById(R.id.camera_seturl_button);
+        camera_state=findViewById(R.id.camera_state);
+
 
         camera_webview.loadUrl("http://192.168.137.174");
 
@@ -65,6 +69,7 @@ public class CameraActivity extends BasePage {
                 super.onPageStarted(webView, s, bitmap);
                 ivError.setVisibility(View.INVISIBLE);
                 camera_webview.setVisibility(View.VISIBLE);
+                camera_state.setText("开");
             }
             //加载错误的时候会回调
             @Override
@@ -75,6 +80,7 @@ public class CameraActivity extends BasePage {
                 }
                 ivError.setVisibility(View.VISIBLE);
                 camera_webview.setVisibility(View.INVISIBLE);
+                camera_state.setText("关");
             }
 
             //加载错误的时候会回调
@@ -85,6 +91,7 @@ public class CameraActivity extends BasePage {
                 if (webResourceRequest.isForMainFrame()) {
                     ivError.setVisibility(View.VISIBLE);
                     camera_webview.setVisibility(View.INVISIBLE);
+                    camera_state.setText("关");
                 }
             }
 
@@ -108,9 +115,5 @@ public class CameraActivity extends BasePage {
         camera_webview.getSettings().setBuiltInZoomControls(true);
     }
 
-    public void refresh() {
 
-        onCreate(null);
-
-    }
 }

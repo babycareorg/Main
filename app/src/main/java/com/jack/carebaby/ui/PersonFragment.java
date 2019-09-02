@@ -36,7 +36,7 @@ public class PersonFragment extends BaseFragment {
 
         Login.setText(Data.getUsername());
 
-        EditName.setOnClickListener(new View.OnClickListener() {
+        Login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent(getActivity(),LoginActivity.class);
@@ -51,10 +51,11 @@ public class PersonFragment extends BaseFragment {
                 startActivity(intent);
             }
         });
+
         return v;
     }
 
-    @Override
+    /*@Override
     public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
 
@@ -63,5 +64,6 @@ public class PersonFragment extends BaseFragment {
         }else {
 
         }
-    }
+    }*/
+
 }

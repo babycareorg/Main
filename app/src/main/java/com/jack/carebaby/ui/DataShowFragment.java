@@ -19,6 +19,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.alibaba.fastjson.JSONObject;
 import com.jack.carebaby.R;
@@ -62,7 +63,7 @@ public class DataShowFragment extends BaseFragment {
     // 连接 ActiveMQ 的URI
     private String serverUri = "tcp://bgbsk.cn:1883";
     // 客户端 ID，用以识别客户端
-    private String clientId = "android_sample_001";
+    private String clientId = "android_sample_"+Math.random()*100+Math.random()*100;
 
     //声明一个振动器对象
     private Vibrator mVibrator;
@@ -394,6 +395,7 @@ public class DataShowFragment extends BaseFragment {
             valueStr_Lis = "清醒中";
             //清醒手机端震动提醒
             mVibrator.vibrate(new long[]{1000, 3000,1000,3000},-1);
+            cancelVibration();
             startAnim();
             stopAnim_sleep();
         } else {
@@ -629,6 +631,36 @@ public class DataShowFragment extends BaseFragment {
         final AlertDialog mAlertDialog = new AlertDialog.Builder(getContext()).show();
         View view = LayoutInflater.from(getContext()).inflate(R.layout.fragment_datashow_help,null);
         mAlertDialog.setContentView(view);
+
+        mAlertDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
+            @Override
+            public void onCancel(DialogInterface dialog) {
+
+                mAlertDialog.cancel();
+            }
+        });
+        Window window = mAlertDialog.getWindow();
+        window.setBackgroundDrawable(new ColorDrawable(0x00000000));
+    }
+
+    private void cancelVibration() {
+
+        final AlertDialog mAlertDialog = new AlertDialog.Builder(getContext()).show();
+        //View view = LayoutInflater.from(getContext()).inflate(R.layout.fragment_datashow_help,null);
+
+
+        final ImageView imageView = new ImageView(getContext());
+        imageView.setImageResource(R.mipmap.babyboxs);
+        mAlertDialog.setContentView(imageView);
+
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getActivity(), "成功取消振动", Toast.LENGTH_SHORT).show();
+                mVibrator.cancel();
+                imageView.setVisibility(View.INVISIBLE);
+            }
+        });
 
         mAlertDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
             @Override

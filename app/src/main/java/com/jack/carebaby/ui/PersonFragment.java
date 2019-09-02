@@ -26,7 +26,6 @@ public class PersonFragment extends BaseFragment {
     }
 
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_person, null);
@@ -36,7 +35,6 @@ public class PersonFragment extends BaseFragment {
         Setting = v.findViewById(R.id.person_body_head_3);
 
         Login.setText(Data.getUsername());
-//        Log.i("aaaaaa", Data.getPhone());
 
         EditName.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -53,13 +51,17 @@ public class PersonFragment extends BaseFragment {
                 startActivity(intent);
             }
         });
-
-
-
         return v;
     }
 
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
 
+        if (isVisibleToUser){
+            Login.setText(Data.getUsername());
+        }else {
 
-
+        }
+    }
 }

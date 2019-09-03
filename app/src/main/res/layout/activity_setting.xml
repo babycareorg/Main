@@ -51,6 +51,26 @@
                 android:textAlignment="gravity"/>
         </LinearLayout>
 
+        <LinearLayout
+            android:id="@+id/setting_older"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="@drawable/drawable_click_bg_change"
+            android:clickable="true"
+            android:layout_marginTop="1dp">
+            <TextView
+
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:text="老人信息"
+                android:textColor="@color/textColor"
+                android:textSize="20dp"
+                android:layout_marginLeft="20dp"
+                android:gravity="center_vertical"
+                android:textAlignment="gravity"/>
+        </LinearLayout>
+
 
 
         <LinearLayout

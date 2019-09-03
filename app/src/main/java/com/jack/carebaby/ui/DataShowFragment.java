@@ -15,6 +15,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
@@ -95,6 +96,7 @@ public class DataShowFragment extends BaseFragment {
 
     private RelativeLayout Datashow_disconnect;
     private ScrollView Datashow_connect;
+
 
 
     //动画
@@ -323,7 +325,7 @@ public class DataShowFragment extends BaseFragment {
         // or avi.smoothToHide();
     }
 
-    private void parseJSONWithGSON(String jsonData) {
+    private void parseJSONWithGSON(String jsonData) throws InterruptedException {
 //        Log.e("JSONDATA", jsonData);
 
         JSONObject jsonObject = JSONObject.parseObject(jsonData);
@@ -394,10 +396,13 @@ public class DataShowFragment extends BaseFragment {
         if (valueInt_Lis == 0 && valueInt_Vbra == 1) {  //同时振动和哭声
             valueStr_Lis = "清醒中";
             //清醒手机端震动提醒
-            mVibrator.vibrate(new long[]{1000, 3000,1000,3000},-1);
-            cancelVibration();
+            mVibrator.vibrate(new long[]{1000, 1500},-1);
+
+            //cancelVibration();
             startAnim();
             stopAnim_sleep();
+
+
         } else {
             valueStr_Lis = "熟睡中";
             startAnim_sleep();
@@ -643,22 +648,39 @@ public class DataShowFragment extends BaseFragment {
         window.setBackgroundDrawable(new ColorDrawable(0x00000000));
     }
 
+    @SuppressLint("ResourceAsColor")
     private void cancelVibration() {
 
         final AlertDialog mAlertDialog = new AlertDialog.Builder(getContext()).show();
-        //View view = LayoutInflater.from(getContext()).inflate(R.layout.fragment_datashow_help,null);
+        //View view = LayoutInflater.from(getContext()).inflate(R.layout.fragment_datashow_cancelvibration,null);
 
 
-        final ImageView imageView = new ImageView(getContext());
-        imageView.setImageResource(R.mipmap.babyboxs);
-        mAlertDialog.setContentView(imageView);
+        /*final ImageView imageView = new ImageView(getContext());
+        imageView.setImageResource(R.mipmap.babyboxs);*/
 
-        imageView.setOnClickListener(new View.OnClickListener() {
+        Button button =new Button(getContext());
+        button.setText("取消振动");
+        /*button.setHeight(90);
+        button.setWidth(150);
+        button.setTextColor(R.color.colorPrimary);
+        button.setGravity(2);
+        button.setTextSize(16);*/
+
+        mAlertDialog.setContentView(button);
+
+        button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Toast.makeText(getActivity(), "成功取消振动", Toast.LENGTH_SHORT).show();
                 mVibrator.cancel();
-                imageView.setVisibility(View.INVISIBLE);
+
+                /*try {
+                    //mVibrator.wait(4000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }*/
+
+                //imageView.setVisibility(View.INVISIBLE);
             }
         });
 

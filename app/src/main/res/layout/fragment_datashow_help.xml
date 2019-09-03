@@ -24,7 +24,7 @@
         android:layout_height="wrap_content"
         android:text="@string/datashow_help_p1"
         android:lineSpacingExtra="10dp"
-        android:lineHeight="5dp"
+
         android:padding="18dp"
         android:textSize="16sp"/>
     <TextView
@@ -32,7 +32,7 @@
         android:layout_height="wrap_content"
         android:text="@string/datashow_help_p2"
         android:lineSpacingExtra="10dp"
-        android:lineHeight="5dp"
+
         android:padding="18dp"
         android:textSize="16sp"/>
         <TextView
@@ -40,7 +40,7 @@
             android:layout_height="wrap_content"
             android:text="@string/datashow_help_p3"
             android:lineSpacingExtra="10dp"
-            android:lineHeight="5dp"
+
             android:padding="18dp"
             android:textSize="16sp"/>
         <TextView
@@ -48,7 +48,7 @@
             android:layout_height="wrap_content"
             android:text="@string/datashow_help_p4"
             android:lineSpacingExtra="10dp"
-            android:lineHeight="5dp"
+
             android:padding="18dp"
             android:textSize="16sp"/>
         <TextView
@@ -56,7 +56,7 @@
             android:layout_height="wrap_content"
             android:text="@string/datashow_help_p5"
             android:lineSpacingExtra="10dp"
-            android:lineHeight="5dp"
+
             android:padding="18dp"
             android:textSize="16sp"/>
         <TextView
@@ -64,7 +64,7 @@
             android:layout_height="wrap_content"
             android:text="@string/datashow_help_p6"
             android:lineSpacingExtra="10dp"
-            android:lineHeight="5dp"
+
             android:padding="18dp"
             android:textSize="16sp"
             android:layout_marginBottom="10dp"/>
@@ -82,7 +82,7 @@
             android:gravity="center"
             android:text="@string/setting_group_p3"
             android:lineSpacingExtra="10dp"
-            android:lineHeight="5dp"
+
             android:padding="18dp"
             android:textSize="12sp"/>
 

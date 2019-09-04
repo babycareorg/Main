@@ -53,7 +53,7 @@ public class BillActivity extends Activity {
                 break;
             // 悬浮按钮，新增账单
             case R.id.fab:
-                startActivityForResult(new Intent("com.liuwan.demo.MainActivity"),request_Code);
+                startActivityForResult(new Intent("com.jack.carebaby.ui.BillAddActivity"),request_Code);
                 break;
             // 刷新页面
             case R.id.refresh:

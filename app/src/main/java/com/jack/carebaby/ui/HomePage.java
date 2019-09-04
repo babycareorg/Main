@@ -27,6 +27,8 @@ import com.jack.carebaby.utils.ViewFindUtils;
 import java.util.ArrayList;
 import java.util.Random;
 
+import cn.bgbsk.babycare.global.Data;
+
 public class HomePage extends BasePage {
     private Context mContext = this;
 
@@ -206,6 +208,16 @@ public class HomePage extends BasePage {
         return super.onOptionsItemSelected(item);
     }
 
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.system_title_body_4:
+                if(Data.getLoginStatus()==1)
+                    startActivity(new Intent("com.jack.carebaby.ui.BillActivity"));
+                else
+                    Toast.makeText(this, "请先登录", Toast.LENGTH_LONG).show();
+                break;
+        }
+    }
 
     public void initFragment(){
         mFragments.add(new DataShowFragment()); //数据单

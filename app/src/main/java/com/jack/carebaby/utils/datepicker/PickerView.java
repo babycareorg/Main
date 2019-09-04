@@ -24,13 +24,6 @@ import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
-/**
- * 说明：内容选择器，例如年月日、省市区等
- * 作者：liuwan1992
- * 添加时间：2016/9/28
- * 修改人：liuwan1992
- * 修改时间：2018/12/21
- */
 public class PickerView extends View {
 
     private Context mContext;

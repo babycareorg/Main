@@ -4,13 +4,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-/**
- * 说明：日期格式化工具
- * 作者：liuwan1992
- * 添加时间：2018/12/17
- * 修改人：liuwan1992
- * 修改时间：2018/12/18
- */
 public class DateFormatUtils {
 
     private static final String DATE_FORMAT_PATTERN_YMD = "yyyy-MM-dd";

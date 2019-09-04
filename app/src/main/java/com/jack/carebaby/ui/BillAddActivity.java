@@ -57,8 +57,16 @@ public class BillAddActivity extends Activity implements View.OnClickListener {
                 break;
             // 提交
             case R.id.forward:
-                Upload();
-                BillAddActivity.this.finish();
+                EditText title = (EditText)findViewById(R.id.txt_title);
+                EditText price = (EditText)findViewById(R.id.txt_price);
+                if(title.length()==0)
+                    Toast.makeText(this, "请输入账单名称", Toast.LENGTH_SHORT).show();
+                else if(price.length()==0)
+                    Toast.makeText(this, "请输入账单金额", Toast.LENGTH_SHORT).show();
+                else {
+                    Upload();
+                    BillAddActivity.this.finish();
+                }
                 break;
         }
     }

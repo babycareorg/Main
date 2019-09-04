@@ -43,7 +43,6 @@ public class BillActivity extends Activity {
         Get();
     }
 
-    int request_Code = 1;
 
     public void onClick(View v) {
         switch (v.getId()) {
@@ -53,7 +52,7 @@ public class BillActivity extends Activity {
                 break;
             // 悬浮按钮，新增账单
             case R.id.fab:
-                startActivityForResult(new Intent("com.jack.carebaby.ui.BillAddActivity"),request_Code);
+                startActivity(new Intent("com.jack.carebaby.ui.BillAddActivity"));
                 break;
             // 刷新页面
             case R.id.refresh:

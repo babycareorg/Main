@@ -43,6 +43,10 @@ public class BillActivity extends Activity {
         Get();
     }
 
+    public void onResume(){
+        super.onResume();
+        Get();
+    }
 
     public void onClick(View v) {
         switch (v.getId()) {

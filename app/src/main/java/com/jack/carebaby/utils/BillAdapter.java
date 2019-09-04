@@ -1,8 +1,11 @@
 package com.jack.carebaby.utils;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -12,12 +15,14 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.jack.carebaby.R;
 
 import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import cn.bgbsk.babycare.global.Data;
@@ -33,6 +38,8 @@ public class BillAdapter extends RecyclerView.Adapter<BillAdapter.ViewHolder>{
     private List<String> title;
     private List<String> date;
     private List<String> price;
+
+    private static final int COMPLETED = 0;
 
     String url = Data.getUrl();
     String phone = Data.getPhone();
@@ -71,7 +78,7 @@ public class BillAdapter extends RecyclerView.Adapter<BillAdapter.ViewHolder>{
 
 
     @Override
-    public void onBindViewHolder(final ViewHolder holder, int position) {
+    public void onBindViewHolder(final ViewHolder holder, final int position) {
         final String sid = id.get(position);
         String stitle = title.get(position);
         String sdate = date.get(position);
@@ -105,6 +112,10 @@ public class BillAdapter extends RecyclerView.Adapter<BillAdapter.ViewHolder>{
                                 JSONObject jsonObject = JSON.parseObject(response.body().string());
                             }
                         });
+                        if (Activity.class.isInstance(mContext)) {
+                            Activity activity = (Activity) mContext;
+                            activity.recreate();
+                        }
                         dialog.dismiss();
                     }
                 });

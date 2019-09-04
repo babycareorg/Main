@@ -6,9 +6,6 @@
     android:background="@color/bg_theme"
     android:orientation="vertical">
 
-
-
-
     <RelativeLayout
         android:id="@+id/title"
         android:layout_width="match_parent"

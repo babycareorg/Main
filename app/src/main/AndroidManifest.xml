@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.jack.carebaby">
-
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.WAKE_LOCK" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.VIBRATE" />
-    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
 
     <application
         android:name="cn.bgbsk.babycare.global.Data"
@@ -16,6 +11,14 @@
         android:roundIcon="@mipmap/babyboxs"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".ui.DailyKnowActivity"
+            android:label="生活百科"></activity>
+        <activity
+            android:name=".ui.DailyEatActivity"
+            android:label="食谱推荐" />
+        <activity
+            android:name=".ui.DailyTripActivity"
+            android:label="出行推荐" />
         <activity android:name=".ui.HomePage">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -23,16 +26,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.CameraActivity" />
-
-        <!-- 出行备忘相关界面 -->
+        <activity android:name=".ui.CameraActivity" /> <!-- 出行备忘相关界面 -->
         <activity android:name="com.memorandum.EditActivity" />
         <activity
             android:name="com.memorandum.MainActivity"
             android:windowSoftInputMode="adjustPan" />
-        <activity android:name="com.memorandum.AlarmActivity" />
-
-        <!-- 登录注册页面 -->
+        <activity android:name="com.memorandum.AlarmActivity" /> <!-- 登录注册页面 -->
         <activity android:name=".ui.LoginActivity" />
         <activity
             android:name=".ui.RegisterActivity"
@@ -40,30 +39,36 @@
         <activity
             android:name=".ui.SettingActivity"
             android:label="Setting" />
-
-        <service android:name="org.eclipse.paho.android.service.MqttService" />
-
-        <!-- 悬浮窗 -->
-        <service android:name=".service.FloatWindowServer" />
-        <service android:name=".service.FloatCameraServer" />
-
-        <activity android:name=".ui.ApplicationGetActivity"></activity>
-        <activity android:name=".ui.MoreToolsActivity"></activity>
-
-        <!-- 账单 -->
+        <activity android:name=".ui.ApplicationGetActivity" /> <!-- 悬浮窗 -->
+        <activity android:name=".ui.MoreToolsActivity" />
         <activity android:name=".ui.PlanBillAddActivity">
             <intent-filter>
                 <action android:name="com.jack.carebaby.ui.PlanBillAddActivity" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-        <activity android:name=".ui.PlanBillActivity" >
-            <intent-filter >
-                <action android:name="com.jack.carebaby.ui.PlanBillActivity" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
 
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".ui.PlanBillActivity">
+            <intent-filter>
+                <action android:name="com.jack.carebaby.ui.PlanBillActivity" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <!--
+<activity android:name=".ui.DailyTripActivity"
+            android:uiOptions="splitActionBarWhenNarrow"
+            tools:ignore="DuplicateActivity"></activity>
+        -->
+        <service android:name="org.eclipse.paho.android.service.MqttService" /> <!-- 账单 -->
+        <service android:name=".service.FloatWindowServer" />
+        <service android:name=".service.FloatCameraServer" />
     </application>
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
 </manifest>

@@ -64,6 +64,7 @@ public class PlanBillActivity extends Activity {
         Get();
     }
 
+
     public void onResume(){
         super.onResume();
         Get();

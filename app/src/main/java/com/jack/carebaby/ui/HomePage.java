@@ -212,7 +212,7 @@ public class HomePage extends BasePage {
         switch (v.getId()) {
             case R.id.system_title_body_4:
                 if(Data.getLoginStatus()==1)
-                    startActivity(new Intent("com.jack.carebaby.ui.BillActivity"));
+                    startActivity(new Intent("com.jack.carebaby.ui.PlanBillActivity"));
                 else
                     Toast.makeText(this, "请先登录", Toast.LENGTH_LONG).show();
                 break;

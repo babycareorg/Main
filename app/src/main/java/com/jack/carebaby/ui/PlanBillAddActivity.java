@@ -26,7 +26,7 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
-public class BillAddActivity extends Activity implements View.OnClickListener {
+public class PlanBillAddActivity extends Activity implements View.OnClickListener {
     private TextView mTvSelectedTime;
     private CustomDatePicker mTimerPicker;
     String url = Data.getUrl();
@@ -36,11 +36,15 @@ public class BillAddActivity extends Activity implements View.OnClickListener {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_bill_add);
+        setContentView(R.layout.activity_bill_add_plan);
 
         findViewById(R.id.ll_time).setOnClickListener(this);
         mTvSelectedTime = findViewById(R.id.tv_selected_time);
         initTimerPicker();
+
+
+
+
     }
 
     @Override
@@ -53,7 +57,7 @@ public class BillAddActivity extends Activity implements View.OnClickListener {
                 break;
             // 返回
             case R.id.back:
-                BillAddActivity.this.finish();
+                PlanBillAddActivity.this.finish();
                 break;
             // 提交
             case R.id.forward:
@@ -65,7 +69,7 @@ public class BillAddActivity extends Activity implements View.OnClickListener {
                     Toast.makeText(this, "请输入账单金额", Toast.LENGTH_SHORT).show();
                 else {
                     Upload();
-                    BillAddActivity.this.finish();
+                    PlanBillAddActivity.this.finish();
                 }
                 break;
         }
@@ -91,7 +95,7 @@ public class BillAddActivity extends Activity implements View.OnClickListener {
             public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                 JSONObject jsonObject = JSON.parseObject(response.body().string());
                 Looper.prepare();
-                Toast.makeText(BillAddActivity.this, jsonObject.getString("msg"), Toast.LENGTH_LONG).show();
+                Toast.makeText(PlanBillAddActivity.this, jsonObject.getString("msg"), Toast.LENGTH_LONG).show();
                 Looper.loop();
             }
         });

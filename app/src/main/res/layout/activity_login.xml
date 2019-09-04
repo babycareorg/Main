@@ -62,8 +62,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textPersonName"
-                    android:background="@drawable/login_selector_bg_edit"
-                    android:textCursorDrawable="@drawable/login_bg_input_cursor"
+                    android:background="@drawable/style_login_selector_bg_edit"
+                    android:textCursorDrawable="@drawable/style_login_bg_input_cursor"
                     android:paddingBottom="2dp"
                     />
             </android.support.design.widget.TextInputLayout>
@@ -86,8 +86,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="textPassword"
-                        android:background="@drawable/login_selector_bg_edit"
-                        android:textCursorDrawable="@drawable/login_bg_input_cursor"
+                        android:background="@drawable/style_login_selector_bg_edit"
+                        android:textCursorDrawable="@drawable/style_login_bg_input_cursor"
                         android:paddingBottom="2dp"
                         />
                 </android.support.design.widget.TextInputLayout>
@@ -99,8 +99,8 @@
                 android:layout_height="60dp">
                 <Button
                     android:id="@+id/bt_go"
-                    android:background="@drawable/login_bt_shape"
-                    android:stateListAnimator="@drawable/login_register_state_list_animator_z"
+                    android:background="@drawable/style_login_bt_shape"
+                    android:stateListAnimator="@drawable/style_login_register_state_list_animator_z"
                     android:layout_width="150dp"
                     android:layout_height="50dp"
                     android:text="Sign In"

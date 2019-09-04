@@ -3,8 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimary"
+    android:background="@color/bg_theme"
     android:orientation="vertical">
+
+
 
 
     <RelativeLayout
@@ -14,38 +16,57 @@
         android:layout_gravity="center"
         android:background="@color/colorPrimary"
         android:gravity="center_vertical"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_marginBottom="10dp">
 
         <Button
             android:id="@+id/back"
-            android:layout_width="50dp"
-            android:layout_height="match_parent"
+            android:layout_marginTop="10dp"
+            android:layout_width="32dp"
+            android:layout_height="30dp"
             android:layout_alignParentLeft="true"
-            android:layout_marginLeft="0dp"
-            android:background="@mipmap/icon_left"
+            android:layout_marginLeft="15dp"
+            android:background="@mipmap/plan_bill_icon_left"
             android:gravity="center"
             android:onClick="onClick" />
 
         <TextView
+            android:layout_marginTop="5dp"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_centerInParent="true"
             android:gravity="center"
             android:text="成长账单"
             android:textColor="#FFFFFF"
-            android:textSize="20sp" />
+            android:textSize="18sp" />
 
         <Button
             android:id="@+id/refresh"
-            android:layout_width="50dp"
-            android:layout_height="match_parent"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="15dp"
             android:layout_alignParentRight="true"
-            android:background="@mipmap/icon_refresh"
+            android:background="@mipmap/plan_add_icon_refresh"
             android:onClick="onClick" />
 
 
     </RelativeLayout>
 
+
+
+
+    <com.scwang.smartrefresh.layout.SmartRefreshLayout
+        android:id="@+id/bill_refresh"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:srlPrimaryColor="@color/white"
+        app:srlAccentColor="@android:color/darker_gray"
+        app:srlEnablePreviewInEditMode="true">
+
+        <com.scwang.smartrefresh.layout.header.ClassicsHeader
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
 
     <android.support.design.widget.CoordinatorLayout
         android:layout_width="match_parent"
@@ -78,6 +99,6 @@
             android:orientation="vertical"></LinearLayout>
 
     </android.support.design.widget.CoordinatorLayout>
-
+    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
 
 </LinearLayout>

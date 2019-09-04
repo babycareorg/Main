@@ -105,7 +105,7 @@ public class CustomDatePicker implements View.OnClickListener, PickerView.OnSele
     private void initView() {
         mPickerDialog = new Dialog(mContext, R.style.date_picker_dialog);
         mPickerDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        mPickerDialog.setContentView(R.layout.dialog_date_picker);
+        mPickerDialog.setContentView(R.layout.layout_dialog_date_picker);
 
         Window window = mPickerDialog.getWindow();
         if (window != null) {

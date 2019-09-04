@@ -10,12 +10,16 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.jack.carebaby.R;
 import com.jack.carebaby.utils.BillAdapter;
+import com.scwang.smartrefresh.layout.api.RefreshLayout;
+import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
+import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -30,7 +34,7 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
-public class BillActivity extends Activity {
+public class PlanBillActivity extends Activity {
     String url = Data.getUrl();
     String phone = Data.getPhone();
     private static final int COMPLETED = 0;
@@ -38,8 +42,25 @@ public class BillActivity extends Activity {
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_bill);
+        setContentView(R.layout.activity_bill_plan);
         fab = findViewById(R.id.fab);
+
+        //下拉刷新
+        final RefreshLayout refreshLayout = findViewById(R.id.bill_refresh);
+        refreshLayout.setOnRefreshListener(new OnRefreshListener() {
+            @Override
+            public void onRefresh(RefreshLayout refreshlayout) {
+                refreshlayout.finishRefresh(2400/*,false*/);//传入false表示刷新失败
+
+
+            }
+        });
+        refreshLayout.setOnLoadMoreListener(new OnLoadMoreListener() {
+            @Override
+            public void onLoadMore(RefreshLayout refreshlayout) {
+                refreshlayout.finishLoadMore(2000/*,false*/);//传入false表示加载失败
+            }
+        });
         Get();
     }
 
@@ -52,14 +73,15 @@ public class BillActivity extends Activity {
         switch (v.getId()) {
             // 返回
             case R.id.back:
-                BillActivity.this.finish();
+                PlanBillActivity.this.finish();
                 break;
             // 悬浮按钮，新增账单
             case R.id.fab:
-                startActivity(new Intent("com.jack.carebaby.ui.BillAddActivity"));
+                startActivity(new Intent("com.jack.carebaby.ui.PlanBillAddActivity"));
                 break;
             // 刷新页面
             case R.id.refresh:
+                Toast.makeText(PlanBillActivity.this, "统计您的宝贝值多少钱哟~", Toast.LENGTH_LONG).show();
                 Get();
                 break;
         }
@@ -109,7 +131,7 @@ public class BillActivity extends Activity {
     public void init_ada(List<String> idList,List<String> titleList,List<String> dateList,List<String> priceList){
         BillAdapter billadpapter;
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
-        GridLayoutManager layoutManager = new GridLayoutManager(BillActivity.this, 1);
+        GridLayoutManager layoutManager = new GridLayoutManager(PlanBillActivity.this, 1);
         recyclerView.setLayoutManager(layoutManager);
         billadpapter = new BillAdapter(idList,titleList,dateList,priceList);
         recyclerView.setAdapter(billadpapter);

@@ -48,17 +48,18 @@
         <service android:name=".service.FloatCameraServer" />
 
         <activity android:name=".ui.ApplicationGetActivity"></activity>
+        <activity android:name=".ui.MoreToolsActivity"></activity>
 
         <!-- 账单 -->
-        <activity android:name=".ui.BillAddActivity">
+        <activity android:name=".ui.PlanBillAddActivity">
             <intent-filter>
-                <action android:name="com.jack.carebaby.ui.BillAddActivity" />
+                <action android:name="com.jack.carebaby.ui.PlanBillAddActivity" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.BillActivity" >
+        <activity android:name=".ui.PlanBillActivity" >
             <intent-filter >
-                <action android:name="com.jack.carebaby.ui.BillActivity" />
+                <action android:name="com.jack.carebaby.ui.PlanBillActivity" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>

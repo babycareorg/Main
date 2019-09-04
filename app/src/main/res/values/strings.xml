@@ -33,6 +33,7 @@
     <string name="datashow_help_p6">BabyCare监测数据，伴婴儿健康成长~</string>
     <!--数据界面功能说明-->
 
+    <!--账本-->
     <string name="cancel">取消</string>
     <string name="title">请选择时间</string>
     <string name="confirm">确定</string>
@@ -42,10 +43,11 @@
     <string name="hour">时</string>
     <string name="minute">分</string>
 
-    <string name="select_title">输入名称</string>
-    <string name="select_price">输入金额</string>
+    <string name="select_title">消费物品</string>
+    <string name="select_price">消费金额</string>
     <string name="select_time">选择时间</string>
     <string name="current_time">当前时间</string>
+    <!--账本-->
 
     <drawable name="clr_normal">#5598df</drawable>
     <drawable name="clr_pressed">#79B6F0</drawable>

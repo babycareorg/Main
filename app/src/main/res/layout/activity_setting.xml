@@ -16,7 +16,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:background="@drawable/drawable_click_bg_change"
+            android:background="@drawable/style_drawable_click_bg_change"
             android:clickable="true"
             android:layout_marginTop="18dp">
             <TextView
@@ -36,7 +36,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:background="@drawable/drawable_click_bg_change"
+            android:background="@drawable/style_drawable_click_bg_change"
             android:clickable="true"
             android:layout_marginTop="1dp">
             <TextView
@@ -56,7 +56,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:background="@drawable/drawable_click_bg_change"
+            android:background="@drawable/style_drawable_click_bg_change"
             android:clickable="true"
             android:layout_marginTop="1dp">
             <TextView
@@ -189,7 +189,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:background="@drawable/drawable_click_bg_change"
+            android:background="@drawable/style_drawable_click_bg_change"
             android:clickable="true"
             android:layout_marginTop="20dp">
             <TextView
@@ -209,7 +209,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:background="@drawable/drawable_click_bg_change"
+            android:background="@drawable/style_drawable_click_bg_change"
             android:clickable="true"
             android:layout_marginTop="1dp">
             <TextView
@@ -229,7 +229,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:background="@drawable/drawable_click_bg_change"
+            android:background="@drawable/style_drawable_click_bg_change"
             android:clickable="true"
             android:layout_marginTop="1dp">
             <TextView
@@ -249,7 +249,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:background="@drawable/drawable_click_bg_change"
+            android:background="@drawable/style_drawable_click_bg_change"
             android:clickable="true"
             android:layout_marginTop="1dp">
             <TextView
@@ -269,7 +269,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:background="@drawable/drawable_click_bg_change"
+            android:background="@drawable/style_drawable_click_bg_change"
             android:clickable="true"
             android:layout_marginTop="1dp">
             <TextView
@@ -291,7 +291,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:background="@drawable/drawable_click_bg_change"
+            android:background="@drawable/style_drawable_click_bg_change"
             android:clickable="true"
             android:layout_marginTop="20dp">
             <TextView
@@ -311,7 +311,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:background="@drawable/drawable_click_bg_change"
+            android:background="@drawable/style_drawable_click_bg_change"
             android:clickable="true"
             android:layout_marginTop="1dp"
             >
@@ -333,7 +333,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:background="@drawable/drawable_click_bg_change"
+            android:background="@drawable/style_drawable_click_bg_change"
             android:clickable="true"
             android:layout_marginTop="20dp">
             <TextView
@@ -364,7 +364,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:background="@drawable/drawable_click_bg_change"
+            android:background="@drawable/style_drawable_click_bg_change"
             android:clickable="true"
             android:layout_marginTop="1dp"
             android:layout_marginBottom="18dp"

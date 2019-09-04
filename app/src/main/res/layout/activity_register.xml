@@ -160,7 +160,7 @@
                    android:layout_gravity="center_horizontal"
                    android:id="@+id/bt_go"
                    android:background="@drawable/register_bt_shape"
-                   android:stateListAnimator="@drawable/login_register_state_list_animator_z"
+                   android:stateListAnimator="@drawable/style_login_register_state_list_animator_z"
                    android:layout_width="150dp"
                    android:layout_height="50dp"
                    android:text="Sign Up"

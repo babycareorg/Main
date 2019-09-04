@@ -54,7 +54,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:background="@drawable/drawable_click_bg_change"
+            android:background="@drawable/style_drawable_click_bg_change"
             android:clickable="true"
             android:layout_weight="1">
             <ImageView
@@ -76,7 +76,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:background="@drawable/drawable_click_bg_change"
+            android:background="@drawable/style_drawable_click_bg_change"
             android:clickable="true"
             android:layout_weight="1">
             <ImageView
@@ -98,7 +98,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:background="@drawable/drawable_click_bg_change"
+            android:background="@drawable/style_drawable_click_bg_change"
             android:clickable="true"
             android:layout_weight="1">
             <ImageView
@@ -120,7 +120,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:background="@drawable/drawable_click_bg_change"
+            android:background="@drawable/style_drawable_click_bg_change"
             android:clickable="true"
             android:onClick="onClick"
             android:layout_weight="1">
@@ -146,7 +146,7 @@
         android:id="@+id/system_content_head"
         android:layout_width="match_parent"
         android:layout_height="90dp"
-        android:background="@drawable/drawable_click_bg_change"
+        android:background="@drawable/style_drawable_click_bg_change"
         android:clickable="true"
         android:layout_marginTop="10dp"
         android:layout_below="@id/system_title_body"

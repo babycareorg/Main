@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/main_bg"
+    android:orientation="vertical"
+    tools:ignore="RtlSymmetry">
+
+    <RelativeLayout
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:background="@color/colorPrimary"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/back"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="0dp"
+            android:onClick="onClick"
+            android:background="@mipmap/icon_left"
+            android:gravity="center" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="新增账单"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp"/>
+
+
+        <Button
+            android:id="@+id/forward"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_marginEnd="0dp"
+            android:onClick="onClick"
+            android:background="@mipmap/icon_right"
+            android:gravity="center"/>
+
+    </RelativeLayout>
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="20dp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@null"
+        android:gravity="center_vertical"
+        android:paddingStart="15dp"
+        android:text="@string/select_title"
+        android:textColor="@color/select_title_text"
+        android:textSize="17sp" />
+
+    <LinearLayout
+        android:id="@+id/ll_title"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/current_time_bg"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:focusable="true"
+        android:focusableInTouchMode="true">
+
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:hint="请输入名称"
+            android:singleLine="true"
+            android:textColor="@color/current_time_text"
+            android:background="@null"
+            android:gravity="center_vertical|right"
+            android:textSize="16sp"
+            android:id="@+id/txt_title" />
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="15dp"
+            android:background="@null"
+            android:gravity="center_vertical"
+            android:textColor="@color/selected_time_text"
+            android:textSize="15sp" />
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@null"
+        android:gravity="center_vertical"
+        android:paddingStart="15dp"
+        android:text="@string/select_time"
+        android:textColor="@color/select_title_text"
+        android:textSize="17sp" />
+
+    <LinearLayout
+        android:id="@+id/ll_time"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/current_time_bg"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+
+        <TextView
+            android:id="@+id/tv_selected_time"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="15dp"
+            android:background="@null"
+            android:gravity="center_vertical"
+            android:textColor="@color/selected_time_text"
+            android:textSize="16sp" />
+
+    </LinearLayout>
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@null"
+        android:gravity="center_vertical"
+        android:paddingStart="15dp"
+        android:text="@string/select_price"
+        android:textColor="@color/select_title_text"
+        android:textSize="17sp" />
+
+    <LinearLayout
+        android:id="@+id/ll_price"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/current_time_bg"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:hint="请输入金额"
+            android:singleLine="true"
+            android:inputType="numberDecimal"
+            android:textColor="@color/current_time_text"
+            android:background="@null"
+            android:gravity="center_vertical|right"
+            android:textSize="16sp"
+            android:id="@+id/txt_price" />
+
+        <TextView
+            android:id="@+id/tv_price"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="15dp"
+            android:background="@null"
+            android:gravity="center_vertical"
+            android:textColor="@color/selected_time_text"
+            android:textSize="15sp" />
+
+    </LinearLayout>
+
+</LinearLayout>

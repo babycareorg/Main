@@ -16,7 +16,7 @@
 
     <!--团队介绍-->
     <string name="setting_group_title">BabyBoxs团队介绍</string>
-    <string name="setting_group_p1">BabyBoxs团队来自北京市海淀区学院路30号北京科技大学团队，团队目前成员有：胡成成，宋昆，魏俊峰等人。</string>
+    <string name="setting_group_p1">BabyBoxs团队来自北京市海淀区学院路30号北京科技大学团队，团队目前成员有：胡成成，宋昆，魏俊峰，王艺霖等人。</string>
     <string name="setting_group_p2">为BabyBoxs提供建议，可以发送邮件，关注官方微信公众平台，微博等联系我们，改善BabyBoxs,让BabyBoxs更适合您！</string>
     <string name="setting_group_p3">©BabyBoxs版权所有</string>
     <!--团队介绍-->
@@ -33,4 +33,20 @@
     <string name="datashow_help_p6">BabyCare监测数据，伴婴儿健康成长~</string>
     <!--数据界面功能说明-->
 
+    <string name="cancel">取消</string>
+    <string name="title">请选择时间</string>
+    <string name="confirm">确定</string>
+    <string name="year">年</string>
+    <string name="month">月</string>
+    <string name="day">日</string>
+    <string name="hour">时</string>
+    <string name="minute">分</string>
+
+    <string name="select_title">输入名称</string>
+    <string name="select_price">输入金额</string>
+    <string name="select_time">选择时间</string>
+    <string name="current_time">当前时间</string>
+
+    <drawable name="clr_normal">#5598df</drawable>
+    <drawable name="clr_pressed">#79B6F0</drawable>
 </resources>

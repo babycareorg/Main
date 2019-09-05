@@ -361,4 +361,6 @@ public class HomePage extends BasePage {
         final float scale = mContext.getResources().getDisplayMetrics().density;
         return (int) (dp * scale + 0.5f);
     }
+
+
 }

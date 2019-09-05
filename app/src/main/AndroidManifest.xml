@@ -3,6 +3,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.jack.carebaby">
 
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
     <application
         android:name="cn.bgbsk.babycare.global.Data"
         android:allowBackup="true"
@@ -11,8 +17,11 @@
         android:roundIcon="@mipmap/babyboxs"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.DailyKnowActivity"
-            android:label="生活百科"></activity>
+        <activity android:name=".ui.HospitalAskActivity"></activity>
+        <activity android:name=".ui.HospitalHandleActivity" />
+        <activity
+            android:name=".ui.DailyKnowActivity"
+            android:label="生活百科" />
         <activity
             android:name=".ui.DailyEatActivity"
             android:label="食谱推荐" />
@@ -64,11 +73,5 @@
         <service android:name=".service.FloatWindowServer" />
         <service android:name=".service.FloatCameraServer" />
     </application>
-    <uses-permission android:name="android.permission.VIBRATE" />
-    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.WAKE_LOCK" />
-
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
 </manifest>

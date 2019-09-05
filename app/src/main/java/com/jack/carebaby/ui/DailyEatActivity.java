@@ -1,22 +1,15 @@
 package com.jack.carebaby.ui;
 
-import android.graphics.Bitmap;
-import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.RequiresApi;
-import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.webkit.WebResourceError;
-import android.webkit.WebResourceRequest;
-import android.webkit.WebSettings;
 import android.webkit.WebView;
-import android.webkit.WebViewClient;
 import android.widget.Toast;
 
 import com.jack.carebaby.R;
 import com.jack.carebaby.base.BasePage;
+import com.jack.carebaby.utils.WebViewFragmentUtil;
 
 public class DailyEatActivity extends BasePage {
 
@@ -33,60 +26,9 @@ public class DailyEatActivity extends BasePage {
         url="https://m.meishij.net/";
         eat_webview.loadUrl(url);
 
-        //支持app内js交互
-        eat_webview.getSettings().setJavaScriptEnabled(true);
+        WebViewFragmentUtil webViewFragmentUtil=new WebViewFragmentUtil();
+        webViewFragmentUtil.WebViewUtil(eat_webview);
 
-        //自适应屏幕
-        eat_webview.getSettings().setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
-        eat_webview.getSettings().setLoadWithOverviewMode(true);
-
-        //设置了支持缩放
-        eat_webview.getSettings().setSupportZoom(true);
-
-        //扩大比例缩放
-        eat_webview.getSettings().setUseWideViewPort(true);
-
-        eat_webview.setWebViewClient(new WebViewClient(){
-
-            @Override
-            public boolean shouldOverrideUrlLoading(WebView view, String url){
-                view.loadUrl(url);
-                return true;
-            }
-
-
-            //在开始加载网页时会回调
-            @Override
-            public void onPageStarted(WebView webView, String s, Bitmap bitmap) {
-                super.onPageStarted(webView, s, bitmap);
-                Toast.makeText(DailyEatActivity.this, "正在加载...", Toast.LENGTH_LONG).show();
-
-            }
-            //加载错误的时候会回调
-            @Override
-            public void onReceivedError(WebView webView, int i, String s, String s1) {
-                super.onReceivedError(webView, i, s, s1);
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                    Toast.makeText(DailyEatActivity.this, "加载失败", Toast.LENGTH_LONG).show();
-
-                    return;
-                }
-
-            }
-
-            //加载错误的时候会回调
-            @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-            @Override
-            public void onReceivedError(WebView webView, WebResourceRequest webResourceRequest, WebResourceError webResourceError) {
-                super.onReceivedError(webView, webResourceRequest, webResourceError);
-                if (webResourceRequest.isForMainFrame()) {
-                    Toast.makeText(DailyEatActivity.this, "加载失败", Toast.LENGTH_LONG).show();
-
-                }
-            }
-
-
-        });
     }
 
 
@@ -137,13 +79,4 @@ public class DailyEatActivity extends BasePage {
     }
 
 
-    //html返回键重置
-    @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if (keyCode == KeyEvent.KEYCODE_BACK && eat_webview.canGoBack()) {
-            eat_webview.goBack();// 返回前一个页面
-            return true;
-        }
-        return super.onKeyDown(keyCode, event);
-    }
 }

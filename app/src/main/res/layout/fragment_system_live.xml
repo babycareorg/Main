@@ -140,6 +140,11 @@
             </LinearLayout>
         </LinearLayout>
 
+        <WebView
+            android:id="@+id/live_webview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"></WebView>
+
 
     </LinearLayout>
 

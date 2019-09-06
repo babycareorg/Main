@@ -42,7 +42,8 @@ public class CameraActivity extends BasePage {
         camera_state=findViewById(R.id.camera_state);
 
 
-        camera_webview.loadUrl("http://192.168.137.174");
+        //camera_webview.loadUrl("http://192.168.137.174");
+        camera_webview.loadUrl("http://192.168.43.250:81/stream");
 
         setUrl_Button.setOnClickListener(new View.OnClickListener() {
             @Override

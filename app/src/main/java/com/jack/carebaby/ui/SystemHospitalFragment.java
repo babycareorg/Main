@@ -1,12 +1,17 @@
 package com.jack.carebaby.ui;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.webkit.WebView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.jack.carebaby.R;
 import com.jack.carebaby.base.BaseFragment;
@@ -22,6 +27,8 @@ public class SystemHospitalFragment extends BaseFragment {
 
     private WebView hospital_webview;
     private String url;
+
+    private TextView system_title_head_note;
     
     
     @Override
@@ -40,6 +47,16 @@ public class SystemHospitalFragment extends BaseFragment {
         Yimiao=v.findViewById(R.id.hospital_title_body_2);
         Ask=v.findViewById(R.id.hospital_title_body_3);
         Note=v.findViewById(R.id.hospital_title_body_4);
+
+        system_title_head_note=v.findViewById(R.id.system_title_head_note);
+
+        system_title_head_note.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showHospitalDialog();
+
+            }
+        });
 
 
 
@@ -70,5 +87,22 @@ public class SystemHospitalFragment extends BaseFragment {
         webViewFragmentUtil.WebViewUtil(hospital_webview);
 
         return v;
+    }
+
+    private void showHospitalDialog() {
+
+        final AlertDialog mAlertDialog = new AlertDialog.Builder(getContext()).show();
+        View view = LayoutInflater.from(getContext()).inflate(R.layout.help_fragment_hospital,null);
+        mAlertDialog.setContentView(view);
+
+        mAlertDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
+            @Override
+            public void onCancel(DialogInterface dialog) {
+
+                mAlertDialog.cancel();
+            }
+        });
+        Window window = mAlertDialog.getWindow();
+        window.setBackgroundDrawable(new ColorDrawable(0x00000000));
     }
 }

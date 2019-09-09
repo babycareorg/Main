@@ -1,12 +1,17 @@
 package com.jack.carebaby.ui;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.webkit.WebView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.jack.carebaby.R;
 import com.jack.carebaby.base.BaseFragment;
@@ -21,6 +26,8 @@ public class SystemDailyFragment extends BaseFragment {
 
     private WebView community_webview;
     private String url;
+
+    private TextView system_title_head_note;
 
 
     @Override
@@ -37,6 +44,8 @@ public class SystemDailyFragment extends BaseFragment {
         eat=v.findViewById(R.id.daily_title_body_1);
         know=v.findViewById(R.id.daily_title_body_2);
         music=v.findViewById(R.id.daily_title_body_3);
+
+        system_title_head_note=v.findViewById(R.id.system_title_head_note);
 
 
 
@@ -67,6 +76,15 @@ public class SystemDailyFragment extends BaseFragment {
             }
         });
 
+        system_title_head_note.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showDailyDialog();
+
+            }
+        });
+
+
 
         community_webview=v.findViewById(R.id.community_webview);
 
@@ -86,6 +104,22 @@ public class SystemDailyFragment extends BaseFragment {
 
 
 
+    private void showDailyDialog() {
+
+        final AlertDialog mAlertDialog = new AlertDialog.Builder(getContext()).show();
+        View view = LayoutInflater.from(getContext()).inflate(R.layout.help_fragment_daily,null);
+        mAlertDialog.setContentView(view);
+
+        mAlertDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
+            @Override
+            public void onCancel(DialogInterface dialog) {
+
+                mAlertDialog.cancel();
+            }
+        });
+        Window window = mAlertDialog.getWindow();
+        window.setBackgroundDrawable(new ColorDrawable(0x00000000));
+    }
 
 
 

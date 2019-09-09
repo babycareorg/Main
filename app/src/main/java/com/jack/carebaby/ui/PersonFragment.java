@@ -20,6 +20,7 @@ public class PersonFragment extends BaseFragment {
     private ImageView EditName;
     private LinearLayout Setting;
     private LinearLayout More;
+    private LinearLayout Help;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -35,6 +36,7 @@ public class PersonFragment extends BaseFragment {
         EditName=v.findViewById(R.id.person_title_head_namechange);
         Setting = v.findViewById(R.id.person_body_head_3);
         More = v.findViewById(R.id.person_body_head_4);
+        Help = v.findViewById(R.id.person_body_foot_5);
 
         Login.setText(Data.getUsername());
 
@@ -58,6 +60,14 @@ public class PersonFragment extends BaseFragment {
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent(getActivity(),MoreToolsActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        Help.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(getActivity(),HelpAllActivity.class);
                 startActivity(intent);
             }
         });

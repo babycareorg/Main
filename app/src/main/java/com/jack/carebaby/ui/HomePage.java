@@ -187,22 +187,18 @@ public class HomePage extends BasePage {
                 break;
 
             case R.id.notes:
-
                 Intent intent=new Intent(HomePage.this,com.memorandum.MainActivity.class);
                 startActivity(intent);
                 break;
 
             case R.id.help:
-
+                Intent intent2=new Intent(this,HelpAllActivity.class);
+                startActivity(intent2);
                 break;
 
             case R.id.setting:
-                /*Intent intent3=new Intent(MainActivity.this,NoticeActivity.class);
-                startActivity(intent3);*/
                 Intent intent3=new Intent(this,SettingActivity.class);
                 startActivity(intent3);
-
-
                 break;
         }
         return super.onOptionsItemSelected(item);

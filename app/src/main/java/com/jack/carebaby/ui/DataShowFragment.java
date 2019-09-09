@@ -93,6 +93,7 @@ public class DataShowFragment extends BaseFragment {
 
     private ImageView Camera_show;
     private ImageView Datashow_disconect_setting;
+    private ImageView datashow_disconnect_help;
 
     private RelativeLayout Datashow_disconnect;
     private ScrollView Datashow_connect;
@@ -144,6 +145,7 @@ public class DataShowFragment extends BaseFragment {
         Datashow_disconnect=v.findViewById(R.id.datashow_disconnect);
         Datashow_connect=v.findViewById(R.id.datashow_connect);
         Datashow_disconect_setting=v.findViewById(R.id.datashow_disconnect_setting);
+        datashow_disconnect_help=v.findViewById(R.id.datashow_disconnect_help);
 
 
         circularFillableLoaders = v.findViewById(R.id.main_circle_temp);
@@ -214,6 +216,15 @@ public class DataShowFragment extends BaseFragment {
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), SettingActivity.class);
                 startActivity(intent);
+            }
+        });
+
+        //跳转说明
+        datashow_disconnect_help.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showDialog();
+
             }
         });
 
@@ -631,10 +642,10 @@ public class DataShowFragment extends BaseFragment {
     }
 
 
-    private void showDialog() {
+    public void showDialog() {
 
         final AlertDialog mAlertDialog = new AlertDialog.Builder(getContext()).show();
-        View view = LayoutInflater.from(getContext()).inflate(R.layout.fragment_datashow_help,null);
+        View view = LayoutInflater.from(getContext()).inflate(R.layout.help_fragment_datashow,null);
         mAlertDialog.setContentView(view);
 
         mAlertDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
@@ -647,6 +658,9 @@ public class DataShowFragment extends BaseFragment {
         Window window = mAlertDialog.getWindow();
         window.setBackgroundDrawable(new ColorDrawable(0x00000000));
     }
+
+
+
 
     @SuppressLint("ResourceAsColor")
     private void cancelVibration() {

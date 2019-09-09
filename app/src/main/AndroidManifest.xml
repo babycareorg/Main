@@ -17,17 +17,7 @@
         android:roundIcon="@mipmap/babyboxs"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.HospitalAskActivity"></activity>
-        <activity android:name=".ui.HospitalHandleActivity" />
-        <activity
-            android:name=".ui.DailyKnowActivity"
-            android:label="生活百科" />
-        <activity
-            android:name=".ui.DailyEatActivity"
-            android:label="食谱推荐" />
-        <activity
-            android:name=".ui.DailyTripActivity"
-            android:label="出行推荐" />
+
         <activity android:name=".ui.HomePage">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -64,12 +54,23 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <!--
-<activity android:name=".ui.DailyTripActivity"
-            android:uiOptions="splitActionBarWhenNarrow"
-            tools:ignore="DuplicateActivity"></activity>
-        -->
-        <service android:name="org.eclipse.paho.android.service.MqttService" /> <!-- 账单 -->
+
+        <activity android:name=".ui.HospitalAskActivity"></activity>
+        <activity android:name=".ui.HospitalHandleActivity" />
+        <activity
+            android:name=".ui.DailyKnowActivity"
+            android:label="生活百科" />
+        <activity
+            android:name=".ui.DailyEatActivity"
+            android:label="食谱推荐" />
+        <activity
+            android:name=".ui.DailyTripActivity"
+            android:label="出行推荐" />
+        <activity android:name=".ui.HelpAllActivity"
+            android:label="说明文档"></activity>
+
+
+        <service android:name="org.eclipse.paho.android.service.MqttService" />
         <service android:name=".service.FloatWindowServer" />
         <service android:name=".service.FloatCameraServer" />
     </application>

@@ -1,14 +1,19 @@
 package com.jack.carebaby.ui;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.RequiresApi;
+import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.widget.TextView;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
@@ -36,6 +41,8 @@ public class SystemPlanFragment extends BaseFragment {
     private SharedPreferences.Editor loginEdit;
     private String url = Data.getUrl();
 
+    private TextView system_title_head_note;
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -46,6 +53,23 @@ public class SystemPlanFragment extends BaseFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_system_plan, null);
+
+
+        system_title_head_note=v.findViewById(R.id.system_title_head_note);
+
+
+
+        system_title_head_note.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showPlanDialog();
+
+            }
+        });
+
+
+
+
         loginSP = getContext().getSharedPreferences("login", Context.MODE_PRIVATE);
         if (loginSP.getString("phone",null)!= null){
             String phone = loginSP.getString("phone",null);
@@ -85,5 +109,22 @@ public class SystemPlanFragment extends BaseFragment {
         }
 
         return v;
+    }
+
+   private void showPlanDialog() {
+
+        final AlertDialog mAlertDialog = new AlertDialog.Builder(getContext()).show();
+        View view = LayoutInflater.from(getContext()).inflate(R.layout.help_fragment_plan,null);
+        mAlertDialog.setContentView(view);
+
+        mAlertDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
+            @Override
+            public void onCancel(DialogInterface dialog) {
+
+                mAlertDialog.cancel();
+            }
+        });
+        Window window = mAlertDialog.getWindow();
+        window.setBackgroundDrawable(new ColorDrawable(0x00000000));
     }
 }

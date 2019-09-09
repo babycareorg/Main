@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="尽请期待"
-        android:textSize="30sp"
-        android:textColor="@color/colorPrimary"
-        android:gravity="center"/>
 
-</android.support.constraint.ConstraintLayout>
+    <com.mingle.widget.LoadingView
+        android:id="@+id/loadView"
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent"/>
+
+</RelativeLayout>

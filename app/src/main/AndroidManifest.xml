@@ -9,6 +9,20 @@
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
+    <!-- 震动权限 -->
+    <uses-permission android:name="android.permission.VIBRATE" />
+
+    <!-- 存储权限 -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <!-- 电话权限 -->
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <!-- 短信权限 -->
+    <uses-permission android:name="android.permission.SEND_SMS" />
+    <!-- 相机权限 -->
+    <uses-permission android:name="android.permission.CAMERA" />
+    <!-- 定位权限 -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
     <application
         android:name="cn.bgbsk.babycare.global.Data"
         android:allowBackup="true"
@@ -54,8 +68,7 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-
-        <activity android:name=".ui.HospitalAskActivity"></activity>
+        <activity android:name=".ui.HospitalAskActivity" />
         <activity android:name=".ui.HospitalHandleActivity" />
         <activity
             android:name=".ui.DailyKnowActivity"
@@ -66,9 +79,24 @@
         <activity
             android:name=".ui.DailyTripActivity"
             android:label="出行推荐" />
-        <activity android:name=".ui.HelpAllActivity"
-            android:label="说明文档"></activity>
+        <activity
+            android:name=".ui.HelpAllActivity"
+            android:label="说明文档" />
 
+        <activity android:name=".ui.OlderEatActivity"
+            android:label="饮食注意"></activity>
+        <activity
+            android:name=".ui.OlderHealthActivity"
+            android:label="老人保健" />
+        <activity
+            android:name=".ui.OlderCCTVActivity"
+            android:label="CCTV" />
+        <activity
+            android:name=".ui.OlderNewsActivity"
+            android:label="文字新闻" />
+        <activity
+            android:name=".ui.OlderFMActivity"
+            android:label="FM听书" />
 
         <service android:name="org.eclipse.paho.android.service.MqttService" />
         <service android:name=".service.FloatWindowServer" />

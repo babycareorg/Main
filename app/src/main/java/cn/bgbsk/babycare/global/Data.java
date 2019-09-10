@@ -17,6 +17,8 @@ public class Data extends Application {
     private static SharedPreferences loginSP;
     private static SharedPreferences.Editor loginEdit;
 
+    public static String phoneNumber="18056929880";//预设手机号吧
+
 
     @Override
     public void onCreate() {

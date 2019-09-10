@@ -1,12 +1,27 @@
 package com.jack.carebaby.ui;
 
+import android.Manifest;
+import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Vibrator;
+import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -29,8 +44,26 @@ import java.util.Random;
 
 import cn.bgbsk.babycare.global.Data;
 
+import static cn.bgbsk.babycare.global.Data.phoneNumber;
+
 public class HomePage extends BasePage {
     private Context mContext = this;
+
+
+    /**
+     * 传感器
+     */
+    private SensorManager sensorManager;
+    private HomePage.ShakeSensorListener shakeListener;
+
+    /**
+     * 判断一次摇一摇动作
+     */
+    private boolean isShake = false;
+
+    // 要申请的权限
+    private String[] permissions = {Manifest.permission.WRITE_EXTERNAL_STORAGE,Manifest.permission.CALL_PHONE,
+            Manifest.permission.CAMERA,Manifest.permission.ACCESS_COARSE_LOCATION};
 
 
 
@@ -87,6 +120,23 @@ public class HomePage extends BasePage {
         initFragment();
 
         initFragmentOlder();
+
+        /*摇一摇相关*/
+        sensorManager = (SensorManager)getSystemService(Context.SENSOR_SERVICE);
+        shakeListener = new HomePage.ShakeSensorListener();
+
+        // 版本判断。当手机系统大于 23 时，才有必要去判断权限是否获取
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            // 检查该权限是否已经获取
+            int i = ContextCompat.checkSelfPermission(getApplicationContext(), permissions[0]);
+            int l = ContextCompat.checkSelfPermission(getApplicationContext(), permissions[1]);
+            int m = ContextCompat.checkSelfPermission(getApplicationContext(), permissions[2]);
+            int n = ContextCompat.checkSelfPermission(getApplicationContext(), permissions[3]);
+            // 权限是否已经 授权 GRANTED---授权  DINIED---拒绝
+            if (i != PackageManager.PERMISSION_GRANTED || l != PackageManager.PERMISSION_GRANTED || m != PackageManager.PERMISSION_GRANTED ||
+                    n != PackageManager.PERMISSION_GRANTED) { startRequestPermission();}}
+
+        // 如果没有授予该权限，就去提示用户请求
 
         /**Babyboxs页面初始化设置*/
 
@@ -151,8 +201,37 @@ public class HomePage extends BasePage {
     private void initView(){
         babyboxs=findViewById(R.id.babyboxs);
         olderboxs=findViewById(R.id.olderboxs);
+    }
 
 
+    /**
+     * 开始提交请求权限
+     */
+    private void startRequestPermission() {
+        ActivityCompat.requestPermissions(this, permissions, 321);
+    }
+
+    /**
+     * 用户权限 申请 的回调方法
+     * @param requestCode
+     * @param permissions
+     * @param grantResults
+     */
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == 321) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                if (grantResults[0] != PackageManager.PERMISSION_GRANTED) {
+                    //如果没有获取权限，那么可以提示用户去设置界面--->应用权限开启权限
+                } else {
+                    //获取权限成功提示，可以不要
+                    Toast toast = Toast.makeText(this, "获取权限成功", Toast.LENGTH_LONG);
+                    toast.setGravity(Gravity.CENTER, 0, 0);
+                    toast.show();
+                }
+            }
+        }
     }
 
     //actionbar添加
@@ -224,8 +303,8 @@ public class HomePage extends BasePage {
 
     public void initFragmentOlder(){
 
-        mFragments_older.add(new CameraFragmentOlder()); //生态圈
-        mFragments_older.add(new ToolsFragmentOlder()); //数据单
+        mFragments_older.add(new CameraFragmentOlder());
+        mFragments_older.add(new ToolsFragmentOlder());
         mFragments_older.add(new PersonFragmentOlder());//个人中心
 
     }
@@ -357,6 +436,94 @@ public class HomePage extends BasePage {
         final float scale = mContext.getResources().getDisplayMetrics().density;
         return (int) (dp * scale + 0.5f);
     }
+
+
+    /**设置震动*/
+    @Override
+    protected void onResume() {
+        //注册监听加速度传感器
+        sensorManager.registerListener(shakeListener, sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER),
+                SensorManager.SENSOR_DELAY_FASTEST);
+        super.onResume();
+    }
+
+    @Override
+    protected void onPause() {
+        /**
+         * 资源释放
+         */
+        sensorManager.unregisterListener(shakeListener);
+        super.onPause();
+    }
+
+    private class ShakeSensorListener implements SensorEventListener {
+
+        @Override
+        public void onSensorChanged(SensorEvent event) {
+            //避免一直摇
+            if (isShake) {
+                return;
+            }
+            float[] values = event.values;
+            /*
+             * x : x轴方向的重力加速度，向右为正
+             * y : y轴方向的重力加速度，向前为正
+             * z : z轴方向的重力加速度，向上为正
+             */
+            float x = Math.abs(values[0]);
+            float y = Math.abs(values[1]);
+            float z = Math.abs(values[2]);
+            //加速度超过72，摇一摇成功
+            if (x > 72 || y > 72 || z > 72) {
+                isShake = true;
+                //播放声音
+                //playSound(MainTabActivity.this);
+                //震动，注意权限
+                vibrate( 500);
+                //仿网络延迟操作，这里可以去请求服务器...
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        //弹框
+                        showDialog();
+                    }
+                },1000);
+            }
+        }
+
+        @Override
+        public void onAccuracyChanged(Sensor sensor, int accuracy) {
+        }
+    }
+
+    private void vibrate(long milliseconds) {
+        Vibrator vibrator = (Vibrator)getSystemService(Service.VIBRATOR_SERVICE);
+        vibrator.vibrate(milliseconds);
+    }
+
+    private void showDialog() {
+
+        call(phoneNumber);
+
+        isShake = false;
+    }
+
+    //打电话
+    private void call(String phone) {
+        Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:"+phone));
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            return;
+        }
+        startActivity(intent);
+    }
+
 
 
 }

@@ -1,9 +1,12 @@
 package com.jack.carebaby.ui;
 
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
+import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,19 +18,28 @@ import android.webkit.WebViewClient;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.TextView;
+import android.widget.Toast;
 
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.jack.carebaby.R;
 import com.jack.carebaby.base.BaseFragment;
+import com.jack.carebaby.utils.StringUtils;
 
-public class CameraFragmentOlder extends BaseFragment{
+import static cn.bgbsk.babycare.global.Data.phoneNumber;
 
+public class CameraFragmentOlder extends BaseFragment {
+
+
+
+    protected Context mContext;
 
     private WebView camera_webview;
     private ImageView ivError;
     private EditText setUrl;
     private Button setUrl_Button;
-    private TextView camera_state;
+
+    private Button button_call;
+    private Button button_gethelp;
 
     String url;
 
@@ -35,18 +47,41 @@ public class CameraFragmentOlder extends BaseFragment{
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        mContext=getContext();
     }
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.activity_camera, null);
+        View v = inflater.inflate(R.layout.older_fragment_camera, null);
 
         camera_webview=v.findViewById(R.id.camera_webview);
         ivError=v.findViewById(R.id.camera_webview_error);
         setUrl=v.findViewById(R.id.camera_seturl);
         setUrl_Button=v.findViewById(R.id.camera_seturl_button);
-        camera_state=v.findViewById(R.id.camera_state);
+
+        button_call=v.findViewById(R.id.button_call);
+        button_gethelp=v.findViewById(R.id.button_gethelp);
+
+        button_call.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+
+            }
+        });
+
+        button_gethelp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showPhoneDialog();
+            }
+        });
+
+
+
+
 
 
         camera_webview.loadUrl("http://192.168.137.174");
@@ -76,7 +111,6 @@ public class CameraFragmentOlder extends BaseFragment{
                 super.onPageStarted(webView, s, bitmap);
                 ivError.setVisibility(View.INVISIBLE);
                 camera_webview.setVisibility(View.VISIBLE);
-                camera_state.setText("开");
             }
             //加载错误的时候会回调
             @Override
@@ -87,7 +121,6 @@ public class CameraFragmentOlder extends BaseFragment{
                 }
                 ivError.setVisibility(View.VISIBLE);
                 camera_webview.setVisibility(View.INVISIBLE);
-                camera_state.setText("关");
             }
 
             //加载错误的时候会回调
@@ -98,7 +131,6 @@ public class CameraFragmentOlder extends BaseFragment{
                 if (webResourceRequest.isForMainFrame()) {
                     ivError.setVisibility(View.VISIBLE);
                     camera_webview.setVisibility(View.INVISIBLE);
-                    camera_state.setText("关");
                 }
             }
 
@@ -122,8 +154,56 @@ public class CameraFragmentOlder extends BaseFragment{
         camera_webview.getSettings().setBuiltInZoomControls(true);
 
 
+
         return v;
     }
 
+
+
+    /**
+     * 显示更换电话对话框
+     */
+    public void showPhoneDialog() {
+
+        //从服务器获取电话
+        //String phone = currentUser.getMobilePhoneNumber();
+
+        new MaterialDialog.Builder(mContext)
+                .title("好友电话")
+                .inputType(InputType.TYPE_CLASS_TEXT)
+                .inputRangeRes(0, 11, R.color.red)
+                .positiveColor(getResources().getColor(R.color.white))
+                .negativeColor(getResources().getColor(R.color.white))
+                .backgroundColor(getResources().getColor(R.color.colorPrimary))
+                .titleColor(getResources().getColor(R.color.white))
+                .contentColor(getResources().getColor(R.color.white))
+
+                .input("请输入预设好友电话号码", phoneNumber, new MaterialDialog.InputCallback() {
+                    @Override
+                    public void onInput(@NonNull MaterialDialog dialog, CharSequence input) {
+
+                        String inputStr = input.toString();
+
+                        if (inputStr.equals("")) {
+                            Toast.makeText(CameraFragmentOlder.this.getActivity(),
+                                    "内容不能为空！" + input, Toast.LENGTH_LONG).show();
+                        } else {
+                            if (StringUtils.checkPhoneNumber(inputStr)) {
+
+
+                                phoneNumber = inputStr;
+
+
+                            } else {
+                                Toast.makeText(CameraFragmentOlder.this.getActivity(),
+                                        "请输入正确的电话号码", Toast.LENGTH_LONG).show();
+                            }
+                        }
+                    }
+                })
+                .positiveText("确定")
+                .show();
+
+    }
 
 }

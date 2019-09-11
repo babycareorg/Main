@@ -7,20 +7,12 @@
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-
-    <!-- 震动权限 -->
-    <uses-permission android:name="android.permission.VIBRATE" />
-
-    <!-- 存储权限 -->
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <!-- 电话权限 -->
-    <uses-permission android:name="android.permission.CALL_PHONE" />
-    <!-- 短信权限 -->
-    <uses-permission android:name="android.permission.SEND_SMS" />
-    <!-- 相机权限 -->
-    <uses-permission android:name="android.permission.CAMERA" />
-    <!-- 定位权限 -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /> <!-- 震动权限 -->
+    <uses-permission android:name="android.permission.VIBRATE" /> <!-- 存储权限 -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /> <!-- 电话权限 -->
+    <uses-permission android:name="android.permission.CALL_PHONE" /> <!-- 短信权限 -->
+    <uses-permission android:name="android.permission.SEND_SMS" /> <!-- 相机权限 -->
+    <uses-permission android:name="android.permission.CAMERA" /> <!-- 定位权限 -->
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
     <application
@@ -32,7 +24,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name=".ui.HomePage">
+        <activity
+            android:name=".ui.HomePage"
+            android:windowSoftInputMode="adjustPan">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -82,9 +76,9 @@
         <activity
             android:name=".ui.HelpAllActivity"
             android:label="说明文档" />
-
-        <activity android:name=".ui.OlderEatActivity"
-            android:label="饮食注意"></activity>
+        <activity
+            android:name=".ui.OlderEatActivity"
+            android:label="饮食注意" />
         <activity
             android:name=".ui.OlderHealthActivity"
             android:label="老人保健" />
@@ -97,6 +91,12 @@
         <activity
             android:name=".ui.OlderFMActivity"
             android:label="FM听书" />
+
+        <activity android:name=".ui.OlderDialActivity"
+            android:label="老人电话"></activity>
+        <activity
+            android:name=".ui.UserManageActivity"
+            android:label="用户管理" />
 
         <service android:name="org.eclipse.paho.android.service.MqttService" />
         <service android:name=".service.FloatWindowServer" />

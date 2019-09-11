@@ -287,9 +287,7 @@ public class DataShowFragment extends BaseFragment {
                 .listener(new OnBMClickListener() {
                     @Override
                     public void onBoomButtonClick(int index) {
-                        // When the boom-button corresponding this builder is clicked.
-                        //Toast.makeText(.this, "尽请期待", Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(getActivity(), ApplicationGetActivity.class);
+                        Intent intent = new Intent(getActivity(), MoreToolsActivity.class);
                         startActivity(intent);
                     }
                 });

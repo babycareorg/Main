@@ -44,6 +44,7 @@ import java.util.Random;
 
 import cn.bgbsk.babycare.global.Data;
 
+import static cn.bgbsk.babycare.global.Data.boxsStatus;
 import static cn.bgbsk.babycare.global.Data.phoneNumber;
 
 public class HomePage extends BasePage {
@@ -70,7 +71,7 @@ public class HomePage extends BasePage {
     //babybox模式和older模式切换
     private RelativeLayout babyboxs;
     private RelativeLayout olderboxs;
-    private static boolean boxsStatus=true;
+
 
 
     /**婴儿模式*/

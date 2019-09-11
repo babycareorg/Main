@@ -1,6 +1,7 @@
 package com.jack.carebaby.ui;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Build;
 import android.os.Bundle;
@@ -68,6 +69,8 @@ public class CameraFragmentOlder extends BaseFragment {
             @Override
             public void onClick(View view) {
 
+                Intent intent=new Intent(getActivity(),OlderDialActivity.class);
+                startActivity(intent);
 
             }
         });

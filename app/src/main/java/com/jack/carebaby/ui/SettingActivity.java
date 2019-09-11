@@ -44,8 +44,8 @@ public class SettingActivity extends BasePage {
         findViewById(R.id.setting_person).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                /*Intent intent=new Intent(SettingActivity.this,#.class);
-                startActivity(intent);*/
+                Intent intent=new Intent(SettingActivity.this,UserManageActivity.class);
+                startActivity(intent);
             }
         });
 

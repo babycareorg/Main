@@ -55,7 +55,6 @@ public class PersonFragment extends BaseFragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Get();
     }
 
     public void onResume(){
@@ -141,6 +140,7 @@ public class PersonFragment extends BaseFragment {
                 startActivity(intent);
             }
         });
+        Get();
         return v;
     }
 

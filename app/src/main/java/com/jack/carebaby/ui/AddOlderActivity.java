@@ -1,11 +1,13 @@
 package com.jack.carebaby.ui;
 
 import android.app.Activity;
+import android.app.DatePickerDialog;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Looper;
 import android.util.Log;
 import android.view.View;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -14,12 +16,12 @@ import android.widget.Toast;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.jack.carebaby.R;
-import com.jack.carebaby.utils.datepicker.CustomDatePicker;
-import com.jack.carebaby.utils.datepicker.DateFormatUtils;
 
 import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
+import java.util.Calendar;
+import java.util.Locale;
 
 import cn.bgbsk.babycare.global.Data;
 import okhttp3.Call;
@@ -28,10 +30,8 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
-public class AddBabyActivity extends Activity implements View.OnClickListener{
-
+public class AddOlderActivity extends Activity implements View.OnClickListener{
     private TextView birthday;
-    private CustomDatePicker mTimerPicker;
     String url = Data.getUrl();
     String phone = Data.getPhone();
 
@@ -39,13 +39,14 @@ public class AddBabyActivity extends Activity implements View.OnClickListener{
     private boolean woman_selected=false;
     ImageView manicon,womanicon;
     TextView mantext,womantext;
+    EditText emephone;
 
-
+    Calendar calendar= Calendar.getInstance(Locale.CHINA);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_baby_add);
+        setContentView(R.layout.activity_older_add);
 
         manicon=(ImageView) findViewById(R.id.man_ic);
         womanicon=(ImageView) findViewById(R.id.woman_ic);
@@ -53,7 +54,7 @@ public class AddBabyActivity extends Activity implements View.OnClickListener{
         womantext=(TextView) findViewById(R.id.woman_tx);
         findViewById(R.id.ll_time).setOnClickListener(this);
         birthday = findViewById(R.id.tv_selected_time);
-        initTimerPicker();
+        emephone = (EditText)findViewById(R.id.txt_emephone);
     }
 
     @Override
@@ -62,22 +63,25 @@ public class AddBabyActivity extends Activity implements View.OnClickListener{
             // 时间选择器
             case R.id.ll_time:
                 // 日期格式为yyyy-MM-dd HH:mm
-                mTimerPicker.show(birthday.getText().toString());
+                showDatePickerDialog(this,  4, birthday, calendar);
                 break;
             // 返回
             case R.id.back:
-                AddBabyActivity.this.finish();
+                AddOlderActivity.this.finish();
                 break;
             // 提交
             case R.id.forward:
                 EditText name = (EditText)findViewById(R.id.txt_name);
+
                 if(name.length()==0)
-                    Toast.makeText(this, "请输入宝宝姓名", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "请输入老人姓名", Toast.LENGTH_SHORT).show();
+                else if(emephone.length()==0)
+                    Toast.makeText(this, "请输入应急电话", Toast.LENGTH_SHORT).show();
                 else if(getstatu()==0)
-                    Toast.makeText(this, "请选择宝宝性别", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "请选择老人性别", Toast.LENGTH_SHORT).show();
                 else {
                     Upload();
-                    AddBabyActivity.this.finish();
+                    AddOlderActivity.this.finish();
                 }
                 break;
             case R.id.ll_male:
@@ -127,9 +131,9 @@ public class AddBabyActivity extends Activity implements View.OnClickListener{
         }
         Log.d("Upload","click");
         OkHttpClient okHttpClient = new OkHttpClient();
-        final Request request = new Request.Builder().url(url+"/baby/add?phone="+phone
+        final Request request = new Request.Builder().url(url+"/olds/add?phone="+phone
                 +"&name="+name.getText()+"&birthday="+birthday.getText()
-                +"&sex="+sex).build();
+                +"&sex="+sex+"&emePhone="+emephone.getText()).build();
 
         okHttpClient.newCall(request).enqueue(new Callback() {
             @Override
@@ -141,33 +145,26 @@ public class AddBabyActivity extends Activity implements View.OnClickListener{
             public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                 JSONObject jsonObject = JSON.parseObject(response.body().string());
                 Looper.prepare();
-                Toast.makeText(AddBabyActivity.this, jsonObject.getString("msg"), Toast.LENGTH_LONG).show();
+                Toast.makeText(AddOlderActivity.this, jsonObject.getString("msg"), Toast.LENGTH_LONG).show();
                 Looper.loop();
             }
         });
     }
 
-    private void initTimerPicker() {
-        String beginTime = "2000-1-1 00:00";
-        String endTime = DateFormatUtils.long2Str(System.currentTimeMillis(), true);
-
-        birthday.setText(DateFormatUtils.long2Str(System.currentTimeMillis(), false));
-
-        // 通过日期字符串初始化日期，格式请用：yyyy-MM-dd
-        mTimerPicker = new CustomDatePicker(this, new CustomDatePicker.Callback() {
+    public static void showDatePickerDialog(Activity activity, int themeResId, final TextView tv, Calendar calendar) {
+        // 直接创建一个DatePickerDialog对话框实例，并将它显示出来
+        new DatePickerDialog(activity, themeResId, new DatePickerDialog.OnDateSetListener() {
+            // 绑定监听器(How the parent is notified that the date is set.)
             @Override
-            public void onTimeSelected(long timestamp) {
-                birthday.setText(DateFormatUtils.long2Str(timestamp, false));
+            public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                // 此处得到选择的时间，可以进行你想要的操作
+                tv.setText(year + "-" + (monthOfYear + 1) + "-" + dayOfMonth);
             }
-        }, beginTime, endTime);
-        // 允许点击屏幕或物理返回键关闭
-        mTimerPicker.setCancelable(true);
-        // 显示时和分
-        mTimerPicker.setCanShowPreciseTime(false);
-        // 允许循环滚动
-        mTimerPicker.setScrollLoop(true);
-        // 允许滚动动画
-        mTimerPicker.setCanShowAnim(true);
+        }
+                // 设置初始日期
+                , calendar.get(Calendar.YEAR)
+                , calendar.get(Calendar.MONTH)
+                , calendar.get(Calendar.DAY_OF_MONTH)).show();
     }
 
     public void turnToWoman()

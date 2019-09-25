@@ -47,6 +47,9 @@
             android:name=".ui.AddBabyActivity"
             android:label="NewBaby" />
         <activity
+            android:name=".ui.AddOlderActivity"
+            android:label="NewOlder" />
+        <activity
             android:name=".ui.SettingActivity"
             android:label="Setting" />
         <activity android:name=".ui.ApplicationGetActivity" /> <!-- 悬浮窗 -->

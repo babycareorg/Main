@@ -42,9 +42,6 @@ public class PlanBillAddActivity extends Activity implements View.OnClickListene
         mTvSelectedTime = findViewById(R.id.tv_selected_time);
         initTimerPicker();
 
-
-
-
     }
 
     @Override

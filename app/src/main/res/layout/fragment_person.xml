@@ -208,15 +208,6 @@
                 android:text="宝宝列表"
                 android:layout_marginLeft="8dp"
                 android:layout_marginTop="3dp"/>
-            <TextView
-                android:id="@+id/system_title_head_note"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="16sp"
-                android:text="Add"
-                android:layout_marginLeft="210dp"
-                android:layout_marginTop="5dp"
-                android:textColor="@color/colorPrimary" />
         </LinearLayout>
 
         <!--用listview代替-->
@@ -231,23 +222,18 @@
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp">
 
-            <ImageView
-                android:layout_marginTop="16dp"
-                android:layout_width="match_parent"
-                android:layout_height="30dp"
-                android:src="@mipmap/system_plan_content_title"
-                />
 
-            <TextView
-                android:layout_marginTop="4dp"
+            <android.support.design.widget.CoordinatorLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:textAlignment="center"
-                android:textSize="14sp"
-                android:textColor="@color/colorPrimary"
-                android:text="暂无宝宝"
-                android:gravity="center"
-                />
+                android:layout_below="@+id/layout">
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/person_content_baby_list"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                </android.support.v7.widget.RecyclerView>
+            </android.support.design.widget.CoordinatorLayout>
+
         </LinearLayout>
 
 

@@ -53,7 +53,7 @@
     <string name="live_help_title">居家说明</string>
     <string name="live_help_p1">喂奶提醒：可以根据孩子是否哭闹以及上一次喂奶的时间，为您提示下一次应该喂奶的时间，让孩子舒适，让家长舒心。</string>
     <string name="live_help_p2">环境监测： 自动检测环境中的温度、湿度、光强等信息。</string>
-    <string name="live_help_p3">智能控制： 可以根据检测到的温度、湿度、光强等信息，智能调控空调、加湿器、台灯等等家电。</string>
+    <string name="live_help_p3">垃圾分类： 可以查询各种垃圾的类别，垃圾数据庞大。</string>
     <string name="live_help_p4">居家记录： 记录孩子每日的清醒时间、熟睡时间、饮食次数、哭闹次数等。</string>
 
     <string name="hospital_help_title">医疗说明</string>

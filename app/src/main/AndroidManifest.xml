@@ -23,7 +23,8 @@
         android:roundIcon="@mipmap/babyboxs"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
+        <activity android:name=".ui.LiveGarbageActivity"
+            android:label="垃圾分类"></activity>
         <activity
             android:name=".ui.HomePage"
             android:windowSoftInputMode="adjustPan">
@@ -97,9 +98,9 @@
         <activity
             android:name=".ui.OlderFMActivity"
             android:label="FM听书" />
-
-        <activity android:name=".ui.OlderDialActivity"
-            android:label="老人电话"></activity>
+        <activity
+            android:name=".ui.OlderDialActivity"
+            android:label="老人电话" />
         <activity
             android:name=".ui.UserManageActivity"
             android:label="用户管理" />

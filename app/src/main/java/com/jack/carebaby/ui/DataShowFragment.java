@@ -643,7 +643,7 @@ public class DataShowFragment extends BaseFragment {
     public void showDialog() {
 
         final AlertDialog mAlertDialog = new AlertDialog.Builder(getContext()).show();
-        View view = LayoutInflater.from(getContext()).inflate(R.layout.help_fragment_datashow,null);
+        View view = LayoutInflater.from(getContext()).inflate(R.layout.help_fragment_disconnect,null);
         mAlertDialog.setContentView(view);
 
         mAlertDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {

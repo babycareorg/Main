@@ -68,5 +68,6 @@ dependencies {
 
     //Dialogs
     implementation 'com.afollestad.material-dialogs:core:0.9.6.0'
+    implementation 'com.kongzue.dialog:dialog:2.5.2'
 
 }

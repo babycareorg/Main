@@ -1,6 +1,7 @@
 package com.jack.carebaby.ui;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
@@ -9,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.webkit.WebView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.jack.carebaby.R;
@@ -21,6 +23,8 @@ public class SystemLiveFragment extends BaseFragment {
     private String url;
 
     private TextView system_title_head_note;
+
+    private LinearLayout garbage;
     
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -44,6 +48,8 @@ public class SystemLiveFragment extends BaseFragment {
             }
         });
 
+        garbage=v.findViewById(R.id.live_title_body_3);
+
 
         url="https://www.evolife.cn/category/homeware/page/11";
         live_webview.loadUrl(url);
@@ -51,6 +57,16 @@ public class SystemLiveFragment extends BaseFragment {
         WebViewFragmentUtil webViewFragmentUtil=new WebViewFragmentUtil();
 
         webViewFragmentUtil.WebViewUtil(live_webview);
+
+
+        garbage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(getActivity(),LiveGarbageActivity.class) ;
+                startActivity(intent);
+
+            }
+        });
 
 
         return v;

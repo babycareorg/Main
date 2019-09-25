@@ -1,13 +1,13 @@
 package com.jack.carebaby.ui;
 
+import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
-import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,10 +21,12 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.afollestad.materialdialogs.MaterialDialog;
 import com.jack.carebaby.R;
 import com.jack.carebaby.base.BaseFragment;
 import com.jack.carebaby.utils.StringUtils;
+import com.kongzue.dialog.listener.InputDialogOkButtonClickListener;
+import com.kongzue.dialog.util.InputInfo;
+import com.kongzue.dialog.v2.InputDialog;
 
 import static cn.bgbsk.babycare.global.Data.phoneNumber;
 
@@ -171,42 +173,34 @@ public class CameraFragmentOlder extends BaseFragment {
         //从服务器获取电话
         //String phone = currentUser.getMobilePhoneNumber();
 
-        new MaterialDialog.Builder(mContext)
-                .title("好友电话")
-                .inputType(InputType.TYPE_CLASS_TEXT)
-                .inputRangeRes(0, 11, R.color.red)
-                .positiveColor(getResources().getColor(R.color.white))
-                .negativeColor(getResources().getColor(R.color.white))
-                .backgroundColor(getResources().getColor(R.color.colorPrimary))
-                .titleColor(getResources().getColor(R.color.white))
-                .contentColor(getResources().getColor(R.color.white))
+        InputDialog.show(mContext, "设置紧急电话", "请输入紧急情况下需要联系的家人：", "确定", new InputDialogOkButtonClickListener() {
+            @Override
+            public void onClick(Dialog dialog, String inputStr) {
+                if (inputStr.equals("")) {
+                    Toast.makeText(CameraFragmentOlder.this.getActivity(),
+                            "内容不能为空！", Toast.LENGTH_LONG).show();
+                } else {
+                    if (StringUtils.checkPhoneNumber(inputStr)) {
 
-                .input("请输入预设好友电话号码", phoneNumber, new MaterialDialog.InputCallback() {
-                    @Override
-                    public void onInput(@NonNull MaterialDialog dialog, CharSequence input) {
+                        phoneNumber = inputStr;
+                        dialog.dismiss();
 
-                        String inputStr = input.toString();
-
-                        if (inputStr.equals("")) {
-                            Toast.makeText(CameraFragmentOlder.this.getActivity(),
-                                    "内容不能为空！" + input, Toast.LENGTH_LONG).show();
-                        } else {
-                            if (StringUtils.checkPhoneNumber(inputStr)) {
-
-
-                                phoneNumber = inputStr;
-
-
-                            } else {
-                                Toast.makeText(CameraFragmentOlder.this.getActivity(),
-                                        "请输入正确的电话号码", Toast.LENGTH_LONG).show();
-                            }
-                        }
+                    } else {
+                        Toast.makeText(CameraFragmentOlder.this.getActivity(),
+                                "请输入正确的电话号码", Toast.LENGTH_LONG).show();
                     }
-                })
-                .positiveText("确定")
-                .show();
+                }
+                Toast.makeText(mContext, "您输入了：" + inputStr, Toast.LENGTH_SHORT).show();
+            }
+        }, "取消", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+            }
+        }).setInputInfo(new InputInfo()
+                .setMAX_LENGTH(11)                                          //设置最大长度11位
+        );
+
 
     }
-
 }

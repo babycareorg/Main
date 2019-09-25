@@ -62,6 +62,12 @@
     <string name="hospital_help_p3">医生问答：孩子生病时可以快速联系医生进行问答，解决您的燃眉之急。</string>
     <string name="hospital_help_p4">医疗档案：记录孩子的健康状况，将每一次医疗情况记入档案内。</string>
 
+    <string name="disconnect_help_title">未连接问题</string>
+    <string name="disconnect_help_p1">1.检查手机是否接入网络，WiFi或移动数据。</string>
+    <string name="disconnect_help_p2">2.检查产品是否正常打开。</string>
+    <string name="disconnect_help_p3">3.检查产品是否接入网络，无法接入将网络源改为：热点名：JACKPC；密码：87654312。</string>
+    <string name="disconnect_help_p4">4.摄像头无法连接则输入正确的地址源，查看摄像头链接的地址IP。</string>
+
     <!--账本-->
 
     <string name="cancel">取消</string>

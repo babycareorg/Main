@@ -4,8 +4,8 @@
 
 
     <!--老人模式字体尺寸-->
-    <dimen name="older_big">18dp</dimen>
-    <dimen name="older_small">14dp</dimen>
+    <dimen name="older_big">22dp</dimen>
+    <dimen name="older_small">16dp</dimen>
 
 
 </resources>

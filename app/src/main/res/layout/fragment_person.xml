@@ -207,14 +207,14 @@
                 android:textColor="@color/colorPrimary"
                 android:text="宝宝列表"
                 android:layout_marginLeft="8dp"
-                android:layout_marginTop="3dp"/>
+                android:layout_marginTop="6dp"/>
         </LinearLayout>
 
         <!--用listview代替-->
         <LinearLayout
             android:id="@+id/person_content_baby"
             android:layout_width="match_parent"
-            android:layout_height="90dp"
+            android:layout_height="wrap_content"
             android:background="@drawable/style_drawable_click_bg_change"
             android:clickable="true"
             android:layout_marginTop="1dp"

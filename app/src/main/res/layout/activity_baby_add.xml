@@ -201,11 +201,11 @@
                     android:onClick="onClick"
                     android:orientation="horizontal"
                     android:layout_alignParentLeft="true"
-                    android:layout_marginLeft="40dp">
+                    android:layout_marginLeft="60dp">
 
                     <ImageView
                         android:id="@+id/man_ic"
-                        android:layout_width="wrap_content"
+                        android:layout_width="30dp"
                         android:layout_height="wrap_content"
                         android:src="@mipmap/male" />
 
@@ -216,7 +216,7 @@
                         android:layout_margin="10dp"
                         android:text="男"
                         android:textColor="@color/colorPrimary"
-                        android:textSize="24sp" />
+                        android:textSize="20sp" />
 
                 </LinearLayout>
 
@@ -228,11 +228,11 @@
                     android:onClick="onClick"
                     android:orientation="horizontal"
                     android:layout_alignParentRight="true"
-                    android:layout_marginRight="40dp">
+                    android:layout_marginRight="60dp">
 
                     <ImageView
                         android:id="@+id/woman_ic"
-                        android:layout_width="wrap_content"
+                        android:layout_width="30dp"
                         android:layout_height="wrap_content"
                         android:src="@mipmap/female" />
 
@@ -243,7 +243,7 @@
                         android:layout_margin="10dp"
                         android:text="女"
                         android:textColor="@color/colorPrimary"
-                        android:textSize="24sp" />
+                        android:textSize="20sp" />
 
                 </LinearLayout>
 

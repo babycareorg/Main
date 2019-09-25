@@ -16,6 +16,7 @@ import android.widget.Toast;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.jack.carebaby.R;
+import com.jack.carebaby.utils.StringUtils;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -29,6 +30,7 @@ import okhttp3.Callback;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
+
 
 public class AddOlderActivity extends Activity implements View.OnClickListener{
     private TextView birthday;
@@ -79,6 +81,11 @@ public class AddOlderActivity extends Activity implements View.OnClickListener{
                     Toast.makeText(this, "请输入应急电话", Toast.LENGTH_SHORT).show();
                 else if(getstatu()==0)
                     Toast.makeText(this, "请选择老人性别", Toast.LENGTH_SHORT).show();
+
+                else if(!StringUtils.checkPhoneNumber(emephone.getText().toString()))
+                {
+                    Toast.makeText(this, "请输入正确的电话号码", Toast.LENGTH_LONG).show();
+                }
                 else {
                     Upload();
                     AddOlderActivity.this.finish();
@@ -113,7 +120,6 @@ public class AddOlderActivity extends Activity implements View.OnClickListener{
         }
     }
 
-    // 新增账单
     public void Upload(){
         EditText name = (EditText)findViewById(R.id.txt_name);
         String sex = "";

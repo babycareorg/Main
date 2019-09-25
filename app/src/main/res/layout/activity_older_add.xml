@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -7,6 +7,11 @@
     android:background="@color/windowBackground"
     android:orientation="vertical"
     tools:ignore="RtlSymmetry">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
     <RelativeLayout
         android:id="@+id/title"
@@ -59,6 +64,7 @@
             android:layout_marginRight="15dp"
             app:cardBackgroundColor="@color/colorPrimary"
             android:layout_marginTop="30dp"
+            android:layout_marginBottom="30dp"
             android:padding="10dp"
             app:cardCornerRadius="6dp"
             app:cardElevation="6dp">
@@ -201,11 +207,11 @@
                         android:onClick="onClick"
                         android:orientation="horizontal"
                         android:layout_alignParentLeft="true"
-                        android:layout_marginLeft="40dp">
+                        android:layout_marginLeft="60dp">
 
                         <ImageView
                             android:id="@+id/man_ic"
-                            android:layout_width="wrap_content"
+                            android:layout_width="30dp"
                             android:layout_height="wrap_content"
                             android:src="@mipmap/male" />
 
@@ -216,7 +222,7 @@
                             android:layout_margin="10dp"
                             android:text="男"
                             android:textColor="@color/colorPrimary"
-                            android:textSize="24sp" />
+                            android:textSize="20sp" />
 
                     </LinearLayout>
 
@@ -228,11 +234,11 @@
                         android:onClick="onClick"
                         android:orientation="horizontal"
                         android:layout_alignParentRight="true"
-                        android:layout_marginRight="40dp">
+                        android:layout_marginRight="60dp">
 
                         <ImageView
                             android:id="@+id/woman_ic"
-                            android:layout_width="wrap_content"
+                            android:layout_width="30dp"
                             android:layout_height="wrap_content"
                             android:src="@mipmap/female" />
 
@@ -243,7 +249,7 @@
                             android:layout_margin="10dp"
                             android:text="女"
                             android:textColor="@color/colorPrimary"
-                            android:textSize="24sp" />
+                            android:textSize="20sp" />
 
                     </LinearLayout>
 
@@ -299,4 +305,6 @@
                 </LinearLayout>
             </LinearLayout>
         </android.support.v7.widget.CardView>
-</LinearLayout>
+
+    </LinearLayout>
+</ScrollView>

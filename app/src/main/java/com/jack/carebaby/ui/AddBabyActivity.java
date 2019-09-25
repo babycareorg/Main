@@ -109,7 +109,7 @@ public class AddBabyActivity extends Activity implements View.OnClickListener{
         }
     }
 
-    // 新增账单
+
     public void Upload(){
         EditText name = (EditText)findViewById(R.id.txt_name);
         String sex = "";

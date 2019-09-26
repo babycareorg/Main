@@ -71,7 +71,7 @@
                 android:text="老黄历"
                 android:gravity="center"
                 android:textColor="@color/colorPrimary"
-                android:background="@color/white"
+                android:background="@drawable/style_radius_stroke"
                 android:textSize="18dp" />
 
         </RelativeLayout>

@@ -4,6 +4,7 @@ import android.Manifest;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
@@ -15,12 +16,14 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Vibrator;
 import android.support.annotation.NonNull;
+import android.support.annotation.RequiresApi;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -29,6 +32,8 @@ import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.flyco.tablayout.CommonTabLayout;
 import com.flyco.tablayout.listener.CustomTabEntity;
 import com.flyco.tablayout.listener.OnTabSelectListener;
@@ -39,10 +44,22 @@ import com.jack.carebaby.base.BasePage;
 import com.jack.carebaby.entity.TabEntity;
 import com.jack.carebaby.utils.ViewFindUtils;
 
+import org.jetbrains.annotations.NotNull;
+
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
 
 import cn.bgbsk.babycare.global.Data;
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.MediaType;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
 
 import static cn.bgbsk.babycare.global.Data.boxsStatus;
 import static cn.bgbsk.babycare.global.Data.phoneNumber;
@@ -70,6 +87,10 @@ public class HomePage extends BasePage {
     //babybox模式和older模式切换
     private RelativeLayout babyboxs;
     private RelativeLayout olderboxs;
+
+    private SharedPreferences loginSP;
+    private SharedPreferences.Editor loginEdit;
+    private String url = Data.getUrl();
 
 
 
@@ -195,6 +216,45 @@ public class HomePage extends BasePage {
         if (rtv_2_2_older != null) {
             UnreadMsgUtils.setSize(rtv_2_2, dp2px(7.5f));
         }*/
+
+        loginSP = this.getSharedPreferences("login", Context.MODE_PRIVATE);
+        if (loginSP.getString("phone",null)!= null){
+            String phone = loginSP.getString("phone",null);
+            String password = loginSP.getString("password",null);
+
+            Map map = new HashMap();
+            map.put("phone", phone);
+            map.put("password", password);
+            String param = JSON.toJSONString(map);
+            MediaType mediaType = MediaType.parse("application/json; charset=utf-8");
+            final RequestBody requestBody = RequestBody.create(param, mediaType);
+            OkHttpClient okHttpClient = new OkHttpClient();
+            final Request request = new Request.Builder().post(requestBody).url(url + "/user/login").build();
+            okHttpClient.newCall(request).enqueue(new Callback() {
+                @Override
+                public void onFailure(@NotNull Call call, @NotNull IOException e) {
+                    Log.d("LoginError", e.getMessage());
+                }
+
+                @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+                @Override
+                public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
+                    JSONObject jsonObject = JSON.parseObject(response.body().string());
+                    int status = jsonObject.getInteger("status");
+
+                    if (status == 200) {
+                        Data.setPhone(jsonObject.getString("phone"));
+                        Data.setUsername(jsonObject.getString("username"));
+                        Data.setCreated(jsonObject.getTimestamp("created"));
+                        Data.setRegisterTime(jsonObject.getString("created"));
+                        Data.setLoginStatus(1);
+                        //这里添加登录成功相关东西
+                    }
+
+                }
+            });
+
+        }
 
     }
 
@@ -529,6 +589,7 @@ public class HomePage extends BasePage {
         }
         startActivity(intent);
     }
+
 
 
 

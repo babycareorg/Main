@@ -25,7 +25,10 @@ import com.jack.carebaby.utils.BabyAdapter;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import cn.bgbsk.babycare.global.Data;
@@ -35,12 +38,15 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
+import static cn.bgbsk.babycare.global.Data.getCountingshow;
 import static cn.bgbsk.babycare.global.Data.getLoginStatus;
 import static cn.bgbsk.babycare.global.Data.getUsername;
+import static cn.bgbsk.babycare.global.Data.setCountingshow;
 
 public class PersonFragment extends BaseFragment {
 
     private TextView Login;
+    private TextView Count;
     private ImageView EditName;
 
     private LinearLayout NewBaby;
@@ -52,6 +58,11 @@ public class PersonFragment extends BaseFragment {
 
     private static final int COMPLETED = 0;
     private RecyclerView babylist;
+
+    private int count_baby;
+    private String register_time;
+
+    private String count_show;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -75,6 +86,7 @@ public class PersonFragment extends BaseFragment {
         Know = v.findViewById(R.id.person_body_foot_3);
         Test = v.findViewById(R.id.person_body_foot_4);
         babylist = v.findViewById(R.id.person_content_baby_list);
+        Count = v.findViewById(R.id.person_title_head_time);
 
         Login.setText(Data.getUsername());
 
@@ -200,6 +212,34 @@ public class PersonFragment extends BaseFragment {
             public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                 JSONObject jsonObject = JSON.parseObject(response.body().string());
                 JSONArray jsonArray = jsonObject.getJSONArray("babys");
+
+                //设置宝宝数展示
+                count_baby=jsonArray.size();
+                register_time=String.valueOf(Data.getCreated());
+
+
+                DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                Date date = new Date(System.currentTimeMillis());//获取当前时间
+
+                try
+                {
+                    Date d1 = df.parse(register_time);
+                    Date d2 = df.parse(String.valueOf(df.format(date)));
+                    long diff = d2.getTime()-d1.getTime();//这样得到的差值是微秒级别
+                    long days = diff / (1000 * 60 * 60 * 24);
+                    /*long hours = (diff-days*(1000 * 60 * 60 * 24))/(1000* 60 * 60);
+                    long minutes = (diff-days*(1000 * 60 * 60 * 24)-hours*(1000* 60 * 60))/(1000* 60);*/
+
+                    count_show="您已入驻"+days+"天，拥有宝贝"+count_baby+"个";
+                    setCountingshow(count_show);
+                }
+                catch (Exception e)
+                {
+                }
+
+
+
+
                 if (jsonArray!=null){
                     for (int i = 0; i < jsonArray.size(); i++) {
                         JSONObject jsonObject0 = jsonArray.getJSONObject(i);
@@ -214,6 +254,9 @@ public class PersonFragment extends BaseFragment {
                 }
             }
         });
+
+
+        Count.setText(String.valueOf(getCountingshow()));
     }
 
 

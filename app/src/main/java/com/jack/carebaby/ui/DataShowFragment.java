@@ -196,7 +196,7 @@ public class DataShowFragment extends BaseFragment {
         datashow_help.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showDialog();
+                showDialog2();
             }
         });
 
@@ -644,6 +644,23 @@ public class DataShowFragment extends BaseFragment {
 
         final AlertDialog mAlertDialog = new AlertDialog.Builder(getContext()).show();
         View view = LayoutInflater.from(getContext()).inflate(R.layout.help_fragment_disconnect,null);
+        mAlertDialog.setContentView(view);
+
+        mAlertDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
+            @Override
+            public void onCancel(DialogInterface dialog) {
+
+                mAlertDialog.cancel();
+            }
+        });
+        Window window = mAlertDialog.getWindow();
+        window.setBackgroundDrawable(new ColorDrawable(0x00000000));
+    }
+
+    public void showDialog2() {
+
+        final AlertDialog mAlertDialog = new AlertDialog.Builder(getContext()).show();
+        View view = LayoutInflater.from(getContext()).inflate(R.layout.help_fragment_datashow,null);
         mAlertDialog.setContentView(view);
 
         mAlertDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {

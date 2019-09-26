@@ -51,7 +51,7 @@
                 android:id="@+id/person_title_head_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="您已入驻0天，拥有宝贝0个"
+                android:text="您已入驻?天，拥有宝贝?个"
                 android:textSize="12sp"
                 android:textColor="@color/colorPrimary"
                 android:layout_marginLeft="105dp"

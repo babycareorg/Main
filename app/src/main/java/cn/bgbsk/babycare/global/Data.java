@@ -12,7 +12,14 @@ public class Data extends Application {
     private static String phone;
     private static int loginStatus;
     private static Timestamp created;
+
+
+    private static String countingshow;
+    private static String countingshowolder;
     private static boolean mqttStatus;
+
+
+    private static String registerTime;
 
     private static SharedPreferences loginSP;
     private static SharedPreferences.Editor loginEdit;
@@ -94,6 +101,31 @@ public class Data extends Application {
 
     public static void setLoginEdit(SharedPreferences.Editor loginEdit) {
         Data.loginEdit = loginEdit;
+    }
+
+    public static String getRegisterTime() {
+        return registerTime;
+    }
+
+    public static void setRegisterTime(String registerTime) {
+        Data.registerTime = registerTime;
+    }
+
+
+    public static String getCountingshow() {
+        return countingshow;
+    }
+
+    public static void setCountingshow(String countingshow) {
+        Data.countingshow = countingshow;
+    }
+
+    public static String getCountingshowolder() {
+        return countingshowolder;
+    }
+
+    public static void setCountingshowolder(String countingshowolder) {
+        Data.countingshowolder = countingshowolder;
     }
 
     @Override

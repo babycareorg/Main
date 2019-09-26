@@ -135,6 +135,7 @@ public class LoginActivity extends AppCompatActivity {
                             Data.setPhone(jsonObject.getString("phone"));
                             Data.setUsername(jsonObject.getString("username"));
                             Data.setCreated(jsonObject.getTimestamp("created"));
+                            Data.setRegisterTime(jsonObject.getString("created"));
                             Data.setLoginStatus(1);
                             finish();
                             //这里添加登录成功相关东西

@@ -14,7 +14,10 @@ import android.webkit.WebViewClient;
 
 public class WebViewFragmentUtil {
     
+    
     public void WebViewUtil(final WebView webView){
+
+
 
         //重写返回键
         webView.setOnKeyListener(new View.OnKeyListener() {
@@ -51,6 +54,7 @@ public class WebViewFragmentUtil {
                 view.loadUrl(url);
                 return true;
             }
+
 
 
             //在开始加载网页时会回调

@@ -78,6 +78,25 @@ public class SystemHospitalFragment extends BaseFragment {
             }
         });
 
+        Yimiao.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(getActivity(), HospitalYimiaoActivity.class) ;
+                startActivity(intent);
+
+            }
+        });
+
+        Note.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                /*Intent intent=new Intent(getActivity(), HospitalYimiaoActivity.class) ;
+                startActivity(intent);*/
+
+            }
+        });
+
+
 
         url="https://m.drmed.cn/self-diagnosis";
         hospital_webview.loadUrl(url);

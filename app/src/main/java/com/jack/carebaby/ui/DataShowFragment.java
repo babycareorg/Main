@@ -273,8 +273,8 @@ public class DataShowFragment extends BaseFragment {
                     @Override
                     public void onBoomButtonClick(int index) {
                         // When the boom-button corresponding this builder is clicked.
-                        /*Intent intent = new Intent(MainActivity.this, AppActivity.class);
-                        startActivity(intent);*/
+                        Intent intent = new Intent(getActivity(), WebToolsActivity.class);
+                        startActivity(intent);
                     }
                 });
         bmb.addBuilder(builder2);

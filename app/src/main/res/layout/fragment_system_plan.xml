@@ -56,6 +56,7 @@
             android:orientation="vertical"
             android:background="@drawable/style_drawable_click_bg_change"
             android:clickable="true"
+            android:onClick="onClick"
             android:layout_weight="1">
             <ImageView
                 android:layout_width="25dp"
@@ -78,6 +79,7 @@
             android:orientation="vertical"
             android:background="@drawable/style_drawable_click_bg_change"
             android:clickable="true"
+            android:onClick="onClick"
             android:layout_weight="1">
             <ImageView
                 android:layout_width="25dp"

@@ -48,6 +48,7 @@ public class PersonFragment extends BaseFragment {
     private LinearLayout More;
     private LinearLayout Help;
     private LinearLayout Know;
+    private LinearLayout Test;
 
     private static final int COMPLETED = 0;
     private RecyclerView babylist;
@@ -72,6 +73,7 @@ public class PersonFragment extends BaseFragment {
         More = v.findViewById(R.id.person_body_head_4);
         Help = v.findViewById(R.id.person_body_foot_5);
         Know = v.findViewById(R.id.person_body_foot_3);
+        Test = v.findViewById(R.id.person_body_foot_4);
         babylist = v.findViewById(R.id.person_content_baby_list);
 
         Login.setText(Data.getUsername());
@@ -140,6 +142,15 @@ public class PersonFragment extends BaseFragment {
                 startActivity(intent);
             }
         });
+
+        Test.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(getActivity(),BabyTestActivity.class);
+                startActivity(intent);
+            }
+        });
+
         Get();
         return v;
     }

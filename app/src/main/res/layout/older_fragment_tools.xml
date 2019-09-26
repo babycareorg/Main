@@ -39,7 +39,7 @@
 
             <TextView
                 android:id="@+id/older_date"
-                android:layout_marginLeft="50dp"
+                android:layout_marginLeft="32dp"
                 android:layout_marginTop="60dp"
                 android:layout_width="wrap_content"
                 android:layout_height="60dp"
@@ -51,7 +51,7 @@
 
             <TextView
                 android:id="@+id/older_week"
-                android:layout_marginLeft="140dp"
+                android:layout_centerHorizontal="true"
                 android:layout_marginTop="60dp"
                 android:layout_width="wrap_content"
                 android:layout_height="60dp"
@@ -63,14 +63,15 @@
 
             <TextView
                 android:id="@+id/older_nongli"
-                android:layout_marginLeft="220dp"
-                android:layout_marginTop="60dp"
-                android:layout_width="wrap_content"
-                android:layout_height="60dp"
-                android:text="农历"
-                android:padding="10dp"
+                android:layout_marginRight="32dp"
+                android:layout_marginTop="78dp"
+                android:layout_width="70dp"
+                android:layout_height="26dp"
+                android:layout_alignParentRight="true"
+                android:text="老黄历"
                 android:gravity="center"
-                android:textColor="@color/white"
+                android:textColor="@color/colorPrimary"
+                android:background="@color/white"
                 android:textSize="18dp" />
 
         </RelativeLayout>

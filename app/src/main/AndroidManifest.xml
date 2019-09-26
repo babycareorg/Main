@@ -23,8 +23,8 @@
         android:roundIcon="@mipmap/babyboxs"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.LiveGarbageActivity"
-            android:label="垃圾分类"></activity>
+        <activity android:name=".ui.WebToolsActivity"
+            android:label="功能大全"></activity>
         <activity
             android:name=".ui.HomePage"
             android:windowSoftInputMode="adjustPan">
@@ -104,6 +104,21 @@
         <activity
             android:name=".ui.UserManageActivity"
             android:label="用户管理" />
+        <activity
+            android:name=".ui.PlanWHeightActivity"
+            android:label="身高体重" />
+        <activity
+            android:name=".ui.BabyTestActivity"
+            android:label="婴儿测评" />
+        <activity
+            android:name=".ui.HospitalYimiaoActivity"
+            android:label="疫苗接种" />
+        <activity
+            android:name=".ui.LunarCalendarActivity"
+            android:label="老黄历" />
+        <activity
+            android:name=".ui.LiveGarbageActivity"
+            android:label="垃圾分类" />
 
         <service android:name="org.eclipse.paho.android.service.MqttService" />
         <service android:name=".service.FloatWindowServer" />

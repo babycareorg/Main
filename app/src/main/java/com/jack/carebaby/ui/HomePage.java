@@ -50,7 +50,6 @@ import static cn.bgbsk.babycare.global.Data.phoneNumber;
 public class HomePage extends BasePage {
     private Context mContext = this;
 
-
     /**
      * 传感器
      */
@@ -94,12 +93,12 @@ public class HomePage extends BasePage {
 
     /**老人模式*/
     private ArrayList<Fragment> mFragments_older = new ArrayList<>();
-    private String[] mTitles_older = { "监控页","老人工具", "个人中心"};
+    private String[] mTitles_older = { "老人工具","监控页", "个人中心"};
     private int[] mIconUnselectIds_older = {
-             R.mipmap.tab_speech_unselect,R.mipmap.tab_more_unselect,
+            R.mipmap.tab_more_unselect,R.mipmap.tab_speech_unselect,
             R.mipmap.tab_contact_unselect};
     private int[] mIconSelectIds_older = {
-             R.mipmap.tab_speech_select,R.mipmap.tab_more_select,
+            R.mipmap.tab_more_select,R.mipmap.tab_speech_select,
             R.mipmap.tab_contact_select };
     private ArrayList<CustomTabEntity> mTabEntities_older = new ArrayList<>();
     private View mDecorView_older;
@@ -138,6 +137,7 @@ public class HomePage extends BasePage {
                     n != PackageManager.PERMISSION_GRANTED) { startRequestPermission();}}
 
         // 如果没有授予该权限，就去提示用户请求
+
 
         /**Babyboxs页面初始化设置*/
 
@@ -253,6 +253,7 @@ public class HomePage extends BasePage {
                 if (!boxsStatus){
                     olderboxs.setVisibility(View.INVISIBLE);
                     babyboxs.setVisibility(View.VISIBLE);
+
                     boxsStatus=!boxsStatus;
                     Toast.makeText(this, "切换为婴儿看照模式", Toast.LENGTH_SHORT).show();
 
@@ -260,6 +261,7 @@ public class HomePage extends BasePage {
                 else{
                     olderboxs.setVisibility(View.VISIBLE);
                     babyboxs.setVisibility(View.INVISIBLE);
+
                     boxsStatus=!boxsStatus;
                     Toast.makeText(this, "切换为老人照顾模式", Toast.LENGTH_SHORT).show();
 
@@ -292,6 +294,8 @@ public class HomePage extends BasePage {
                 else
                     Toast.makeText(this, "请先登录", Toast.LENGTH_LONG).show();
                 break;
+
+
         }
     }
 
@@ -304,8 +308,9 @@ public class HomePage extends BasePage {
 
     public void initFragmentOlder(){
 
-        mFragments_older.add(new CameraFragmentOlder());
         mFragments_older.add(new ToolsFragmentOlder());
+        mFragments_older.add(new CameraFragmentOlder());
+
         mFragments_older.add(new PersonFragmentOlder());//个人中心
 
     }
@@ -386,7 +391,7 @@ public class HomePage extends BasePage {
             }
         });
 
-        mViewPager_older.setCurrentItem(1);
+        mViewPager_older.setCurrentItem(0);
     }
 
 

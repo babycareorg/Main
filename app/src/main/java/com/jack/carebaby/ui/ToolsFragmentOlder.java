@@ -37,6 +37,7 @@ public class ToolsFragmentOlder extends BaseFragment{
 
 
 
+
     //日期获取
     Calendar calendar = Calendar.getInstance();
 
@@ -73,6 +74,15 @@ public class ToolsFragmentOlder extends BaseFragment{
 
 
         new TimeThread().start(); //启动新的线程展示时间
+
+        older_nongli.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent intent=new Intent(getActivity(),LunarCalendarActivity.class);
+                startActivity(intent);
+            }
+        });
 
         Older_Tools_1.setOnClickListener(new View.OnClickListener() {
             @Override

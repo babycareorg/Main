@@ -2,6 +2,7 @@ package com.jack.carebaby.ui;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
@@ -13,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.alibaba.fastjson.JSON;
@@ -43,6 +45,8 @@ public class SystemPlanFragment extends BaseFragment {
 
     private TextView system_title_head_note;
 
+    private LinearLayout WHeight;
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -56,6 +60,7 @@ public class SystemPlanFragment extends BaseFragment {
 
 
         system_title_head_note=v.findViewById(R.id.system_title_head_note);
+        WHeight=v.findViewById(R.id.system_title_body_3);
 
 
 
@@ -67,7 +72,16 @@ public class SystemPlanFragment extends BaseFragment {
             }
         });
 
+        WHeight.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
+                Intent intent=new Intent(getActivity(),PlanWHeightActivity.class);
+
+                startActivity(intent);
+
+            }
+        });
 
 
         loginSP = getContext().getSharedPreferences("login", Context.MODE_PRIVATE);

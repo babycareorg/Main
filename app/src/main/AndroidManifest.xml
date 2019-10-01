@@ -51,6 +51,41 @@
             android:name=".ui.AddOlderActivity"
             android:label="NewOlder" />
         <activity
+            android:name=".ui.ImgShowActivity"
+            android:label="ShowImg" />
+        <activity
+            android:name=".ui.BabyInfoShowActivity"
+            android:label="ShowInfo" >
+            <intent-filter>
+                <action android:name="com.jack.carebaby.ui.BabyInfoAddActivity" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".ui.BabyInfoAddActivity"
+            android:label="NewInfo" >
+            <intent-filter>
+                <action android:name="com.jack.carebaby.ui.BabyInfoAddActivity" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".ui.PlanWHeightAddActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+            <intent-filter>
+                <action android:name="com.jack.carebaby.ui.PlanWHeightAddActivity" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".ui.PlanWHeightActivity"
+            android:label="身高体重" >
+            <intent-filter>
+                <action android:name="com.jack.carebaby.ui.PlanWHeightAddActivity" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
             android:name=".ui.SettingActivity"
             android:label="Setting" />
         <activity android:name=".ui.ApplicationGetActivity" /> <!-- 悬浮窗 -->
@@ -104,9 +139,7 @@
         <activity
             android:name=".ui.UserManageActivity"
             android:label="用户管理" />
-        <activity
-            android:name=".ui.PlanWHeightActivity"
-            android:label="身高体重" />
+
         <activity
             android:name=".ui.BabyTestActivity"
             android:label="婴儿测评" />

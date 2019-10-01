@@ -22,7 +22,9 @@ public class SystemPlanFragment extends BaseFragment {
 
     private TextView system_title_head_note;
 
+    private LinearLayout Gallery;
     private LinearLayout WHeight;
+    private LinearLayout Record;
 
 
     @Override
@@ -37,6 +39,8 @@ public class SystemPlanFragment extends BaseFragment {
 
 
         system_title_head_note=v.findViewById(R.id.system_title_head_note);
+        Gallery=v.findViewById(R.id.system_title_body_1);
+        Record=v.findViewById(R.id.system_title_body_2);
         WHeight=v.findViewById(R.id.system_title_body_3);
 
 
@@ -45,6 +49,29 @@ public class SystemPlanFragment extends BaseFragment {
             @Override
             public void onClick(View view) {
                 showPlanDialog();
+
+            }
+        });
+
+
+        Gallery.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent intent=new Intent(getActivity(),ImgShowActivity.class);
+
+                startActivity(intent);
+
+            }
+        });
+
+        Record.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent intent=new Intent(getActivity(),BabyInfoShowActivity.class);
+
+                startActivity(intent);
 
             }
         });

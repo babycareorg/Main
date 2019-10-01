@@ -33,7 +33,7 @@
             android:layout_height="match_parent"
             android:layout_centerInParent="true"
             android:gravity="center"
-            android:text="身高体重"
+            android:text="成长记录"
             android:textColor="#FFFFFF"
             android:textSize="18sp" />
 

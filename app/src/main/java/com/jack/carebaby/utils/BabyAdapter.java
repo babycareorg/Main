@@ -12,8 +12,6 @@ import com.jack.carebaby.R;
 
 import java.util.List;
 
-import cn.bgbsk.babycare.global.Data;
-
 public class BabyAdapter extends RecyclerView.Adapter<BabyAdapter.ViewHolder>{
     private Context mContext;
     private List<String> id;

@@ -15,6 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_gravity="center"
+        android:layout_marginBottom="25dp"
         android:background="@color/colorPrimary"
         android:gravity="center_vertical"
         android:orientation="horizontal">
@@ -70,7 +71,7 @@
             android:layout_gravity="right"
             android:layout_marginEnd="15dp"
             android:gravity="center"
-            android:text="请选择宝宝"
+            android:text="点击选择宝宝"
             android:textSize="16sp" />
     </LinearLayout>
 
@@ -83,6 +84,15 @@
         android:background="@drawable/style_radius_stroke5dp"
         android:gravity="center_vertical"
         android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="请选择时间："
+            android:textColor="@color/colorPrimary"
+            android:textSize="16sp"
+            android:gravity="center_vertical"
+            android:layout_marginLeft="20dp"></TextView>
 
         <Space
             android:layout_width="0dp"

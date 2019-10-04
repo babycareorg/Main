@@ -58,8 +58,8 @@ public class WHeightAdapter extends RecyclerView.Adapter<WHeightAdapter.ViewHold
         String sweight = weight.get(position);
         String sheight = height.get(position);
         String stime = time.get(position);
-        holder.babyweight.setText(sweight);
-        holder.babyheight.setText(sheight);
+        holder.babyweight.setText(sweight+"kg");
+        holder.babyheight.setText(sheight+"cm");
         holder.babytime.setText(stime);
     }
 

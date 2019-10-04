@@ -13,7 +13,7 @@ import android.webkit.WebViewClient;
 
 
 public class WebViewFragmentUtil {
-    
+
     
     public void WebViewUtil(final WebView webView){
 

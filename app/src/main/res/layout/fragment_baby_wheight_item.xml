@@ -5,34 +5,36 @@
     android:layout_height="wrap_content"
     android:clickable="true"
     android:paddingTop="10dp"
+    android:paddingBottom="4dp"
     android:foreground="?attr/selectableItemBackground"
-    android:layout_margin="10dp"
-    app:cardCornerRadius="0dp"
+    android:layout_margin="8dp"
+    app:cardCornerRadius="3dp"
     app:cardElevation="10dp">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="4dp"
         android:orientation="horizontal">
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="60dp"
             android:id="@+id/layout">
 
             <ImageView
-                android:layout_width="45dp"
-                android:layout_height="45dp"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="16dp"
+                android:layout_marginLeft="22dp"
                 android:background="@mipmap/babyboxs" />
 
             <TextView
                 android:id="@+id/name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="74dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginLeft="80dp"
+                android:layout_marginTop="10dp"
                 android:text="名称"
                 android:textSize="16sp" />
 
@@ -41,8 +43,8 @@
                 android:id="@+id/birthday"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="74dp"
-                android:layout_marginTop="49dp"
+                android:layout_marginLeft="80dp"
+                android:layout_marginTop="36dp"
                 android:text="date"
                 android:textSize="10sp"
                 android:textStyle="italic" />
@@ -53,7 +55,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
-                android:layout_marginRight="20dp"
+                android:layout_marginRight="25dp"
                 android:textColor="@color/colorPrimary"
                 android:textSize="16sp"
                 android:textStyle="bold" />

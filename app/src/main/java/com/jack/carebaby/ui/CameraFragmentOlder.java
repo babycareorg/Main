@@ -89,12 +89,12 @@ public class CameraFragmentOlder extends BaseFragment {
 
 
 
-        camera_webview.loadUrl("http://192.168.137.174");
+        camera_webview.loadUrl("http://192.168.43.250:81/stream");
 
         setUrl_Button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                url="http://"+setUrl.getText();
+                url="http://"+setUrl.getText()+"/stream";
                 camera_webview.loadUrl(url);
                 //refresh();
             }

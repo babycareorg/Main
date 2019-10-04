@@ -21,6 +21,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.jack.carebaby.R;
 import com.jack.carebaby.base.BaseFragment;
 import com.jack.carebaby.utils.BabyAdapter;
+import com.memorandum.MainActivity;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -55,6 +56,8 @@ public class PersonFragment extends BaseFragment {
     private LinearLayout Help;
     private LinearLayout Know;
     private LinearLayout Test;
+    private LinearLayout Record;
+    private LinearLayout Info;
 
     private static final int COMPLETED = 0;
     private RecyclerView babylist;
@@ -85,6 +88,8 @@ public class PersonFragment extends BaseFragment {
         Help = v.findViewById(R.id.person_body_foot_5);
         Know = v.findViewById(R.id.person_body_foot_3);
         Test = v.findViewById(R.id.person_body_foot_4);
+        Record = v.findViewById(R.id.person_body_foot_2);
+        Info = v.findViewById(R.id.person_body_foot_1);
         babylist = v.findViewById(R.id.person_content_baby_list);
         Count = v.findViewById(R.id.person_title_head_time);
 
@@ -159,6 +164,22 @@ public class PersonFragment extends BaseFragment {
             @Override
             public void onClick(View view) {
                 Intent intent=new Intent(getActivity(),BabyTestActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        Record.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(getActivity(), MainActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        Info.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(getActivity(), BabyInfoShowActivity.class);
                 startActivity(intent);
             }
         });

@@ -21,6 +21,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.jack.carebaby.R;
 import com.jack.carebaby.base.BaseFragment;
 import com.jack.carebaby.utils.OlderAdapter;
+import com.memorandum.MainActivity;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -54,6 +55,7 @@ public class PersonFragmentOlder extends BaseFragment{
     private LinearLayout Help;
     private LinearLayout Know;
     private LinearLayout NewOlder;
+    private LinearLayout Record;
 
     private static final int COMPLETED = 0;
     private RecyclerView olderlist;
@@ -86,6 +88,7 @@ public class PersonFragmentOlder extends BaseFragment{
         More = v.findViewById(R.id.person_body_head_4);
         Help = v.findViewById(R.id.person_body_foot_5);
         Know = v.findViewById(R.id.person_body_foot_3);
+        Record = v.findViewById(R.id.person_body_foot_2);
         olderlist = v.findViewById(R.id.person_content_older_list);
         Count = v.findViewById(R.id.person_title_head_time);
 
@@ -140,6 +143,14 @@ public class PersonFragmentOlder extends BaseFragment{
             @Override
             public void onClick(View view) {
                 Intent intent=new Intent(getActivity(),HelpAllActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        Record.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(getActivity(), MainActivity.class);
                 startActivity(intent);
             }
         });

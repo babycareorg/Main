@@ -72,6 +72,7 @@ public class PersonFragment extends BaseFragment {
 
     private int count_baby;
     private String register_time;
+    final List<String> imgurl = new ArrayList<>();
 
     private String count_show;
 
@@ -82,6 +83,7 @@ public class PersonFragment extends BaseFragment {
 
     public void onResume(){
         super.onResume();
+        GetImg();
         Get();
     }
 
@@ -263,8 +265,13 @@ public class PersonFragment extends BaseFragment {
         Info.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(getActivity(), BabyInfoShowActivity.class);
-                startActivity(intent);
+                if(Data.getLoginStatus()==1) {
+                    Intent intent = new Intent(getActivity(), BabyInfoShowActivity.class);
+
+                    startActivity(intent);
+                }
+                else
+                    Toast.makeText(getContext(), "请先登录", Toast.LENGTH_LONG).show();
             }
         });
 
@@ -291,7 +298,7 @@ public class PersonFragment extends BaseFragment {
                     BabyAdapter babyadpapter;
                     GridLayoutManager layoutManager = new GridLayoutManager(getActivity(), 1);
                     babylist.setLayoutManager(layoutManager);
-                    babyadpapter = new BabyAdapter(id,name,birthday,sex);
+                    babyadpapter = new BabyAdapter(id,name,birthday,sex,imgurl);
                     babylist.setAdapter(babyadpapter);
                     Login.setText(Data.getUsername());
                 }
@@ -342,6 +349,53 @@ public class PersonFragment extends BaseFragment {
                         name.add(jsonObject0.getString("name"));
                         birthday.add(jsonObject0.getString("birthday"));
                         sex.add(jsonObject0.getString("sex"));
+                    }
+                    Message message = new Message();
+                    message.what = COMPLETED;
+                    handler.sendMessage(message);
+                }
+            }
+        });
+
+
+        Count.setText(String.valueOf(getCountingshow()));
+    }
+
+    // 获取数据库信息
+    public void GetImg(){
+        String url = Data.getUrl();
+        String phone = Data.getPhone();
+        final JSONArray jsonArray = new JSONArray();
+        Log.d("Get","click");
+        OkHttpClient okHttpClient = new OkHttpClient();
+        final Request request = new Request.Builder().url(url+"/baby/get?phone="+phone).build();
+        final Handler handler = new Handler(){
+            @Override
+            public void handleMessage(Message msg) {
+                if (msg.what == COMPLETED) {
+                }
+            }
+        };
+        okHttpClient.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(@NotNull Call call, @NotNull IOException e) {
+                Log.d("GetError", e.getMessage());
+            }
+
+            @Override
+            public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
+                JSONObject jsonObject = JSON.parseObject(response.body().string());
+                JSONArray jsonArray = jsonObject.getJSONArray("babys");
+
+                if (jsonArray!=null){
+                    for (int i = 0; i < jsonArray.size(); i++) {
+                        JSONObject jsonObject0 = jsonArray.getJSONObject(i);
+                        System.out.println(jsonObject0.getString("imgUrl"));
+                        if(jsonObject0.getString("imgUrl") == null){
+                            imgurl.add("0");
+                        }
+                        else
+                            imgurl.add(jsonObject0.getString("imgUrl"));
                     }
                     Message message = new Message();
                     message.what = COMPLETED;

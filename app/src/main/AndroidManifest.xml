@@ -146,6 +146,9 @@
             android:name=".ui.HeadImgChangeActivity"
             android:label="修改头像" />
         <activity
+            android:name=".ui.BabyImgChangeActivity"
+            android:label="修改宝宝头像" />
+        <activity
             android:name=".ui.BabyTestActivity"
             android:label="婴儿测评" />
         <activity

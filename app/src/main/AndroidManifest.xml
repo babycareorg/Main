@@ -146,7 +146,7 @@
             android:label="老人电话" />
         <activity
             android:name=".ui.UserManageActivity"
-<<<<<<< Updated upstream
+
             android:label="用户管理" >
             <intent-filter>
                 <action android:name="com.jack.carebaby.ui.HeadImgChangeActivity" />

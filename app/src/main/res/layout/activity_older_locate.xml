@@ -14,7 +14,8 @@
         android:layout_marginStart="104dp"
         android:layout_marginTop="232dp"
         android:background="@drawable/shape_yuan"
-        android:text="GO！"
+        android:text="GO"
+        android:textSize="45sp"
         android:textColor="@color/white"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

@@ -119,8 +119,6 @@ public class BabyImgChangeActivity extends Activity implements View.OnClickListe
                 .addFormDataPart("id", i.getStringExtra("id"))
                 .addFormDataPart("image", image_path, image)
                 .build();
-        System.out.println(phone);
-        System.out.println(image_path);
         final Request request = new Request.Builder()
                 .url("http://39.105.40.62:5000"+"/baby/change/img")
                 .post(requestBody)

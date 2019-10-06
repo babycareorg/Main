@@ -153,10 +153,6 @@ public class BabyInfoAddActivity extends Activity implements View.OnClickListene
                 .addFormDataPart("time", time.getText().toString())
                 .addFormDataPart("image", image_path, image)
                 .build();
-        System.out.println(phone);
-        System.out.println(name.getText().toString());
-        System.out.println(time.getText().toString());
-        System.out.println(image_path);
         final Request request = new Request.Builder()
                 .url(url+"/share/upload/imgurl")
                 .post(requestBody)

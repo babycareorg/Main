@@ -201,10 +201,8 @@ public class CameraFragmentOlder extends BaseFragment {
                     if (StringUtils.checkPhoneNumber(inputStr)) {
 
                         String url = Data.getUrl();
-                        System.out.println(phoneNumber);
                         String phone = Data.getPhone();
                         Data.setPhoneNumber(inputStr);
-                        System.out.println(phoneNumber);
                         dialog.dismiss();
                         Log.d("Upload","click");
                         OkHttpClient okHttpClient = new OkHttpClient();

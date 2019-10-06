@@ -123,8 +123,6 @@ public class HeadImgChangeActivity extends Activity implements View.OnClickListe
                 .addFormDataPart("phone", phone)
                 .addFormDataPart("image", image_path, image)
                 .build();
-        System.out.println(phone);
-        System.out.println(image_path);
         final Request request = new Request.Builder()
                 .url("http://39.105.40.62:5000"+"/user/change/imgurl")
                 .post(requestBody)
@@ -152,9 +150,7 @@ public class HeadImgChangeActivity extends Activity implements View.OnClickListe
             @Override
             public void handleMessage(Message msg) {
                 if (msg.what == COMPLETED) {
-                    System.out.println(img.get(0));
                     Data.setImg(img.get(0));
-                    System.out.println(HeadImgChangeActivity.this.getCacheDir().toString()+Data.getImg());
                     File file1 = new File(HeadImgChangeActivity.this.getCacheDir(), Data.getImg());
                     file1.delete();
                 }
@@ -173,7 +169,6 @@ public class HeadImgChangeActivity extends Activity implements View.OnClickListe
                 for (int i = 0; i < jsonArray.size(); i++) {
                     JSONObject jsonObject0 = jsonArray.getJSONObject(i);
                     img.add(jsonObject0.getString("imgUrl"));
-                    System.out.println(jsonObject0.getString("imgUrl"));
                 }
                 Message message = new Message();
                 message.what = COMPLETED;

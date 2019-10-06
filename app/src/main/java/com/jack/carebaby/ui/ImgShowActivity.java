@@ -94,7 +94,6 @@ public class ImgShowActivity extends Activity {
                     for (int i = 0; i < jsonArray.size(); i++) {
                         JSONObject jsonObject0 = jsonArray.getJSONObject(i);
                         name.add(jsonObject0.getString("image"));
-                        System.out.println(jsonObject0.getString("image"));
                     }
                     Message message = new Message();
                     message.what = COMPLETED;

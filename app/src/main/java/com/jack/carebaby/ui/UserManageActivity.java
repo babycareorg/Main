@@ -130,7 +130,6 @@ public class UserManageActivity extends BasePage {
 
             String url = "https://babycare.bgbsk.cn/avatar/" + Data.getImg();
             final File file = new File(UserManageActivity.this.getCacheDir(), Data.getImg());
-            System.out.println(UserManageActivity.this.getCacheDir().toString() + Data.getImg());
             //判断，缓存是否存在该文件
             if (file.exists()) {
                 //如果缓存存在，从缓存中读取图片

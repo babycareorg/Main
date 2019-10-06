@@ -79,6 +79,8 @@ public class BabyInfoAddActivity extends Activity implements View.OnClickListene
                 EditText name = (EditText)findViewById(R.id.txt_title);
                 if(name.length()==0)
                     Toast.makeText(this, "请输入文字", Toast.LENGTH_SHORT).show();
+                else if(bitmap == null)
+                    Toast.makeText(this, "请选择照片", Toast.LENGTH_SHORT).show();
                 else {
                     Upload();
                     BabyInfoAddActivity.this.finish();

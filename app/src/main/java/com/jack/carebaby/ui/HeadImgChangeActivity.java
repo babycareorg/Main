@@ -74,9 +74,13 @@ public class HeadImgChangeActivity extends Activity implements View.OnClickListe
                 break;
             // 提交
             case R.id.forward:
-                Upload();
-                Get();
-                HeadImgChangeActivity.this.finish();
+                if(bitmap == null)
+                    Toast.makeText(this, "请选择照片", Toast.LENGTH_SHORT).show();
+                else {
+                    Upload();
+                    Get();
+                    HeadImgChangeActivity.this.finish();
+                }
                 break;
             case R.id.tv_img:
                 Intent intent = new Intent();

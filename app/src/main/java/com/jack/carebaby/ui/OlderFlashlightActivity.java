@@ -1,6 +1,7 @@
 package com.jack.carebaby.ui;
 
 import android.annotation.TargetApi;
+import android.app.Activity;
 import android.content.Context;
 import android.content.pm.FeatureInfo;
 import android.content.pm.PackageManager;
@@ -8,7 +9,6 @@ import android.hardware.Camera;
 import android.hardware.camera2.CameraAccessException;
 import android.hardware.camera2.CameraManager;
 import android.os.Build;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -16,7 +16,7 @@ import android.widget.Button;
 
 import com.jack.carebaby.R;
 
-public class OlderFlashlightActivity extends AppCompatActivity {
+public class OlderFlashlightActivity extends Activity {
 
 
     private CameraManager manager;// 声明CameraManager对象

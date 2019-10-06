@@ -67,6 +67,15 @@ public class SystemDailyFragment extends BaseFragment {
             }
         });
 
+        music.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(getActivity(), OlderDialActivity.class) ;
+                startActivity(intent);
+
+            }
+        });
+
         know.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

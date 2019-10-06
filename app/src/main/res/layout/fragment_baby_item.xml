@@ -17,6 +17,7 @@
         <ImageView
             android:layout_width="45dp"
             android:layout_height="45dp"
+            android:id="@+id/img"
             android:layout_centerVertical="true"
             android:layout_marginLeft="16dp"
             android:background="@mipmap/babyboxs"/>

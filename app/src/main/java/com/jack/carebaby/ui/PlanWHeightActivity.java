@@ -94,6 +94,7 @@ public class PlanWHeightActivity extends Activity {
         final List<String> name = new ArrayList<>();
         final List<String> birthday = new ArrayList<>();
         final List<String> sex = new ArrayList<>();
+        final List<String> imgurl = new ArrayList<>();
         final JSONArray jsonArray = new JSONArray();
         Log.d("Get", "click");
         OkHttpClient okHttpClient = new OkHttpClient();
@@ -105,7 +106,7 @@ public class PlanWHeightActivity extends Activity {
                     BabyWHeightAdapter babyeheightadapter;
                     GridLayoutManager layoutManager = new GridLayoutManager(PlanWHeightActivity.this, 1);
                     babylist.setLayoutManager(layoutManager);
-                    babyeheightadapter = new BabyWHeightAdapter(id, name, birthday, sex);
+                    babyeheightadapter = new BabyWHeightAdapter(id, name, birthday, sex, imgurl);
                     babylist.setAdapter(babyeheightadapter);
                     babyeheightadapter.notifyDataSetChanged();
                 }
@@ -128,6 +129,11 @@ public class PlanWHeightActivity extends Activity {
                         name.add(jsonObject0.getString("name"));
                         birthday.add(jsonObject0.getString("birthday"));
                         sex.add(jsonObject0.getString("sex"));
+                        if(jsonObject0.getString("imgUrl") == null){
+                            imgurl.add("0");
+                        }
+                        else
+                            imgurl.add(jsonObject0.getString("imgUrl"));
                     }
                     Message message = new Message();
                     message.what = COMPLETED;

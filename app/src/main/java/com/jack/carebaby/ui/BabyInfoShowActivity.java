@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -36,13 +37,26 @@ public class BabyInfoShowActivity extends Activity {
     private static final int COMPLETED = 0;
     private RecyclerView imglist;
 
+    private FloatingActionButton fab;
+
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_baby_info_show);
         imglist = findViewById(R.id.recycler_baby);
+        fab = findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(BabyInfoShowActivity.this, BabyInfoAddActivity.class);
+//                startActivity(new Intent("com.jack.carebaby.ui.BabyInfoAddActivity"));
+                startActivity(intent);
+            }
+        });
 
         Get();
     }
+
+
 
 
     public void onResume(){
@@ -57,9 +71,9 @@ public class BabyInfoShowActivity extends Activity {
                 BabyInfoShowActivity.this.finish();
                 break;
             // 悬浮按钮，新增账单
-            case R.id.fab:
-                startActivity(new Intent("com.jack.carebaby.ui.BabyInfoAddActivity"));
-                break;
+//            case R.id.fab:
+//                startActivity(new Intent("com.jack.carebaby.ui.BabyInfoAddActivity"));
+//                break;
             // 刷新页面
             case R.id.refresh:
                 Get();

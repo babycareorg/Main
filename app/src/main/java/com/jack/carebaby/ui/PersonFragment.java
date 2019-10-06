@@ -272,16 +272,6 @@ public class PersonFragment extends BaseFragment {
         return v;
     }
 
-    /*@Override
-    public void setUserVisibleHint(boolean isVisibleToUser) {
-        super.setUserVisibleHint(isVisibleToUser);
-
-        if (isVisibleToUser){
-            Login.setText(Data.getUsername());
-        }else {
-
-        }
-    }*/
 
     // 获取数据库信息
     public void Get(){
@@ -292,7 +282,6 @@ public class PersonFragment extends BaseFragment {
         final List<String> birthday = new ArrayList<>();
         final List<String> sex = new ArrayList<>();
         final JSONArray jsonArray = new JSONArray();
-        Log.d("Get","click");
         OkHttpClient okHttpClient = new OkHttpClient();
         final Request request = new Request.Builder().url(url+"/baby/get?phone="+phone).build();
         final Handler handler = new Handler(){
@@ -304,6 +293,7 @@ public class PersonFragment extends BaseFragment {
                     babylist.setLayoutManager(layoutManager);
                     babyadpapter = new BabyAdapter(id,name,birthday,sex);
                     babylist.setAdapter(babyadpapter);
+                    Login.setText(Data.getUsername());
                 }
             }
         };

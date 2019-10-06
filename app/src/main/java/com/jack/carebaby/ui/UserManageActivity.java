@@ -1,6 +1,8 @@
 package com.jack.carebaby.ui;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -40,6 +42,9 @@ public class UserManageActivity extends BasePage {
 
     File file;
 
+    private SharedPreferences loginSP;
+    private SharedPreferences.Editor loginEdit;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,10 +57,12 @@ public class UserManageActivity extends BasePage {
         title.setText(getUsername());
         phone.setText(getPhone());
 
+        loginSP = this.getSharedPreferences("login", Context.MODE_PRIVATE);
+
         ChangeUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(UserManageActivity.this,LoginActivity.class);
+                Intent intent = new Intent(UserManageActivity.this, LoginActivity.class);
                 startActivity(intent);
             }
         });
@@ -71,36 +78,40 @@ public class UserManageActivity extends BasePage {
         Exit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                /*Intent intent=new Intent(UserManageActivity.this,LoginActivity.class);
-                startActivity(intent);*/
+                Data.setLoginStatus(0);
+                Data.setUsername("未登录");
+                Data.setPhone("未登录");
+                loginSP.edit().clear().commit();
+                Intent intent = new Intent(UserManageActivity.this, LoginActivity.class);
+                startActivity(intent);
+                finish();
             }
         });
 
         img.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(Data.getLoginStatus()==1) {
-                    Intent intent=new Intent(UserManageActivity.this,HeadImgChangeActivity.class);
+                if (Data.getLoginStatus() == 1) {
+                    Intent intent = new Intent(UserManageActivity.this, HeadImgChangeActivity.class);
                     startActivity(intent);
-                }
-                else
+                } else
                     Toast.makeText(UserManageActivity.this, "请先登录", Toast.LENGTH_LONG).show();
             }
         });
     }
 
 
-    private void initView(){
-        name=findViewById(R.id.user_manage_header_topname);
-        title=findViewById(R.id.user_manage_header_title);
-        phone=findViewById(R.id.user_manage_header_phone);
-        ChangeUser=findViewById(R.id.user_manage_login);
-        ChangePassword=findViewById(R.id.user_manage_password);
-        Exit=findViewById(R.id.user_manage_exit);
-        img=findViewById(R.id.user_manage_header_image);
+    private void initView() {
+        name = findViewById(R.id.user_manage_header_topname);
+        title = findViewById(R.id.user_manage_header_title);
+        phone = findViewById(R.id.user_manage_header_phone);
+        ChangeUser = findViewById(R.id.user_manage_login);
+        ChangePassword = findViewById(R.id.user_manage_password);
+        Exit = findViewById(R.id.user_manage_exit);
+        img = findViewById(R.id.user_manage_header_image);
 
 
-        if(Data.getImg() != null && Data.getLoginStatus() == 1) {
+        if (Data.getImg() != null && Data.getLoginStatus() == 1) {
             final Bitmap bmp = null;
             final Handler mHandler = new Handler() {
                 @Override

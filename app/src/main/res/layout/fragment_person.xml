@@ -342,24 +342,22 @@
         <LinearLayout
             android:id="@+id/person_body_foot_5"
             android:layout_width="match_parent"
-            android:layout_height="48dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="1dp"
             android:background="@drawable/style_drawable_click_bg_change"
             android:clickable="true"
-            android:orientation="horizontal"
-            android:layout_marginBottom="20dp">
+            android:orientation="horizontal">
             <ImageView
-                android:layout_width="23dp"
-                android:layout_height="23dp"
+                android:layout_width="22dp"
+                android:layout_height="22dp"
                 android:layout_marginTop="12dp"
-                android:layout_marginBottom="12dp"
                 android:layout_marginLeft="20dp"
                 android:src="@mipmap/system_person_help"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
-                android:layout_marginLeft="17dp"
-                android:layout_marginTop="13dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="12dp"
                 android:text="帮助手册"
                 android:textSize="15dp" />
         </LinearLayout>

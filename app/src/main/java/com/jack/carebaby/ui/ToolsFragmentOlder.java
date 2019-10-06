@@ -224,6 +224,8 @@ public class ToolsFragmentOlder extends BaseFragment{
         startActivity(intent);                               //启动 Activity
     }
 
+
+
     //打开相机
     public void openCamera(Activity activity) {
         //獲取系統版本

@@ -12,9 +12,8 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
     <TextView
-        android:text="@string/plan_help_title"
+        android:text="@string/older_help_title"
         android:textColor="@color/colorPrimary"
         android:textSize="24sp"
         android:gravity="center"
@@ -23,7 +22,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/plan_help_p1"
+        android:text="@string/older_help_p1"
         android:lineSpacingExtra="10dp"
 
         android:padding="18dp"
@@ -31,7 +30,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/plan_help_p2"
+        android:text="@string/older_help_p2"
         android:lineSpacingExtra="10dp"
 
         android:padding="18dp"
@@ -39,7 +38,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/plan_help_p3"
+            android:text="@string/older_help_p3"
             android:lineSpacingExtra="10dp"
 
             android:padding="18dp"
@@ -47,16 +46,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/plan_help_p4"
-            android:lineSpacingExtra="10dp"
-
-            android:padding="18dp"
-            android:textSize="16sp"/>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/plan_help_p5"
+            android:text="@string/older_help_p4"
             android:lineSpacingExtra="10dp"
 
             android:padding="18dp"

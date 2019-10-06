@@ -68,6 +68,7 @@ public class HelpAllActivity extends BasePage {
             public void onClick(View v) {
                 //Toast.makeText(NoticeActivity.this, "正在策划", Toast.LENGTH_SHORT).show();
 
+                showDialog_6();
             }
         });
         Notice_7.setOnClickListener(new View.OnClickListener() {
@@ -179,6 +180,23 @@ public class HelpAllActivity extends BasePage {
 
         final AlertDialog mAlertDialog = new AlertDialog.Builder(this).show();
         View view = LayoutInflater.from(this).inflate(R.layout.help_fragment_hospital,null);
+        mAlertDialog.setContentView(view);
+
+        mAlertDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
+            @Override
+            public void onCancel(DialogInterface dialog) {
+
+                mAlertDialog.cancel();
+            }
+        });
+        Window window = mAlertDialog.getWindow();
+        window.setBackgroundDrawable(new ColorDrawable(0x00000000));
+    }
+
+    private void showDialog_6() {
+
+        final AlertDialog mAlertDialog = new AlertDialog.Builder(this).show();
+        View view = LayoutInflater.from(this).inflate(R.layout.help_fragment_older,null);
         mAlertDialog.setContentView(view);
 
         mAlertDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {

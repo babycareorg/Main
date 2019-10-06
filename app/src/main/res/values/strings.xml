@@ -68,6 +68,13 @@
     <string name="disconnect_help_p3">3.检查产品是否接入网络，无法接入将网络源改为：热点名：JACKPC；密码：87654312。</string>
     <string name="disconnect_help_p4">4.摄像头无法连接则输入正确的地址源，查看摄像头链接的地址IP。</string>
 
+    <string name="older_help_title">老人模式说明</string>
+    <string name="older_help_p1">监控页主要包括视频流监控及设置地址；老人电话拨号；以及预设手机号紧急救助时摇一摇手机就拨通预设手机号</string>
+    <string name="older_help_p2">个人页面同婴儿页面差不多，可添加老人，医疗档案，健忘备忘，生活百科，健康测评等功能。</string>
+    <string name="older_help_p3">老人工具主要包括FM听书，文字新闻，新闻联播CCTV，老人保健，照明手电，定位导航，快捷消息，整点报时，放大镜，饮食注意。</string>
+    <string name="older_help_p4">时间显示可以展示当前时间，以及老黄历符合老人的时间观念。</string>
+    <string name="older_help_p5">老人模式与婴儿模式之间互相切换，让更多人群受益该软件。</string>
+
     <!--账本-->
 
     <string name="cancel">取消</string>

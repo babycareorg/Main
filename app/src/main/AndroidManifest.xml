@@ -143,7 +143,7 @@
             android:label="FM听书" />
         <activity
             android:name=".ui.OlderDialActivity"
-            android:label="老人电话" />
+            android:label="哄睡音乐" />
         <activity
             android:name=".ui.UserManageActivity"
 
@@ -156,9 +156,9 @@
         <activity
             android:name=".ui.HeadImgChangeActivity"
             android:label="修改头像" />
-=======
-            android:label="用户管理" />
->>>>>>> Stashed changes
+
+
+
         <activity
             android:name=".ui.BabyTestActivity"
             android:label="婴儿测评" />

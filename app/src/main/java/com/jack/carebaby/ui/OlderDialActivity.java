@@ -32,7 +32,7 @@ public class OlderDialActivity extends AppCompatActivity {
         });
 
 
-        url="https://jackhcc.github.io/SkyDream/music.html";
+        url="https://jackhcc.github.io/WebMusic/";
         music_webview.loadUrl(url);
 
         WebViewFragmentUtil webViewFragmentUtil=new WebViewFragmentUtil();

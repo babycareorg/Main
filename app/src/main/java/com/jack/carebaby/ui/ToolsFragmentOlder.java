@@ -38,8 +38,6 @@ import java.util.Date;
 import static cn.bgbsk.babycare.global.Data.messageText;
 import static cn.bgbsk.babycare.global.Data.phoneNumber;
 
-import android.content.pm.PackageManager;
-
 public class ToolsFragmentOlder extends BaseFragment{
 
 
@@ -198,6 +196,7 @@ public class ToolsFragmentOlder extends BaseFragment{
                 startActivity(intent);
             }
         });
+
 
 
         Older_Tools_10.setOnClickListener(new View.OnClickListener() {

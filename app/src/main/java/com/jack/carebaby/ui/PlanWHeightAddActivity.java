@@ -96,8 +96,16 @@ public class PlanWHeightAddActivity extends AppCompatActivity implements View.On
                 break;
             // 提交
             case R.id.forward:
-                Upload();
-                PlanWHeightAddActivity.this.finish();
+                if(bid==null)
+                    Toast.makeText(this, "请选择宝宝", Toast.LENGTH_SHORT).show();
+                else if(weight=="0.0")
+                    Toast.makeText(this, "请输入体重", Toast.LENGTH_SHORT).show();
+                else if(height=="0.0")
+                    Toast.makeText(this, "请输入身高", Toast.LENGTH_SHORT).show();
+                else {
+                    Upload();
+                    PlanWHeightAddActivity.this.finish();
+                }
                 break;
             case R.id.person_content_baby:
                 showSingleAlertDialog(v);

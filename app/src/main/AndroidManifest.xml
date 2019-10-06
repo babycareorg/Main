@@ -138,8 +138,15 @@
             android:label="老人电话" />
         <activity
             android:name=".ui.UserManageActivity"
-            android:label="用户管理" />
-
+            android:label="用户管理" >
+            <intent-filter>
+                <action android:name="com.jack.carebaby.ui.HeadImgChangeActivity" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".ui.HeadImgChangeActivity"
+            android:label="修改头像" />
         <activity
             android:name=".ui.BabyTestActivity"
             android:label="婴儿测评" />

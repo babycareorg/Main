@@ -3,6 +3,7 @@ package com.jack.carebaby.ui;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -18,6 +19,7 @@ public class UserManageActivity extends BasePage {
     private TextView name;
     private TextView title;
     private TextView phone;
+    private ImageView img;
 
     private LinearLayout ChangeUser;
     private LinearLayout ChangePassword;
@@ -59,6 +61,13 @@ public class UserManageActivity extends BasePage {
             }
         });
 
+        img.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(UserManageActivity.this,HeadImgChangeActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
 
@@ -69,5 +78,6 @@ public class UserManageActivity extends BasePage {
         ChangeUser=findViewById(R.id.user_manage_login);
         ChangePassword=findViewById(R.id.user_manage_password);
         Exit=findViewById(R.id.user_manage_exit);
+        img=findViewById(R.id.user_manage_header_image);
     }
 }

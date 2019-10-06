@@ -11,9 +11,12 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.jack.carebaby.R;
 import com.jack.carebaby.base.BaseFragment;
+
+import cn.bgbsk.babycare.global.Data;
 
 public class SystemPlanFragment extends BaseFragment {
 
@@ -57,10 +60,13 @@ public class SystemPlanFragment extends BaseFragment {
         Gallery.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if(Data.getLoginStatus()==1) {
+                    Intent intent = new Intent(getActivity(), ImgShowActivity.class);
 
-                Intent intent=new Intent(getActivity(),ImgShowActivity.class);
-
-                startActivity(intent);
+                    startActivity(intent);
+                }
+                else
+                    Toast.makeText(getContext(), "请先登录", Toast.LENGTH_LONG).show();
 
             }
         });
@@ -68,10 +74,13 @@ public class SystemPlanFragment extends BaseFragment {
         Record.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if(Data.getLoginStatus()==1) {
+                    Intent intent = new Intent(getActivity(), BabyInfoShowActivity.class);
 
-                Intent intent=new Intent(getActivity(),BabyInfoShowActivity.class);
-
-                startActivity(intent);
+                    startActivity(intent);
+                }
+                else
+                    Toast.makeText(getContext(), "请先登录", Toast.LENGTH_LONG).show();
 
             }
         });
@@ -79,10 +88,13 @@ public class SystemPlanFragment extends BaseFragment {
         WHeight.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if(Data.getLoginStatus()==1) {
+                    Intent intent = new Intent(getActivity(), PlanWHeightActivity.class);
 
-                Intent intent=new Intent(getActivity(),PlanWHeightActivity.class);
-
-                startActivity(intent);
+                    startActivity(intent);
+                }
+                else
+                    Toast.makeText(getContext(), "请先登录", Toast.LENGTH_LONG).show();
 
             }
         });

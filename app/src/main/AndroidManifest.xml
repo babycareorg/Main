@@ -136,11 +136,6 @@
         <activity
             android:name=".ui.UserManageActivity"
             android:label="用户管理">
-            <intent-filter>
-                <action android:name="com.jack.carebaby.ui.HeadImgChangeActivity" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".ui.HeadImgChangeActivity"

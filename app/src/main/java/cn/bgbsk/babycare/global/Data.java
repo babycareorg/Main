@@ -58,8 +58,12 @@ public class Data extends Application {
         return phone;
     }
 
-    public static String getImg() {
-        return img;
+    public static String getImg() { return img; }
+
+    public static String getPhoneNumber() { return phoneNumber; }
+
+    public static void setPhoneNumber(String phonenumber) {
+        Data.phoneNumber = phonenumber;
     }
 
     public static void setUsername(String username) {

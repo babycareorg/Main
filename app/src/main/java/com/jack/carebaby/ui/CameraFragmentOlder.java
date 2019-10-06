@@ -8,7 +8,9 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Looper;
 import android.support.annotation.RequiresApi;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,12 +24,25 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.jack.carebaby.R;
 import com.jack.carebaby.base.BaseFragment;
 import com.jack.carebaby.utils.StringUtils;
 import com.kongzue.dialog.listener.InputDialogOkButtonClickListener;
 import com.kongzue.dialog.util.InputInfo;
 import com.kongzue.dialog.v2.InputDialog;
+
+import org.jetbrains.annotations.NotNull;
+
+import java.io.IOException;
+
+import cn.bgbsk.babycare.global.Data;
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 
 import static cn.bgbsk.babycare.global.Data.phoneNumber;
 
@@ -185,14 +200,37 @@ public class CameraFragmentOlder extends BaseFragment {
                 } else {
                     if (StringUtils.checkPhoneNumber(inputStr)) {
 
-                        phoneNumber = inputStr;
+                        String url = Data.getUrl();
+                        System.out.println(phoneNumber);
+                        String phone = Data.getPhone();
+                        Data.setPhoneNumber(inputStr);
+                        System.out.println(phoneNumber);
                         dialog.dismiss();
+                        Log.d("Upload","click");
+                        OkHttpClient okHttpClient = new OkHttpClient();
+                        final Request request = new Request.Builder().url(url+"/user/change/emergency?phone="+phone
+                                +"&emergency="+inputStr).build();
 
+                        okHttpClient.newCall(request).enqueue(new Callback() {
+                            @Override
+                            public void onFailure(@NotNull Call call, @NotNull IOException e) {
+                                Log.d("UploadError", e.getMessage());
+                            }
+
+                            @Override
+                            public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
+                                JSONObject jsonObject = JSON.parseObject(response.body().string());
+                                Looper.prepare();
+                                Toast.makeText(getContext(), jsonObject.getString("msg"), Toast.LENGTH_LONG).show();
+                                Looper.loop();
+                            }
+                        });
                     } else {
                         Toast.makeText(CameraFragmentOlder.this.getActivity(),
                                 "请输入正确的电话号码", Toast.LENGTH_LONG).show();
                     }
                 }
+
                 Toast.makeText(mContext, "您输入了：" + inputStr, Toast.LENGTH_SHORT).show();
             }
         }, "取消", new DialogInterface.OnClickListener() {

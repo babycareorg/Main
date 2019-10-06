@@ -1,11 +1,16 @@
 package com.jack.carebaby.utils;
 
+import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Handler;
 import android.os.Message;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,23 +18,37 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.jack.carebaby.R;
+
+import org.jetbrains.annotations.NotNull;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.List;
 
+import cn.bgbsk.babycare.global.Data;
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
+
 public class BabyInfoAdapter extends RecyclerView.Adapter<BabyInfoAdapter.ViewHolder>{
     private Context mContext;
+    private List<String> id;
     private List<String> src;
     private List<String> content;
     private List<String> time;
 
 
     static class ViewHolder extends RecyclerView.ViewHolder{
+        CardView cardView;
         ImageView img;
         TextView babycontent;
         TextView babytime;
@@ -42,7 +61,8 @@ public class BabyInfoAdapter extends RecyclerView.Adapter<BabyInfoAdapter.ViewHo
         }
     }
 
-    public BabyInfoAdapter(List<String> imgList, List<String> contentList, List<String> timeList){
+    public BabyInfoAdapter(List<String> idList,List<String> imgList, List<String> contentList, List<String> timeList){
+        id = idList;
         src = imgList;
         content = contentList;
         time = timeList;
@@ -60,6 +80,7 @@ public class BabyInfoAdapter extends RecyclerView.Adapter<BabyInfoAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(final BabyInfoAdapter.ViewHolder holder, final int position) {
+        final String sid = id.get(position);
         final Bitmap bmp = null;
         final Handler mHandler = new Handler() {
             @Override
@@ -137,6 +158,50 @@ public class BabyInfoAdapter extends RecyclerView.Adapter<BabyInfoAdapter.ViewHo
             };
             th.start();
         }
+        holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                // 二次确认框
+                final String url = Data.getUrl();
+                final String phone = Data.getPhone();
+                AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
+                builder.setCancelable(true);
+                builder.setMessage("确认删除吗？");
+                builder.setPositiveButton("确认", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Log.d("Delete","click");
+                        OkHttpClient okHttpClient = new OkHttpClient();
+                        final Request request = new Request.Builder().url(url+"/share/delete?id="+sid).build();
+
+                        okHttpClient.newCall(request).enqueue(new Callback() {
+                            @Override
+                            public void onFailure(@NotNull Call call, @NotNull IOException e) {
+                                Log.d("DeleteError", e.getMessage());
+                            }
+
+                            @Override
+                            public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
+                                JSONObject jsonObject = JSON.parseObject(response.body().string());
+                            }
+                        });
+                        if (Activity.class.isInstance(mContext)) {
+                            Activity activity = (Activity) mContext;
+                            activity.recreate();
+                        }
+                        dialog.dismiss();
+                    }
+                });
+                builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+                builder.show();
+                return true;
+            }
+        });
     }
 
     @Override

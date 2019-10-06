@@ -69,6 +69,7 @@ public class BabyInfoShowActivity extends Activity {
 
     // 获取数据库信息
     public void Get() {
+        final List<String> id = new ArrayList<>();
         final List<String> name = new ArrayList<>();
         final List<String> content = new ArrayList<>();
         final List<String> time = new ArrayList<>();
@@ -82,7 +83,7 @@ public class BabyInfoShowActivity extends Activity {
                     BabyInfoAdapter babyinfoadapter;
                     GridLayoutManager layoutManager = new GridLayoutManager(BabyInfoShowActivity.this, 1);
                     imglist.setLayoutManager(layoutManager);
-                    babyinfoadapter = new BabyInfoAdapter(name, content, time);
+                    babyinfoadapter = new BabyInfoAdapter(id, name, content, time);
                     imglist.setAdapter(babyinfoadapter);
                     babyinfoadapter.notifyDataSetChanged();
                 }
@@ -101,6 +102,7 @@ public class BabyInfoShowActivity extends Activity {
                 if (jsonArray != null) {
                     for (int i = 0; i < jsonArray.size(); i++) {
                         JSONObject jsonObject0 = jsonArray.getJSONObject(i);
+                        id.add(jsonObject0.getString("_id"));
                         name.add(jsonObject0.getString("image"));
                         content.add(jsonObject0.getString("content"));
                         time.add(jsonObject0.getString("time"));

@@ -30,7 +30,7 @@
                 android:background="@drawable/style_radius_stroke"
                 android:layout_marginTop="15dp"
                 android:layout_marginLeft="20dp"
-                android:src="@mipmap/babyboxs"
+                android:src="@mipmap/imoni"
                 />
 
             <!--昵称-->

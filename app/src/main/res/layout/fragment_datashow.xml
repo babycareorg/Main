@@ -69,7 +69,7 @@
             android:layout_height="60dp"
             android:textColor="@color/colorPrimary"
             android:textSize="16dp"
-            android:text="请打开产品BabyBox"
+            android:text="请打开产品iMoni"
             android:background="@color/white"
             android:layout_marginLeft="50dp"
             android:layout_marginRight="50dp"

@@ -27,7 +27,7 @@
                 android:layout_marginTop="10dp"
                 android:background="@drawable/style_radius_stroke"
                 android:scaleType="fitXY"
-                android:src="@mipmap/babyboxs" />
+                android:src="@mipmap/imoni" />
             <!--昵称-->
             <TextView
                 android:id="@+id/user_manage_header_topname"

@@ -27,7 +27,7 @@
                 android:layout_height="40dp"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="22dp"
-                android:background="@mipmap/babyboxs" />
+                android:background="@mipmap/imoni" />
 
             <TextView
                 android:id="@+id/name"

@@ -373,7 +373,7 @@
 
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
-                android:text="BabyBoxs团队"
+                android:text="iMoni团队"
                 android:textColor="@color/textColor"
                 android:textSize="20dp"
                 android:layout_marginLeft="20dp"

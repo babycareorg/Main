@@ -6,9 +6,9 @@
     <application
         android:name="cn.bgbsk.babycare.global.Data"
         android:allowBackup="true"
-        android:icon="@mipmap/babyboxs"
+        android:icon="@mipmap/imoni"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/babyboxs"
+        android:roundIcon="@mipmap/imoni"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".ui.LiveAlarmActivity"></activity>

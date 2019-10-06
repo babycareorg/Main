@@ -72,7 +72,7 @@ public class ImgShowActivity extends Activity {
             public void handleMessage(Message msg) {
                 if (msg.what == COMPLETED) {
                     ImgAdapter imgadapter;
-                    GridLayoutManager layoutManager = new GridLayoutManager(ImgShowActivity.this, 3);
+                    GridLayoutManager layoutManager = new GridLayoutManager(ImgShowActivity.this, 2);
                     imglist.setLayoutManager(layoutManager);
                     imgadapter = new ImgAdapter(name);
                     imglist.setAdapter(imgadapter);

@@ -5,7 +5,8 @@
     android:orientation="vertical"
     android:background="@drawable/style_radius_stroke"
     android:layout_marginTop="6dp"
-    android:layout_marginLeft="5dp">
+    android:layout_marginLeft="5dp"
+    android:layout_marginRight="5dp">
 
     <ImageView
         android:id="@+id/id_index_gallery_item_image"

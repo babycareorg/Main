@@ -16,7 +16,6 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.jack.carebaby.R;
 import com.jack.carebaby.utils.BabyInfoAdapter;
-import com.jack.carebaby.utils.ImgAdapter;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -81,7 +80,7 @@ public class BabyInfoShowActivity extends Activity {
             public void handleMessage(Message msg) {
                 if (msg.what == COMPLETED) {
                     BabyInfoAdapter babyinfoadapter;
-                    GridLayoutManager layoutManager = new GridLayoutManager(BabyInfoShowActivity.this, 3);
+                    GridLayoutManager layoutManager = new GridLayoutManager(BabyInfoShowActivity.this, 1);
                     imglist.setLayoutManager(layoutManager);
                     babyinfoadapter = new BabyInfoAdapter(name, content, time);
                     imglist.setAdapter(babyinfoadapter);

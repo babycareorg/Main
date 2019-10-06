@@ -26,6 +26,8 @@ public class Data extends Application {
 
     public static String phoneNumber="18056929880";//预设手机号
 
+    public static String messageText="晚饭做好啦，早点回来吃饭~";
+
     public static boolean boxsStatus=true;
 
 

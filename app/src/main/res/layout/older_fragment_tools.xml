@@ -205,7 +205,7 @@
                 android:background="@drawable/style_radius_stroke_gray"
                 android:textColor="@color/textColor"
                 android:textSize="@dimen/older_small"
-                android:text="噪音测量"
+                android:text="放大镜"
                 android:layout_weight="1"/>
 
             <Button

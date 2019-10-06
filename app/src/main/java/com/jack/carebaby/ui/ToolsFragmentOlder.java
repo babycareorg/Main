@@ -1,22 +1,46 @@
 package com.jack.carebaby.ui;
-
+import android.Manifest;
+import android.annotation.SuppressLint;
+import android.app.Activity;
+import android.content.ContentValues;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
+import android.provider.MediaStore;
+import android.support.v4.content.ContextCompat;
 import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.jack.carebaby.R;
 import com.jack.carebaby.base.BaseFragment;
 
+import java.io.File;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
+
+import static cn.bgbsk.babycare.global.Data.messageText;
+import static cn.bgbsk.babycare.global.Data.phoneNumber;
 
 public class ToolsFragmentOlder extends BaseFragment{
+
+
+    private Uri imageUri;
+    public static File tempFile;
+
+    //相机相关
+    public static final int VIDEO_REQUEST = 0;// 录像
+    public static final int PHOTO_REQUEST_CAREMA = 1;// 拍照
+    public static final int CROP_PHOTO = 2;  //相册
 
 
     private Button Older_Tools_1;
@@ -118,6 +142,21 @@ public class ToolsFragmentOlder extends BaseFragment{
         });
 
 
+        Older_Tools_7.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                message(phoneNumber,messageText);
+            }
+        });
+
+        Older_Tools_9.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openCamera(getActivity());
+            }
+        });
+
+
 
 
 
@@ -160,7 +199,7 @@ public class ToolsFragmentOlder extends BaseFragment{
                     CharSequence sysTimeStr = DateFormat.format("hh:mm:ss", sysTime);//时间显示格式
                     CharSequence sysDateStr = DateFormat.format("MM月dd日", sysTime);//时间显示格式
 
-                    int week=calendar.get(Calendar.WEDNESDAY);
+                    @SuppressLint("WrongConstant") int week=calendar.get(Calendar.WEDNESDAY);
 
                     older_time.setText(sysTimeStr);
                     //older_date.setText(month+"月"+day+"日");
@@ -174,5 +213,59 @@ public class ToolsFragmentOlder extends BaseFragment{
         }
     };
 
+
+    //发短信
+    private void message(String phone,String contents1){
+        Intent intent = new Intent();
+        intent.setAction(Intent.ACTION_SENDTO);             //设置动作为发送短信
+        intent.setData(Uri.parse("smsto:"+phone));           //设置发送的号码
+        intent.putExtra("sms_body",contents1);           //设置发送的内容
+        Toast.makeText(getActivity(), "跳转成功", Toast.LENGTH_SHORT).show();
+        startActivity(intent);                               //启动 Activity
+    }
+
+    //打开相机
+    public void openCamera(Activity activity) {
+        //獲取系統版本
+        int currentapiVersion = android.os.Build.VERSION.SDK_INT;
+        // 激活相机
+        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        // 判断存储卡是否可以用，可用进行存储
+        if (hasSdcard()) {
+            SimpleDateFormat timeStampFormat = new SimpleDateFormat(
+                    "yyyy_MM_dd_HH_mm_ss");
+            String filename = timeStampFormat.format(new Date());
+            tempFile = new File(Environment.getExternalStorageDirectory(),
+                    filename + ".jpg");
+            if (currentapiVersion < 24) {
+                // 从文件中创建uri
+                imageUri = Uri.fromFile(tempFile);
+                intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
+            } else {
+                //兼容android7.0 使用共享文件的形式
+                ContentValues contentValues = new ContentValues(1);
+                contentValues.put(MediaStore.Images.Media.DATA, tempFile.getAbsolutePath());
+                //检查是否有存储权限，以免崩溃
+                if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                        != PackageManager.PERMISSION_GRANTED) {
+                    //申请WRITE_EXTERNAL_STORAGE权限
+                    Toast.makeText(getActivity(), "请开启存储权限", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                imageUri = activity.getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, contentValues);
+                intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
+            }
+        }
+        // 开启一个带有返回值的Activity，请求码为PHOTO_REQUEST_CAREMA
+        activity.startActivityForResult(intent, PHOTO_REQUEST_CAREMA);
+    }
+
+    /*
+     * 判断sdcard是否被挂载
+     */
+    public static boolean hasSdcard() {
+        return Environment.getExternalStorageState().equals(
+                Environment.MEDIA_MOUNTED);
+    }
 
 }

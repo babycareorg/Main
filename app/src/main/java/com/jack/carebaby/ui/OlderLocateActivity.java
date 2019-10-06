@@ -1,15 +1,15 @@
 package com.jack.carebaby.ui;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
 import com.jack.carebaby.R;
+import com.jack.carebaby.base.BasePage;
 
-public class OlderLocateActivity extends AppCompatActivity {
+public class OlderLocateActivity extends BasePage {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

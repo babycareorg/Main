@@ -25,7 +25,8 @@ public class SystemLiveFragment extends BaseFragment {
     private TextView system_title_head_note;
 
     private LinearLayout garbage;
-    
+    private LinearLayout alarm;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,6 +50,7 @@ public class SystemLiveFragment extends BaseFragment {
         });
 
         garbage=v.findViewById(R.id.live_title_body_3);
+        alarm=v.findViewById(R.id.live_title_body_1);
 
 
         url="https://www.evolife.cn/category/homeware/page/11";
@@ -63,6 +65,15 @@ public class SystemLiveFragment extends BaseFragment {
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent(getActivity(),LiveGarbageActivity.class) ;
+                startActivity(intent);
+
+            }
+        });
+
+        alarm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(getActivity(),LiveAlarmActivity.class) ;
                 startActivity(intent);
 
             }

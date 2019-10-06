@@ -1,11 +1,11 @@
 package com.jack.carebaby.ui;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.jack.carebaby.R;
+import com.jack.carebaby.base.BasePage;
 
-public class OlderTimealarmActivity extends AppCompatActivity {
+public class OlderTimealarmActivity extends BasePage {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

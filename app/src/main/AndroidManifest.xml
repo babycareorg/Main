@@ -23,8 +23,12 @@
         android:roundIcon="@mipmap/babyboxs"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.WebToolsActivity"
-            android:label="功能大全"></activity>
+        <activity android:name=".ui.OlderLocateActivity"></activity>
+        <activity android:name=".ui.OlderTimealarmActivity" />
+        <activity android:name=".ui.OlderFlashlightActivity" />
+        <activity
+            android:name=".ui.WebToolsActivity"
+            android:label="功能大全" />
         <activity
             android:name=".ui.HomePage"
             android:windowSoftInputMode="adjustPan">
@@ -55,17 +59,19 @@
             android:label="ShowImg" />
         <activity
             android:name=".ui.BabyInfoShowActivity"
-            android:label="ShowInfo" >
+            android:label="ShowInfo">
             <intent-filter>
                 <action android:name="com.jack.carebaby.ui.BabyInfoAddActivity" />
+
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
         <activity
             android:name=".ui.BabyInfoAddActivity"
-            android:label="NewInfo" >
+            android:label="NewInfo">
             <intent-filter>
                 <action android:name="com.jack.carebaby.ui.BabyInfoAddActivity" />
+
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
@@ -74,14 +80,16 @@
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
             <intent-filter>
                 <action android:name="com.jack.carebaby.ui.PlanWHeightAddActivity" />
+
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
         <activity
             android:name=".ui.PlanWHeightActivity"
-            android:label="身高体重" >
+            android:label="身高体重">
             <intent-filter>
                 <action android:name="com.jack.carebaby.ui.PlanWHeightAddActivity" />
+
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
@@ -138,6 +146,7 @@
             android:label="老人电话" />
         <activity
             android:name=".ui.UserManageActivity"
+<<<<<<< Updated upstream
             android:label="用户管理" >
             <intent-filter>
                 <action android:name="com.jack.carebaby.ui.HeadImgChangeActivity" />
@@ -147,6 +156,9 @@
         <activity
             android:name=".ui.HeadImgChangeActivity"
             android:label="修改头像" />
+=======
+            android:label="用户管理" />
+>>>>>>> Stashed changes
         <activity
             android:name=".ui.BabyTestActivity"
             android:label="婴儿测评" />

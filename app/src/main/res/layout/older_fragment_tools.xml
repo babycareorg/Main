@@ -158,7 +158,7 @@
                 android:background="@drawable/style_radius_stroke_gray"
                 android:textColor="@color/textColor"
                 android:textSize="@dimen/older_small"
-                android:text="发送定位"
+                android:text="定位导航"
                 android:layout_weight="1"/>
 
 

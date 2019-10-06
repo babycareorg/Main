@@ -1,4 +1,5 @@
 package com.jack.carebaby.ui;
+<<<<<<< Updated upstream
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -6,6 +7,12 @@ import android.content.ContentValues;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
+=======
+
+import android.content.Context;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+>>>>>>> Stashed changes
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
@@ -30,6 +37,8 @@ import java.util.Date;
 
 import static cn.bgbsk.babycare.global.Data.messageText;
 import static cn.bgbsk.babycare.global.Data.phoneNumber;
+
+import android.content.pm.PackageManager;
 
 public class ToolsFragmentOlder extends BaseFragment{
 
@@ -108,6 +117,25 @@ public class ToolsFragmentOlder extends BaseFragment{
             }
         });
 
+        Older_Tools_8.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent intent=new Intent(getActivity(),OlderFlashlightActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        Older_Tools_5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent intent=new Intent(getActivity(),OlderFlashlightActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
         Older_Tools_1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -123,6 +151,8 @@ public class ToolsFragmentOlder extends BaseFragment{
                 startActivity(intent);
             }
         });
+
+
 
 
         Older_Tools_3.setOnClickListener(new View.OnClickListener() {
@@ -141,7 +171,9 @@ public class ToolsFragmentOlder extends BaseFragment{
             }
         });
 
+//        Button btn_protect = findViewById(R.id.older_tools_6);
 
+<<<<<<< Updated upstream
         Older_Tools_7.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -158,6 +190,15 @@ public class ToolsFragmentOlder extends BaseFragment{
 
 
 
+=======
+        Older_Tools_6.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(getActivity(),OlderLocateActivity.class);
+                startActivity(intent);
+            }
+        });
+>>>>>>> Stashed changes
 
 
         Older_Tools_10.setOnClickListener(new View.OnClickListener() {

@@ -1,6 +1,8 @@
 package com.jack.carebaby.ui;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -25,7 +27,12 @@ import com.memorandum.MainActivity;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -49,6 +56,7 @@ public class PersonFragment extends BaseFragment {
     private TextView Login;
     private TextView Count;
     private ImageView EditName;
+    private ImageView HeadImg;
 
     private LinearLayout NewBaby;
     private LinearLayout Setting;
@@ -81,6 +89,7 @@ public class PersonFragment extends BaseFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_person, null);
         Login=v.findViewById(R.id.person_title_head_name);
+        HeadImg=v.findViewById(R.id.person_title_head_img);
         EditName=v.findViewById(R.id.person_title_head_namechange);
         NewBaby = v.findViewById(R.id.person_body_head_1);
         Setting = v.findViewById(R.id.person_body_head_3);
@@ -92,6 +101,79 @@ public class PersonFragment extends BaseFragment {
         Info = v.findViewById(R.id.person_body_foot_1);
         babylist = v.findViewById(R.id.person_content_baby_list);
         Count = v.findViewById(R.id.person_title_head_time);
+
+        final Bitmap bmp = null;
+        final Handler mHandler = new Handler() {
+            @Override
+            public void handleMessage(Message msg) {
+                super.handleMessage(msg);
+                switch (msg.what) {
+                    case 0:
+                        Toast.makeText(getContext(), "请求失败！", Toast.LENGTH_SHORT).show();
+                        break;
+                    case 1:
+                        HeadImg.setImageBitmap((Bitmap) msg.obj);
+                        break;
+                }
+            }
+        };
+
+        String url = "https://babycare.bgbsk.cn/avatar/" + Data.getImg();
+        final File file = new File(getContext().getCacheDir(), Data.getImg());
+        //判断，缓存是否存在该文件
+        if (file.exists()) {
+            //如果缓存存在，从缓存中读取图片
+            Bitmap bitmap = BitmapFactory.decodeFile(file.getAbsolutePath());
+            HeadImg.setImageBitmap(bitmap);
+        } else {
+            //如果缓存不存在，从网络中下载图片
+            Thread th = new Thread() {
+                @Override
+                public void run() {
+                    super.run();
+                    //2.把网址封装成一个Url对象
+                    try {
+                        URL url = new URL("https://babycare.bgbsk.cn/avatar/" + Data.getImg());
+                        //3.获取客户端和服务器的链接对象，此时还没有建立连接
+                        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                        //4.对连接对象初始化
+                        //设置请求方法，注意大写
+                        conn.setRequestMethod("GET");
+                        //设置连接超时
+                        conn.setConnectTimeout(5000);
+                        //设置读取超时
+                        conn.setReadTimeout(5000);
+                        //发送请求，与服务器建立连接
+                        conn.connect();
+                        //如果响应码为200,说明请求成功
+                        if (conn.getResponseCode() == 200) {
+                            //获取服务器响应头里中流，流里的数据就是客户端请求的数据
+                            InputStream in = conn.getInputStream();
+                            //将数据缓存到内存中
+                            FileOutputStream fos = new FileOutputStream(file);
+                            byte[] b = new byte[1024];
+                            int len = 0;
+                            while ((len = in.read(b)) != -1) {
+                                fos.write(b, 0, len);
+                            }
+                            fos.close();
+                            Bitmap bitmap = BitmapFactory.decodeFile(file.getAbsolutePath());
+                            Message msg = new Message();
+                            msg.what = 1;
+                            msg.obj = bitmap;
+                            mHandler.sendMessage(msg);
+                        } else {
+                            Message msg = mHandler.obtainMessage();
+                            msg.what = 0;
+                            mHandler.sendMessage(msg);
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            };
+            th.start();
+        }
 
         Login.setText(Data.getUsername());
 

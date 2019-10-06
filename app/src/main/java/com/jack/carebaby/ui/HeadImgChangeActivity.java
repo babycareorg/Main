@@ -12,19 +12,31 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Handler;
+import android.os.Message;
 import android.provider.DocumentsContract;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.Toast;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.jack.carebaby.R;
 
 import org.jetbrains.annotations.NotNull;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 
 import cn.bgbsk.babycare.global.Data;
 import okhttp3.Call;
@@ -43,6 +55,7 @@ public class HeadImgChangeActivity extends Activity implements View.OnClickListe
     String image_path;
     String url = Data.getUrl();
     String phone = Data.getPhone();
+    private static final int COMPLETED = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +75,7 @@ public class HeadImgChangeActivity extends Activity implements View.OnClickListe
             // 提交
             case R.id.forward:
                 Upload();
+                Get();
                 HeadImgChangeActivity.this.finish();
                 break;
             case R.id.tv_img:
@@ -121,6 +135,45 @@ public class HeadImgChangeActivity extends Activity implements View.OnClickListe
             @Override
             public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                 final String responseStr = response.body().string();
+            }
+        });
+    }
+
+    public void Get(){
+        final List<String> img = new ArrayList<>();
+        Log.d("Upload","click");
+        OkHttpClient okHttpClient = new OkHttpClient();
+        final Request request = new Request.Builder().url(url+"/user/get?phone="+phone).build();
+        final Handler handler = new Handler(){
+            @Override
+            public void handleMessage(Message msg) {
+                if (msg.what == COMPLETED) {
+                    System.out.println(img.get(0));
+                    Data.setImg(img.get(0));
+                    System.out.println(HeadImgChangeActivity.this.getCacheDir().toString()+Data.getImg());
+                    File file1 = new File(HeadImgChangeActivity.this.getCacheDir(), Data.getImg());
+                    file1.delete();
+                }
+            }
+        };
+        okHttpClient.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(@NotNull Call call, @NotNull IOException e) {
+                Log.d("GetError", e.getMessage());
+            }
+
+            @Override
+            public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
+                JSONObject jsonObject = JSON.parseObject(response.body().string());
+                JSONArray jsonArray = jsonObject.getJSONArray("user");
+                for (int i = 0; i < jsonArray.size(); i++) {
+                    JSONObject jsonObject0 = jsonArray.getJSONObject(i);
+                    img.add(jsonObject0.getString("imgUrl"));
+                    System.out.println(jsonObject0.getString("imgUrl"));
+                }
+                Message message = new Message();
+                message.what = COMPLETED;
+                handler.sendMessage(message);
             }
         });
     }

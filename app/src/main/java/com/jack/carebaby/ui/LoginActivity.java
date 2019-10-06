@@ -134,6 +134,7 @@ public class LoginActivity extends AppCompatActivity {
                             loginEdit.commit();
                             Data.setPhone(jsonObject.getString("phone"));
                             Data.setUsername(jsonObject.getString("username"));
+                            Data.setImg(jsonObject.getString("imgUrl"));
                             Data.setCreated(jsonObject.getTimestamp("created"));
                             Data.setRegisterTime(jsonObject.getString("created"));
                             Data.setLoginStatus(1);

@@ -245,6 +245,7 @@ public class HomePage extends BasePage {
                     if (status == 200) {
                         Data.setPhone(jsonObject.getString("phone"));
                         Data.setUsername(jsonObject.getString("username"));
+                        Data.setImg(jsonObject.getString("imgUrl"));
                         Data.setCreated(jsonObject.getTimestamp("created"));
                         Data.setRegisterTime(jsonObject.getString("created"));
                         Data.setLoginStatus(1);

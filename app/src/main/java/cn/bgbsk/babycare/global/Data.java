@@ -10,6 +10,7 @@ public class Data extends Application {
     private static String url;
     private static String username;
     private static String phone;
+    private static String img;
     private static int loginStatus;
     private static Timestamp created;
 
@@ -57,8 +58,16 @@ public class Data extends Application {
         return phone;
     }
 
+    public static String getImg() {
+        return img;
+    }
+
     public static void setUsername(String username) {
         Data.username = username;
+    }
+
+    public static void setImg(String img) {
+        Data.img = img;
     }
 
     public static int getLoginStatus() {

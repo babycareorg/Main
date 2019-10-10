@@ -70,10 +70,6 @@ public class DataShowFragment extends BaseFragment {
     private Vibrator mVibrator;
 
 
-    /*http*/
-//    private static final String DeviceID = "536315660";
-//    private static final String ApiKey = "oiHzkWOOdFKal9OI=ctjW1B3Lws=";
-//    private static final String shumditity="temperature";//onenet平台上对应设备的其中一个数据流的名字
 
     private TextView main_cry;   //是否在哭
     private TextView main_status;      //婴儿状态
@@ -147,7 +143,6 @@ public class DataShowFragment extends BaseFragment {
         Datashow_disconect_setting=v.findViewById(R.id.datashow_disconnect_setting);
         datashow_disconnect_help=v.findViewById(R.id.datashow_disconnect_help);
 
-
         circularFillableLoaders = v.findViewById(R.id.main_circle_temp);
         circularFillableLoaders_2 = v.findViewById(R.id.main_circle_humid);
         circularFillableLoaders_3 = v.findViewById(R.id.main_circle_light);
@@ -171,16 +166,9 @@ public class DataShowFragment extends BaseFragment {
             @Override
             public void onRefresh(RefreshLayout refreshlayout) {
                 refreshlayout.finishRefresh(2400/*,false*/);//传入false表示刷新失败
-
-
             }
         });
-        /*refreshLayout.setOnLoadMoreListener(new OnLoadMoreListener() {
-            @Override
-            public void onLoadMore(RefreshLayout refreshlayout) {
-                refreshlayout.finishLoadMore(2000*//*,false*//*);//传入false表示加载失败
-            }
-        });*/
+
         refreshLayout.setRefreshHeader(new BezierRadarHeader(getContext()).setEnableHorizontalDrag(true));
 
 
@@ -296,15 +284,7 @@ public class DataShowFragment extends BaseFragment {
         connect();
 
         /** 定时刷新页面*/
-//        Timer timer = new Timer();
-//        timer.scheduleAtFixedRate(new TimerTask() {
-//            @Override
-//            public void run() {
-//                Get();
-//                Log.e("TAG","隔3秒执行一次操作");
-//
-//            }
-//        },0000,1500);
+
 
         mVibrator = (Vibrator)getActivity().getSystemService(Service.VIBRATOR_SERVICE);
 
@@ -681,19 +661,11 @@ public class DataShowFragment extends BaseFragment {
     private void cancelVibration() {
 
         final AlertDialog mAlertDialog = new AlertDialog.Builder(getContext()).show();
-        //View view = LayoutInflater.from(getContext()).inflate(R.layout.fragment_datashow_cancelvibration,null);
 
-
-        /*final ImageView imageView = new ImageView(getContext());
-        imageView.setImageResource(R.mipmap.babyboxs);*/
 
         Button button =new Button(getContext());
         button.setText("取消振动");
-        /*button.setHeight(90);
-        button.setWidth(150);
-        button.setTextColor(R.color.colorPrimary);
-        button.setGravity(2);
-        button.setTextSize(16);*/
+
 
         mAlertDialog.setContentView(button);
 
@@ -703,13 +675,6 @@ public class DataShowFragment extends BaseFragment {
                 Toast.makeText(getActivity(), "成功取消振动", Toast.LENGTH_SHORT).show();
                 mVibrator.cancel();
 
-                /*try {
-                    //mVibrator.wait(4000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }*/
-
-                //imageView.setVisibility(View.INVISIBLE);
             }
         });
 

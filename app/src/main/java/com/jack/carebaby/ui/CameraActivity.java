@@ -19,6 +19,8 @@ import android.widget.TextView;
 import com.jack.carebaby.R;
 import com.jack.carebaby.base.BasePage;
 
+import cn.bgbsk.babycare.global.Data;
+
 public class CameraActivity extends BasePage {
 
     private WebView camera_webview;
@@ -42,7 +44,7 @@ public class CameraActivity extends BasePage {
         camera_state=findViewById(R.id.camera_state);
 
 
-        camera_webview.loadUrl("http://192.168.43.250:81/stream");
+        camera_webview.loadUrl("http://"+ Data.getCameraIP()+":81/stream");
         //camera_webview.loadUrl("http://192.168.43.250:81/stream");
 
         setUrl_Button.setOnClickListener(new View.OnClickListener() {

@@ -13,6 +13,7 @@ public class Data extends Application {
     private static String img;
     private static int loginStatus;
     private static Timestamp created;
+    private static String cameraIP;
 
 
     private static String countingshow;
@@ -30,6 +31,8 @@ public class Data extends Application {
     public static String messageText="晚饭做好啦，早点回来吃饭~";
 
     public static boolean boxsStatus=true;
+
+
 
 
     @Override
@@ -141,6 +144,14 @@ public class Data extends Application {
 
     public static void setCountingshowolder(String countingshowolder) {
         Data.countingshowolder = countingshowolder;
+    }
+
+    public static String getCameraIP() {
+        return cameraIP;
+    }
+
+    public static void setCameraIP(String cameraIP) {
+        Data.cameraIP = cameraIP;
     }
 
     @Override

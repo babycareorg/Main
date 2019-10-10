@@ -1,6 +1,7 @@
 package com.jack.carebaby.ui;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
@@ -44,6 +45,15 @@ import com.jack.carebaby.base.BasePage;
 import com.jack.carebaby.entity.TabEntity;
 import com.jack.carebaby.utils.ViewFindUtils;
 
+import org.eclipse.paho.android.service.MqttAndroidClient;
+import org.eclipse.paho.client.mqttv3.DisconnectedBufferOptions;
+import org.eclipse.paho.client.mqttv3.IMqttActionListener;
+import org.eclipse.paho.client.mqttv3.IMqttDeliveryToken;
+import org.eclipse.paho.client.mqttv3.IMqttToken;
+import org.eclipse.paho.client.mqttv3.MqttCallbackExtended;
+import org.eclipse.paho.client.mqttv3.MqttConnectOptions;
+import org.eclipse.paho.client.mqttv3.MqttException;
+import org.eclipse.paho.client.mqttv3.MqttMessage;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
@@ -65,6 +75,15 @@ import static cn.bgbsk.babycare.global.Data.boxsStatus;
 import static cn.bgbsk.babycare.global.Data.phoneNumber;
 
 public class HomePage extends BasePage {
+
+    // MQTT 客户端
+    private MqttAndroidClient mqttAndroidClient;
+    // 连接 ActiveMQ 的URI
+    private String serverUri = "tcp://bgbsk.cn:1883";
+    // 客户端 ID，用以识别客户端
+    private String clientId = "camera_client"+Math.random()*100+Math.random()*100;
+
+
     private Context mContext = this;
 
     /**
@@ -141,6 +160,8 @@ public class HomePage extends BasePage {
         initFragment();
 
         initFragmentOlder();
+
+        connect();
 
         /*摇一摇相关*/
         sensorManager = (SensorManager)getSystemService(Context.SENSOR_SERVICE);
@@ -593,6 +614,91 @@ public class HomePage extends BasePage {
     }
 
 
+    private void connect() {
+
+        mqttAndroidClient = new MqttAndroidClient(HomePage.this, serverUri, clientId);
+
+//        mqttAndroidClient = new MqttAndroidClient(getApplicationContext(), serverUri, clientId);
+        mqttAndroidClient.setCallback(new MqttCallbackExtended() {
+            @Override
+            public void connectComplete(boolean reconnect, String serverURI) {
+                if (reconnect) {
+                    // 自动重连
+                } else {
+                    // 已连接
+                }
+            }
+
+            @Override
+            public void connectionLost(Throwable cause) {
+            }
+
+            @SuppressLint("WrongConstant")
+            @Override
+            public void messageArrived(String topic, MqttMessage message) throws Exception {
+                switch (topic) {
+                    case "ip":{
+                        Data.setCameraIP(message.toString());
+                        break;
+                    }
+                }
+            }
+
+            @Override
+            public void deliveryComplete(IMqttDeliveryToken token) {
+
+            }
+        });
+
+        MqttConnectOptions mqttConnectOptions = new MqttConnectOptions();
+        mqttConnectOptions.setAutomaticReconnect(true);
+        mqttConnectOptions.setCleanSession(false);
+
+        try {
+            mqttAndroidClient.connect(mqttConnectOptions, null, new IMqttActionListener() {
+                @Override
+                public void onSuccess(IMqttToken asyncActionToken) {
+
+                    // 连接成功
+                    DisconnectedBufferOptions disconnectedBufferOptions = new DisconnectedBufferOptions();
+                    disconnectedBufferOptions.setBufferEnabled(true);
+                    disconnectedBufferOptions.setBufferSize(100);
+                    disconnectedBufferOptions.setPersistBuffer(false);
+                    disconnectedBufferOptions.setDeleteOldestMessages(false);
+                    mqttAndroidClient.setBufferOpts(disconnectedBufferOptions);
+
+                    // 订阅主题
+                    subscribeToTopic("ip");
+                }
+
+                @Override
+                public void onFailure(IMqttToken asyncActionToken, Throwable exception) {
+                    exception.printStackTrace();
+                }
+            });
+        } catch (MqttException ex) {
+            ex.printStackTrace();
+        }
+
+    }
+
+
+    private void subscribeToTopic(String topic) {
+        try {
+            mqttAndroidClient.subscribe(topic, 1, null, new IMqttActionListener() {
+                @Override
+                public void onSuccess(IMqttToken asyncActionToken) {
+                }
+
+                @Override
+                public void onFailure(IMqttToken asyncActionToken, Throwable exception) {
+                    exception.printStackTrace();
+                }
+            });
+        } catch (MqttException e) {
+            e.printStackTrace();
+        }
+    }
 
 
 }
